@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const ForgetPass = () => {
+const ForgetPass = ({section}) => {
 
     //state for hide or unhide
     const [email, setEmail] = useState("block");

@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <div>Home Page</div>
+    <h2>Home Page (Not Determines)</h2>
   )
 }
 

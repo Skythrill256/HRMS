@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { Link } from "react-router-dom";
 const Login = () => {
 
   const [hide, setHide] = useState(true);
@@ -27,9 +27,9 @@ const Login = () => {
             <div className="mb-4">
               <label className=" text-sm font-medium text-gray-700 mb-1">Password</label>
               <input type="password" value={pass} onChange={(e) => setPass(e.target.value)} className="shadow-sm rounded-md w-full px-3 py-1 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your password" required />
-              <a href="/"
+              <Link to="/login/forgetpass"
                 className="text-xs text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Forgot
-                Password?</a>
+                Password?</Link>
               <button type="submit" className="w-full flex justify-center py-1.5 px-4 mt-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={handleSubmit}>Get OTP</button>
             </div>
           </div>

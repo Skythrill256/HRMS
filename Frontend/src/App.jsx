@@ -20,7 +20,7 @@ const router = createBrowserRouter([
 
   },
   {
-    path:"/forgetpass",
+    path:"/login/forgetpass",
     element:<ForgetPass/>
   },
   // Admin Dashboard Base
