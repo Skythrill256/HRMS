@@ -22,7 +22,7 @@ const Login = () => {
         {/* Left Image */}
         <div className="w-1/2 hidden md:block">
           <img
-            src={`${hide ? "login.avif" : "otp.avif"}`}
+            src={`${hide ? "login.jpg" : "otp.avif"}`}
             alt="Login Visual"
             className="h-full w-full object-cover"
           />
@@ -30,7 +30,7 @@ const Login = () => {
 
         {/* Right Form */}
         <div className="w-full md:w-1/2 px-8 py-6">
-          <h1 className="text-2xl font-bold text-center mb-4 pt-5 text-indigo-500">Sign Up</h1>
+          <h1 className="text-2xl font-bold text-center mb-4 pt-5 text-indigo-500">Sign In</h1>
           <form action="/" onSubmit={(e) => e.preventDefault()}>
             {/* Login Section */}
             <div className={`mb-1 ${hide ? "block" : "hidden"}`}>
