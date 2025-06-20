@@ -1,63 +1,114 @@
 import React, { useState } from 'react';
+import { BsThreeDotsVertical } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 const Getallemployee = () => {
+  const [ShowaddEmployee, setShowaddEmployee] = useState(false);
+  const [openMenuId, setOpenMenuId] = useState(null);
 
-    const [ShowaddEmploee,setShowaddEmploee] = useState(false);
+  const handleAddEmployee = () => {
+    setShowaddEmployee(!ShowaddEmployee);
+    console.log("Add Employee button clicked!");
+  };
 
-    const handleaddemploee = ()=>{
-        setShowaddEmploee(!ShowaddEmploee)
-    }
+  const handleMenuToggle = (employeeId) => {
+    setOpenMenuId(openMenuId === employeeId ? null : employeeId);
+  };
 
-    // Dummy employee data
-    const employees = [
-        { id: 'EMP001', name: 'Alice Smith', email: 'alice.s@example.com', assignedProject: 'HR Management App' },
-        { id: 'EMP002', name: 'Bob Johnson', email: 'bob.j@example.com', assignedProject: 'E-Commerce Website' },
-        { id: 'EMP003', name: 'Charlie Brown', email: 'charlie.b@example.com', assignedProject: 'Inventory System' },
-        { id: 'EMP004', name: 'Diana Prince', email: 'diana.p@example.com', assignedProject: 'Banking Portal' },
-        { id: 'EMP005', name: 'Eve Adams', email: 'eve.a@example.com', assignedProject: 'CRM System' },
-        { id: 'EMP006', name: 'Frank White', email: 'frank.w@example.com', assignedProject: 'Mobile Banking App' },
-    ];
+  const handleEdit = (employeeId) => {
+    console.log(`Edit Employee: ${employeeId}`);
+    setOpenMenuId(null);
+  };
 
-    return (
-        <div className='max-w-7xl mx-auto p-5 sm:p-6'> 
-            <div className='flex flex-col bg-white shadow-md rounded-lg'> 
-                <div className='flex flex-row justify-between items-center p-6'>
-                    <h2 className='py-2.5 font-semibold text-xl sm:text-2xl'>TOTAL EMPLOYEE</h2>
-                    <button type="button" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" onClick={handleaddemploee}>ADD EMPLOYEE</button>
-                </div>
 
-                {/* Table Section */}
-                <div className="relative overflow-x-auto md:overflow-hidden group">
-                    <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 peer sm:overflow-y-auto">
-                        {employees.length > 0 ? (
-                            <table className='w-full min-w-max text-left text-gray-600 '>
-                                <thead className='bg-blue-300 text-xs text-gray-700 uppercase'>
-                                    <tr>
-                                        <th className='py-2 px-4 sm:py-4'>Employee ID</th>
-                                        <th className='py-2 px-4 sm:py-4'>Name</th>
-                                        <th className='py-2 px-4 sm:py-4'>Email</th>
-                                        <th className='py-2 px-4 sm:py-4'>Assigned Project</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {employees.map((employee, index) => (
-                                        <tr key={employee.id} className='border-b hover:border-gray-100 cursor-pointer hover:bg-[#6AF2F0]'>
-                                            <td className='py-2 px-4 sm:py-4'>{employee.id}</td>
-                                            <td className='py-2 px-4 sm:py-4'>{employee.name}</td>
-                                            <td className='py-2 px-4 sm:py-4'>{employee.email}</td>
-                                            <td className='py-2 px-4 sm:py-4'>{employee.assignedProject}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        ) : (
-                            <p className='text-center text-gray-600 py-4'>No employees found.</p>
-                        )}
-                    </div>
-                </div>
-            </div>
+
+  const handleRestrictLogin = (employeeId) => {
+    console.log(`Restrict Login for: ${employeeId}`);
+    setOpenMenuId(null);
+  };
+
+  const employees = [
+    { id: 'EMP001', name: 'Alice Smith', imageUrl: 'https://randomuser.me/api/portraits/men/1.jpg' },
+    { id: 'EMP002', name: 'Bob Johnson', imageUrl: 'https://randomuser.me/api/portraits/women/2.jpg' },
+    { id: 'EMP003', name: 'Charlie Brown', imageUrl: 'https://randomuser.me/api/portraits/men/3.jpg' },
+    { id: 'EMP004', name: 'Diana Prince', imageUrl: 'https://randomuser.me/api/portraits/women/6.jpg' },
+    { id: 'EMP005', name: 'Eve Adams', imageUrl: 'https://randomuser.me/api/portraits/men/8.jpg' },
+    { id: 'EMP006', name: 'Frank White', imageUrl: 'https://randomuser.me/api/portraits/men/4.jpg' },
+    { id: 'EMP007', name: 'Grace Lee', imageUrl: 'https://randomuser.me/api/portraits/women/7.jpg' },
+    { id: 'EMP008', name: 'Henry King', imageUrl: 'https://randomuser.me/api/portraits/men/9.jpg' },
+    { id: 'EMP009', name: 'Ivy Green', imageUrl: 'https://randomuser.me/api/portraits/women/10.jpg' },
+    { id: 'EMP010', name: 'Jack Taylor', imageUrl: 'https://randomuser.me/api/portraits/men/11.jpg' },
+    { id: 'EMP011', name: 'Karen Hall', imageUrl: 'https://randomuser.me/api/portraits/women/12.jpg' },
+    { id: 'EMP012', name: 'Liam Scott', imageUrl: 'https://randomuser.me/api/portraits/men/13.jpg' },
+  ];
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 dark:bg-gray-900">
+      <div className="bg-[#dff4e3] shadow-md rounded-lg dark:bg-gray-800 dark:shadow-xl lg:p-4">
+
+        <div className="flex flex-col sm:flex-row justify-between items-center px-6 py-4">
+          <h2 className="font-semibold text-xl sm:text-2xl text-gray-800 dark:text-gray-100">TOTAL EMPLOYEE</h2>
+          <button
+            className="mt-2 sm:mt-0 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 
+             hover:from-indigo-500 hover:via-indigo-600 hover:to-indigo-700 
+             dark:from-purple-600 dark:via-purple-700 dark:to-purple-800 
+             dark:hover:from-pink-600 dark:hover:via-pink-700 dark:hover:to-pink-800 
+             focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-pink-500 
+             font-semibold rounded-xl text-sm px-6 py-2.5 transition-all duration-300 ease-in-out 
+             shadow-md hover:shadow-lg transform hover:scale-105 border border-transparent 
+             dark:border-pink-500"
+            onClick={handleAddEmployee}
+          >
+            ADD EMPLOYEE
+          </button>
+
         </div>
-    );
+
+
+
+
+        <div className="p-6">
+          {employees.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
+              {employees.map((employee) => (
+                <div key={employee.id} className="relative bg-white dark:bg-gray-700 rounded-2xl shadow-md dark:shadow-lg transition-transform duration-300 hover:scale-105 lg:p-4">
+
+                  {/* Menu Button */}
+                  <div className="absolute top-2 right-2 z-10">
+                    <button
+                      className="p-1 rounded-full text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                      onClick={() => handleMenuToggle(employee.id)}
+                    >
+                      <BsThreeDotsVertical className="text-xl" />
+                    </button>
+                    {openMenuId === employee.id && (
+                      <div className="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-1 z-20 dark:bg-gray-600 dark:text-gray-100">
+                        <button className="block px-4 py-2 text-sm text-left w-full hover:bg-gray-100 dark:hover:bg-gray-500" onClick={() => handleEdit(employee.id)}>Edit Employee</button>
+                        
+                        <button className="block px-4 py-2 text-sm text-left w-full hover:bg-gray-100 dark:hover:bg-gray-500" onClick={() => handleRestrictLogin(employee.id)}>Restrict Login</button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Card Content */}
+                  <Link to={`/admin-dashboard/employee-profile/${employee.id}`} className="block">
+                    <div className="flex flex-col items-center text-center px-4 py-6">
+                      <img src={employee.imageUrl} alt={employee.name} className="w-24 h-24 rounded-full border-2 border-blue-400 mb-3 object-cover" />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{employee.name}</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">ID: {employee.id}</p>
+
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-600 dark:text-gray-400 py-4">No employees found.</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Getallemployee;
