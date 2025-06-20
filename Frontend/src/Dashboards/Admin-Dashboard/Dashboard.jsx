@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Dashboardsidebar from '../Admin-Dashboard/DashboardSidebar';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import {
   FaCalendarAlt,
@@ -30,8 +30,6 @@ const AdminDashboard = ({ section }) => {
     setSidebarOpen(!SidebarOpen);
   };
 
-  const location = useLocation();
-  const pathSegments = location.pathname.split('/').filter(Boolean);
 
   // Dark mode functionality
 useEffect(() => {
@@ -71,6 +69,8 @@ useEffect(() => {
         return <PendingProjects />;
       case 'TotalEmployee':
         return <Getallemployee />;
+      // case 'employee-profile/EMP001':
+      //   return <EmployeeProfile/>;
       case 'add-employee':
         return <div className="p-6 bg-white shadow-md rounded-lg dark:bg-gray-800 dark:text-white">Add Employee Form goes here...</div>;
       case 'Allclients':
@@ -126,6 +126,8 @@ useEffect(() => {
               </button>
 
               <FaBell className="text-xl text-gray-700 cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
+
+
               <FaCommentDots className="text-xl text-gray-700 cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
             </div>
           </div>
