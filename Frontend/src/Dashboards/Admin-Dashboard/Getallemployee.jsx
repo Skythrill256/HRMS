@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import Employee from "../../Component/Employee";
-import EmployeeProfile from './EmployeeProfile'; 
+import EmployeeProfile from './EmployeeProfile';
 
 const Getallemployee = () => {
     const [ShowaddEmployee, setShowaddEmployee] = useState(false);
     const [openMenuId, setOpenMenuId] = useState(null);
-  const [emp, showEmp] = useState(false);
- 
+    const [emp, showEmp] = useState(false);
+
     const [selectedEmployee, setSelectedEmployee] = useState(null);
 
-  const handleAddEmployee = () => {
-    setShowaddEmployee(!ShowaddEmployee);
-    showEmp(!emp);
-  };
+    const handleAddEmployee = () => {
+        setShowaddEmployee(!ShowaddEmployee);
+        showEmp(!emp);
+    };
 
     const handleMenuToggle = (employeeId) => {
         setOpenMenuId(openMenuId === employeeId ? null : employeeId);
@@ -29,7 +29,7 @@ const Getallemployee = () => {
         console.log(`Edit Employee: ${employeeId}`);
     };
 
-   
+
     const handleViewEmployeeDetails = (employeeId) => {
         const employeeToView = employees.find(emp => emp.id === employeeId);
         if (employeeToView) {
@@ -222,31 +222,24 @@ const Getallemployee = () => {
             </div>
         );
     }
-
+// bg-[#dff4e3]
     // Otherwise, render the list of employees
     return (
-        <>
-    <div className="bg-red-700">
-        {emp && <Employee showEmp={showEmp}/>}
-      </div>
-    
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 dark:bg-gray-900">
-            <div className="bg-[#dff4e3] shadow-md rounded-lg dark:bg-gray-800 dark:shadow-xl lg:p-4">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 dark:bg-gray-900 relative">
+          {emp && <div className="flex justify-center items-center relative"><Employee showEmp={showEmp} /></div>}
+            <div className="bg-[#c3e5fa] shadow-md rounded-lg dark:bg-gray-800 dark:shadow-xl lg:p-4">
                 <div className="flex flex-col sm:flex-row justify-between items-center px-6 py-4">
-          
-          <h2 className="font-semibold text-xl sm:text-2xl text-gray-800 dark:text-gray-100">TOTAL EMPLOYEE</h2>
+
+                    <h2 className="font-bold text-xl sm:text-2xl text-[#FF4500] dark:text-gray-100">TOTAL EMPLOYEE</h2>
                     <button
-                        className="mt-2 sm:mt-0 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
-                           hover:from-indigo-500 hover:via-indigo-600 hover:to-indigo-700
-                           dark:from-purple-600 dark:via-purple-700 dark:to-purple-800
-                           dark:hover:from-pink-600 dark:hover:via-pink-700 dark:hover:to-pink-800
-                           focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-pink-500
-                           font-semibold rounded-xl text-sm px-6 py-2.5 transition-all duration-300 ease-in-out
-                           shadow-md hover:shadow-lg transform hover:scale-105 border border-transparent
-                           dark:border-pink-500"
+                        className="mt-2 sm:mt-0 text-white bg-[#FF4500]
+                           focus:outline-none
+                           font-semibold rounded-xl text-sm px-4 py-1.5 pt-0 transition-all duration-300 ease-in-out
+                           shadow-md hover:shadow-lg transform hover:scale-105"
                         onClick={handleAddEmployee}
                     >
-                        ADD EMPLOYEE
+                        <font className="text-2xl">+</font> Add Employee
                     </button>
 
                 </div>
@@ -255,7 +248,7 @@ const Getallemployee = () => {
                     {employees.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
                             {employees.map((employee) => (
-                                <div key={employee.id} className="relative bg-white dark:bg-gray-700 rounded-2xl shadow-md dark:shadow-lg transition-transform duration-300 hover:scale-105 lg:p-4">
+                                <div key={employee.id} className="relative bg-[#ffffec] dark:bg-gray-700 rounded-2xl shadow-md dark:shadow-lg transition-transform duration-300 hover:scale-105 lg:p-4">
 
                                     {/* Menu Button */}
                                     <div className="absolute top-2 right-2 z-10">
@@ -276,7 +269,7 @@ const Getallemployee = () => {
 
                                     <div
                                         onClick={() => handleViewEmployeeDetails(employee.id)}
-                                        className="block cursor-pointer" 
+                                        className="block cursor-pointer"
                                     >
                                         <div className="flex flex-col items-center text-center px-4 py-6">
                                             <img src={employee.imageUrl} alt={employee.name} className="w-24 h-24 rounded-full border-2 border-blue-400 mb-3 object-cover" />
@@ -293,8 +286,7 @@ const Getallemployee = () => {
                 </div>
             </div>
         </div>
-      </>
-  );
+    );
 };
 
 export default Getallemployee;

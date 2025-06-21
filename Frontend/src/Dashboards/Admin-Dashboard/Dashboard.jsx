@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Dashboardsidebar from '../Admin-Dashboard/DashboardSidebar';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { Link } from 'react-router-dom';
 
 import {
-  FaCalendarAlt,
   FaExpand,
   FaSun,
   FaMoon,
@@ -109,7 +107,7 @@ const AdminDashboard = ({ section }) => {
         {/* Main Section */}
         <div className="flex-1 overflow-y-auto">
           {/* Top Navigation Bar */}
-          <div className="flex justify-between items-center bg-white h-14 relative dark:bg-gray-800">
+          <div className="flex justify-between items-center bg-[#1E90FF] h-14 relative dark:bg-gray-800">
             {/* Hamburger Menu */}
             <div>
               <button onClick={togglesidehamburger} className="p-2">
@@ -118,7 +116,7 @@ const AdminDashboard = ({ section }) => {
             </div>
             <div className="flex items-center space-x-4 md:space-x-6 relative right-6 md:right-8">
               <FaExpand
-                className="text-xl text-gray-700 cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700"
+                className="text-xl text-white cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700"
                 onClick={toggleFullscreen}
               />
 
@@ -126,17 +124,17 @@ const AdminDashboard = ({ section }) => {
                 {isDarkMode ? (
                   <FaSun className="text-xl text-yellow-500 cursor-pointer h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:hover:bg-gray-700" />
                 ) : (
-                  <FaMoon className="text-xl text-gray-700 cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
+                  <FaMoon className="text-xl text-white cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
                 )}
               </button>
 
               <button onClick={() => setShowSearch(!showSearch)}>
-                <FaSearch className="text-xl text-gray-700 cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
+                <FaSearch className="text-xl text-white cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
               </button>
 
-              <FaBell className="text-xl text-gray-700 cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
-              <MdWatchLater onClick={handleTodo} className="text-xl text-gray-700 cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
-              <FaCommentDots className="text-xl text-gray-700 cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
+              <FaBell className="text-xl text-white cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
+              <MdWatchLater onClick={handleTodo} className="text-xl text-white cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
+              <FaCommentDots className="text-xl text-white cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
             </div>
           </div>
 
