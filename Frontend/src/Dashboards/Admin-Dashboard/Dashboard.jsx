@@ -12,6 +12,7 @@ import {
   FaBell,
   FaCommentDots,
 } from 'react-icons/fa';
+import { MdWatchLater } from "react-icons/md";
 
 import TotalProjects from './TotalProjects';
 import CompleteProjects from './CompleteProjects';
@@ -19,12 +20,14 @@ import PendingProjects from './PendingProjects';
 import Getallemployee from './Getallemployee';
 import InitialDashboardContent from './InitialDashboardContain';
 import AllClient from './AllClient';
+import AddTask from "./AddTask"
 
 const AdminDashboard = ({ section }) => {
   const [SidebarOpen, setSidebarOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(''); 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [todo, setTodo] = useState(false);
 
   const togglesidehamburger = () => {
     setSidebarOpen(!SidebarOpen);
@@ -32,13 +35,13 @@ const AdminDashboard = ({ section }) => {
 
 
   // Dark mode functionality
-useEffect(() => {
-  if (isDarkMode) {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
-  }
-}, [isDarkMode]);
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
 
 
   // Fullscreen functionality
@@ -58,6 +61,12 @@ useEffect(() => {
     console.log('Searching for:', event.target.value);
   };
 
+  // Add task function
+  const handleTodo = () => {
+    setTodo(!todo);
+  }
+
+
   const renderDashboardContent = () => {
 
     switch (section) {
@@ -74,7 +83,7 @@ useEffect(() => {
       case 'add-employee':
         return <div className="p-6 bg-white shadow-md rounded-lg dark:bg-gray-800 dark:text-white">Add Employee Form goes here...</div>;
       case 'Allclients':
-        return <AllClient/>
+        return <AllClient />
       case 'add-client':
         return <div className="p-6 bg-white shadow-md rounded-lg dark:bg-gray-800 dark:text-white">Add Client Form goes here...</div>;
       default:
@@ -126,8 +135,7 @@ useEffect(() => {
               </button>
 
               <FaBell className="text-xl text-gray-700 cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
-
-
+              <MdWatchLater onClick={handleTodo} className="text-xl text-gray-700 cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
               <FaCommentDots className="text-xl text-gray-700 cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700" />
             </div>
           </div>
@@ -144,6 +152,8 @@ useEffect(() => {
               />
             </div>
           )}
+
+          {todo && <AddTask setTodo={setTodo}/>}
 
           {/* Dashboard Content */}
           <div className="p-4">

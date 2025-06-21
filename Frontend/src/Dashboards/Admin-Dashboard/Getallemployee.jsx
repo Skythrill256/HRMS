@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Link } from 'react-router-dom'; 
+import Employee from "../../Component/Employee";
 import EmployeeProfile from './EmployeeProfile'; 
 
 const Getallemployee = () => {
     const [ShowaddEmployee, setShowaddEmployee] = useState(false);
     const [openMenuId, setOpenMenuId] = useState(null);
+  const [emp, showEmp] = useState(false);
  
     const [selectedEmployee, setSelectedEmployee] = useState(null);
 
-    const handleAddEmployee = () => {
-        setShowaddEmployee(!ShowaddEmployee);
-        console.log("Add Employee button clicked!");
-    };
+  const handleAddEmployee = () => {
+    setShowaddEmployee(!ShowaddEmployee);
+    showEmp(!emp);
+  };
 
     const handleMenuToggle = (employeeId) => {
         setOpenMenuId(openMenuId === employeeId ? null : employeeId);
@@ -223,11 +225,16 @@ const Getallemployee = () => {
 
     // Otherwise, render the list of employees
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 dark:bg-gray-900">
+        <>
+    <div className="bg-red-700">
+        {emp && <Employee showEmp={showEmp}/>}
+      </div>
+    
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 dark:bg-gray-900">
             <div className="bg-[#dff4e3] shadow-md rounded-lg dark:bg-gray-800 dark:shadow-xl lg:p-4">
-
                 <div className="flex flex-col sm:flex-row justify-between items-center px-6 py-4">
-                    <h2 className="font-semibold text-xl sm:text-2xl text-gray-800 dark:text-gray-100">TOTAL EMPLOYEE</h2>
+          
+          <h2 className="font-semibold text-xl sm:text-2xl text-gray-800 dark:text-gray-100">TOTAL EMPLOYEE</h2>
                     <button
                         className="mt-2 sm:mt-0 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
                            hover:from-indigo-500 hover:via-indigo-600 hover:to-indigo-700
@@ -286,7 +293,8 @@ const Getallemployee = () => {
                 </div>
             </div>
         </div>
-    );
+      </>
+  );
 };
 
 export default Getallemployee;

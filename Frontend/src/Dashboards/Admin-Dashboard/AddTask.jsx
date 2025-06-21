@@ -1,0 +1,91 @@
+import React, { useState } from "react";
+
+const Todo = ({ setTodo }) => {
+  const [task, setTask] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [todos, setTodos] = useState([]);
+  const [showBox, setShowBox] = useState(true); // Controls visibility
+
+  const handleAdd = () => {
+    if (task.trim() && date && time) {
+      setTodos([...todos, { task, date, time }]);
+      console.log("Title:", task);
+      console.log("Date:", date);
+      console.log("Time:", time);
+      setTask("");
+      setDate("");
+      setTime("");
+    }
+  };
+
+  const formatDate = (dateStr) => {
+    const options = { year: "numeric", month: "short", day: "numeric" };
+    return new Date(dateStr).toLocaleDateString("en-US", options);
+  };
+
+  const formatTime = (timeStr) => {
+    const [hours, minutes] = timeStr.split(":");
+    const date = new Date();
+    date.setHours(+hours);
+    date.setMinutes(+minutes);
+    return date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
+
+  return (
+    <div className="relative z-40">
+      {showBox && (
+        <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md absolute top-4 right-4 dark">
+          {/* Cross Button */}
+          <button
+            onClick={() => {
+              setShowBox(false);
+              setTodo(false);
+            }
+            }
+            className="absolute top-0 right-2 text-gray-400 hover:text-red-500 text-3xl font-bold dark"
+          >
+            ×
+          </button>
+
+          <h1 className="text-3xl font-bold text-center mb-6 text-indigo-600 dark">Todo</h1>
+
+          <textarea
+            className="w-full border rounded p-2 mb-4 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400 dark"
+            rows="3"
+            placeholder="Write your todo here..."
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+          />
+
+          <input
+            type="date"
+            className="w-full border rounded p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-400 dark"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+
+          <input
+            type="time"
+            className="w-full border rounded p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-400 dark"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+          />
+
+          <button
+            onClick={handleAdd}
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded dark"
+          >
+            Add
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Todo;
