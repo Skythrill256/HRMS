@@ -155,7 +155,7 @@ const InitialDashboardContent = () => {
                 </div>
                 <div className='flex flex-col md:flex-row '>
                     <div className='text-left'>
-                        <p className="text-[#1E90FF] dark:text-gray-300 text-xl font-semibold">
+                        <p className="text-[#1E90FF] dark:text-gray-300 text-2xl font-semibold">
                             {time}
                         </p>
                     </div>
