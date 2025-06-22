@@ -17,7 +17,7 @@ const AllClient = () => {
         { id: 'CL012', name: 'Virtucon', logoUrl: 'https://ui-avatars.com/api/?name=Virtucon&background=random' },
     ];
 
-    const [client, setClient] = useState(true);
+    const [client, setClient] = useState(false);
 
     if (client == true) {
         return <Client setClient={setClient} />
@@ -27,7 +27,7 @@ const AllClient = () => {
             <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50
                     dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-950 dark:to-black
                     py-12 px-4 sm:px-6 lg:px-8 rounded-lg">
-                <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden
+                <div className="max-w-7xl mx-auto bg-[#c3e5fa] rounded-2xl shadow-xl overflow-hidden
                       dark:bg-gray-900 dark:shadow-2xl dark:shadow-cyan-500/20">
                     <div className="p-4 sm:p-10">
                         <h2 className="text-3xl font-extrabold text-gray-900 mb-8 text-center
@@ -48,9 +48,7 @@ const AllClient = () => {
                             {clients.map((client) => (
                                 <div
                                     key={client.id}
-                                    className="relative flex flex-col items-center justify-center p-6 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition duration-500 ease-in-out cursor-pointer overflow-hidden group
-                           bg-gradient-to-br from-blue-100 to-indigo-100 text-gray-800
-                           dark:bg-gradient-to-br dark:from-blue-900 dark:via-purple-900 dark:to-gray-800 dark:text-gray-100 dark:shadow-blue-500/30 dark:hover:shadow-blue-400/50"
+                                    className="relative bg-[#ffffec] dark:bg-gray-700 rounded-2xl shadow-md dark:shadow-lg transition-transform duration-300 hover:scale-105 lg:p-4"
                                 >
                                     {/* Background overlay for hover effect */}
                                     <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-500 ease-in-out rounded-xl"></div>
@@ -63,8 +61,8 @@ const AllClient = () => {
                                     />
                                     <h3 className="text-xl font-bold mb-1 transition-colors duration-500 ease-in-out
                            group-hover:text-blue-700
-                           dark:group-hover:text-cyan-400">{client.name}</h3>
-                                    <p className="text-sm opacity-90 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">ID: {client.id}</p>
+                           dark:group-hover:text-cyan-400 dark:text-white">{client.name}</h3>
+                                    <p className="text-sm opacity-90 group-hover:opacity-100 transition-opacity duration-500 ease-in-out dark:text-white">ID: {client.id}</p>
                                 </div>
                             ))}
                         </div>

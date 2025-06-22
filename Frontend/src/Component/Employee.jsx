@@ -4,15 +4,14 @@ const Employee = ({ showEmp }) => {
     const [empId, setEmpId] = useState("");
     const [showForm, setShowForm] = useState(true); // new state for form visibility
 
-    const staticCounter = 1;
+    const staticCounter = 25;
 
     useEffect(() => {
         const generateEmpId = () => {
             const date = new Date();
-            const month = String(date.getMonth() + 1).padStart(2, "0");
             const year = date.getFullYear();
-            const baseId = `IGEMP0${month}${year}`;
-            const fullId = `${baseId}${String(staticCounter).padStart(5, "0")}`;
+            const baseId = `IGEMP${year}`;
+            const fullId = `${baseId}${String(staticCounter).padStart(4, "0")}`;
             setEmpId(fullId);
         };
 
