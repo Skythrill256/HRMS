@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { BsThreeDotsVertical } from 'react-icons/bs';
+import { FaBan, FaUserEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Employee from "../../Component/Employee";
 import EmployeeProfile from './EmployeeProfile';
+import { Tooltip } from 'react-tooltip'; 
 
 const Getallemployee = () => {
     const [ShowaddEmployee, setShowaddEmployee] = useState(false);
-    const [openMenuId, setOpenMenuId] = useState(null);
     const [emp, showEmp] = useState(false);
-
     const [selectedEmployee, setSelectedEmployee] = useState(null);
 
     const handleAddEmployee = () => {
@@ -16,19 +15,13 @@ const Getallemployee = () => {
         showEmp(!emp);
     };
 
-    const handleMenuToggle = (employeeId) => {
-        setOpenMenuId(openMenuId === employeeId ? null : employeeId);
-    };
-
     const handleEdit = (employeeId) => {
         const employeeToEdit = employees.find(emp => emp.id === employeeId);
         if (employeeToEdit) {
-            setSelectedEmployee(employeeToEdit); // Set the employee data
-            setOpenMenuId(null); // Close the menu
+            setSelectedEmployee(employeeToEdit);
         }
         console.log(`Edit Employee: ${employeeId}`);
     };
-
 
     const handleViewEmployeeDetails = (employeeId) => {
         const employeeToView = employees.find(emp => emp.id === employeeId);
@@ -39,9 +32,7 @@ const Getallemployee = () => {
 
     const handleRestrictLogin = (employeeId) => {
         console.log(`Restrict Login for: ${employeeId}`);
-        setOpenMenuId(null);
     };
-
 
     const employees = [
         {
@@ -202,35 +193,27 @@ const Getallemployee = () => {
         },
     ];
 
-
-    // If an employee is selected, render their profile
     if (selectedEmployee) {
         return (
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 dark:bg-gray-900">
                 <div className="flex justify-between items-center mb-6">
-                    {/* Back button to return to the employee list */}
                     <button
                         onClick={() => setSelectedEmployee(null)}
                         className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline transition duration-200"
                     >
                         &larr; Back to Employees
                     </button>
-                    {/* The EmployeeProfile component receives the full employee data */}
-                    {/* It will manage its own editing state */}
                 </div>
                 <EmployeeProfile initialEmployeeData={selectedEmployee} />
             </div>
         );
     }
-// bg-[#dff4e3]
-    // Otherwise, render the list of employees
-    return (
 
+    return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 dark:bg-gray-900 relative">
-          {emp && <div className="flex justify-center items-center relative"><Employee showEmp={showEmp} /></div>}
+            {emp && <div className="flex justify-center items-center relative"><Employee showEmp={showEmp} /></div>}
             <div className="bg-[#c3e5fa] shadow-md rounded-lg dark:bg-gray-800 dark:shadow-xl lg:p-4">
                 <div className="flex flex-col sm:flex-row justify-between items-center px-6 py-4">
-
                     <h2 className="font-bold text-xl sm:text-2xl text-[#FF4500] dark:text-gray-100">TOTAL EMPLOYEE</h2>
                     <button
                         className="mt-2 sm:mt-0 text-white bg-[#FF4500]
@@ -241,40 +224,53 @@ const Getallemployee = () => {
                     >
                         <font className="text-2xl">+</font> Add Employee
                     </button>
-
                 </div>
 
-                <div className="p-6">
+                <div className="p-4">
                     {employees.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {employees.map((employee) => (
                                 <div key={employee.id} className="relative bg-[#ffffec] dark:bg-gray-700 rounded-2xl shadow-md dark:shadow-lg transition-transform duration-300 hover:scale-105 lg:p-4">
-
-                                    {/* Menu Button */}
-                                    <div className="absolute top-2 right-2 z-10">
-                                        <button
-                                            className="p-1 rounded-full text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
-                                            onClick={() => handleMenuToggle(employee.id)}
-                                        >
-                                            <BsThreeDotsVertical className="text-xl" />
-                                        </button>
-                                        {openMenuId === employee.id && (
-                                            <div className="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-1 z-20 dark:bg-gray-600 dark:text-gray-100">
-                                                {/* Modified Edit button to set selectedEmployee for rendering profile */}
-                                                <button className="block px-4 py-2 text-sm text-left w-full hover:bg-gray-100 dark:hover:bg-gray-500" onClick={() => handleEdit(employee.id)}>Edit Employee</button>
-                                                <button className="block px-4 py-2 text-sm text-left w-full hover:bg-gray-100 dark:hover:bg-gray-500" onClick={() => handleRestrictLogin(employee.id)}>Restrict Login</button>
-                                            </div>
-                                        )}
-                                    </div>
-
                                     <div
                                         onClick={() => handleViewEmployeeDetails(employee.id)}
                                         className="block cursor-pointer"
                                     >
-                                        <div className="flex flex-col items-center text-center px-4 py-6">
-                                            <img src={employee.imageUrl} alt={employee.name} className="w-24 h-24 rounded-full border-2 border-blue-400 mb-3 object-cover" />
-                                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{employee.name}</h3>
-                                            <p className="text-sm text-gray-600 dark:text-gray-300">ID: {employee.id}</p>
+                                        <div className="flex flex-col items-center text-center px-4 py-4">
+                                            <img src={employee.imageUrl} alt={employee.firstName} className="w-24 h-24 rounded-full border-2 border-blue-400 mb-3 object-cover" />
+
+                                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{employee.firstName} {employee.lastName}</h3>
+                                            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                                                <span className="font-medium text-gray-700 dark:text-gray-200">
+                                                    
+                                                </span> ID: {employee.id}
+                                            </p>
+                                            <div className='flex justify-center items-center gap-4 mt-3'>
+
+
+                                                <FaUserEdit
+                                                    data-tooltip-id={`edit-${employee.id}`}
+                                                    data-tooltip-content="Edit Employee"
+                                                    className="text-blue-600 hover:text-blue-800 cursor-pointer text-xl md:text-2xl"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleEdit(employee.id);
+                                                    }}
+                                                />
+                                                <Tooltip id={`edit-${employee.id}`} />
+
+                                                <FaBan
+                                                    data-tooltip-id={`ban-${employee.id}`}
+                                                    data-tooltip-content="Restrict Login"
+                                                    className="text-red-600 hover:text-red-800 cursor-pointer text-xl md:text-2xl"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleRestrictLogin(employee.id);
+                                                    }}
+                                                />
+                                                <Tooltip id={`ban-${employee.id}`} />
+                                            </div>
+
+
                                         </div>
                                     </div>
                                 </div>

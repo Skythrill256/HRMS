@@ -78,8 +78,8 @@ const AdminDashboard = ({ section }) => {
         return <Getallemployee />;
       // case 'employee-profile/EMP001':
       //   return <EmployeeProfile/>;
-      case 'add-employee':
-        return <div className="p-6 bg-white shadow-md rounded-lg dark:bg-gray-800 dark:text-white">Add Employee Form goes here...</div>;
+      // case 'add-employee':
+      //   return <div className="p-6 bg-white shadow-md rounded-lg dark:bg-gray-800 dark:text-white">Add Employee Form goes here...</div>;
       case 'Allclients':
         return <AllClient />
       case 'add-client':
@@ -107,14 +107,14 @@ const AdminDashboard = ({ section }) => {
         {/* Main Section */}
         <div className="flex-1 overflow-y-auto">
           {/* Top Navigation Bar */}
-          <div className="flex justify-between items-center bg-[#1E90FF] h-14 relative dark:bg-gray-800">
+          <div className="flex justify-between items-center bg-[#1E90FF] h-14 relative dark:bg-gray-800 ">
             {/* Hamburger Menu */}
             <div>
               <button onClick={togglesidehamburger} className="p-2">
                 <GiHamburgerMenu className="text-2xl text-gray-700 hover:border-2 hover:rounded-md hover:text-blue-700 md:hidden dark:text-gray-300 dark:hover:text-blue-500" />
               </button>
             </div>
-            <div className="flex items-center space-x-4 md:space-x-6 relative right-6 md:right-8">
+            <div className="flex items-center space-x-4 md:space-x-8 relative right-6 md:right-8">
               <FaExpand
                 className="text-xl text-white cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700"
                 onClick={toggleFullscreen}
