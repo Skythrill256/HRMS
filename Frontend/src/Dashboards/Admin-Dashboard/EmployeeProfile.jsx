@@ -7,7 +7,7 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
         parentDetails: { fatherName: '', motherName: '' },
         bankDetails: { bankName: '', accountNumber: '', ifscCode: '' },
         adharNumber: '',
-        imageUrl: 'https://via.placeholder.com/150' // Default placeholder image
+        imageUrl: 'https://via.placeholder.com/150'
     };
 
     const [employeeData, setEmployeeData] = useState(() => ({
@@ -16,7 +16,6 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
         address: { ...defaultEmployeeStructure.address, ...(initialEmployeeData?.address || {}) },
         parentDetails: { ...defaultEmployeeStructure.parentDetails, ...(initialEmployeeData?.parentDetails || {}) },
         bankDetails: { ...defaultEmployeeStructure.bankDetails, ...(initialEmployeeData?.bankDetails || {}) },
-        // Ensure imageUrl is merged or uses default
         imageUrl: initialEmployeeData?.imageUrl || defaultEmployeeStructure.imageUrl
     }));
 
@@ -61,27 +60,19 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
         }
     };
 
-    // New handler for image change
     const handleImageChange = (e) => {
-        // In a real application, you would handle file uploads here.
-        // For now, we'll just log and maybe set a dummy new URL.
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                // For demonstration, set the image preview to a base64 URL
                 setEditableData(prev => ({
                     ...prev,
                     imageUrl: reader.result
                 }));
-                console.log("File selected for upload:", file.name);
-                // In a real app: upload 'file' to your storage service
-                // and then set 'imageUrl' to the returned public URL.
             };
             reader.readAsDataURL(file);
         }
     };
-
 
     const handleEditClick = () => setIsEditing(true);
     const handleSaveClick = () => {
@@ -125,18 +116,18 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
     return (
         <div className="p-6 md:p-10 bg-[#F8FAFD] dark:bg-gray-900 min-h-screen rounded-lg shadow-lg">
             <div className="flex justify-between items-center mb-10">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+                <h1 className="text-xl sm:text-2xl lg:3xl font-bold text-gray-900 dark:text-white">
                     Employee Profile: {employeeData.firstName} {employeeData.lastName}
                 </h1>
                 {!isEditing ? (
                     <button
                         onClick={handleEditClick}
-                        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-lg shadow transition duration-200"
+                        className="bg-blue-600 hover:bg-blue-700 text-white  font-semibold py-2 px-5 rounded-lg shadow transition duration-200"
                     >
                         Edit Profile
                     </button>
                 ) : (
-                    <div className="space-x-2">
+                    <div className="space-x-2 flex ">
                         <button
                             onClick={handleSaveClick}
                             className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-5 rounded-lg shadow transition duration-200"
@@ -153,17 +144,19 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
                 )}
             </div>
 
-            {/* Profile Sections */}
-            <div className="grid gap-8">
-                {/* Employee Image Section */}
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow flex flex-col items-center">
+
+
+            {/* Image + Personal Details */}
+            <div className="flex flex-col sm:flex-row gap-6 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-xl">
+                {/* Image Section */}
+                <div className="flex flex-col items-center md:w-1/3">
                     <img
-                        src={editableData.imageUrl} // Use editableData for preview during editing
+                        src={editableData.imageUrl}
                         alt={`${employeeData.firstName} ${employeeData.lastName}`}
-                        className="w-40 h-40 rounded-full object-cover border-4 border-blue-400 dark:border-blue-600 mb-4"
+                        className="w-48 h-48 rounded-full object-cover border-4 border-blue-400 dark:border-blue-600 my-4"
                     />
                     {isEditing && (
-                        <div className="mt-2">
+                        <div className="mt-2 text-center">
                             <label className="block text-blue-600 dark:text-blue-400 cursor-pointer bg-blue-100 dark:bg-blue-800 px-4 py-2 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-700 transition">
                                 Upload Image
                                 <input
@@ -174,18 +167,21 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
                                 />
                             </label>
                             <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                                {/* Display current image URL in edit mode for context */}
-                                Current: {editableData.imageUrl.length > 50 ? editableData.imageUrl.substring(0, 47) + '...' : editableData.imageUrl}
+                                {editableData.imageUrl.length > 50
+                                    ? editableData.imageUrl.substring(0, 47) + '...'
+                                    : editableData.imageUrl}
                             </p>
                         </div>
                     )}
                 </div>
 
                 {/* Personal Details */}
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-                    <h2 className="text-xl md:text-2xl font-semibold md:font-bold text-blue-700 dark:text-blue-400 mb-4 border-b pb-2">Personal Details</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
-                        {renderField ('EMP ID', employeeData.id, 'id', 'text', true) }
+                <div className="md:w-2/3">
+                    <h2 className="text-xl md:text-2xl font-semibold md:font-bold text-blue-700 dark:text-blue-400 mb-4 border-b pb-2">
+                        Personal Details
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {renderField('EMP ID', employeeData.id, 'id', 'text', true)}
                         {renderField('First Name', editableData.firstName, 'firstName')}
                         {renderField('Last Name', editableData.lastName, 'lastName')}
                         {renderField('Email', editableData.email, 'email', 'email')}
@@ -193,36 +189,41 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
                         {renderField('Password', editableData.password, 'password', 'password')}
                     </div>
                 </div>
+            </div>
 
-                {/* Address */}
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-                    <h2 className="text-xl md:text-2xl font-semibold md:font-bold text-blue-700 dark:text-blue-400 mb-4 border-b pb-2">Address Details</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {renderField('Street', editableData.address?.street, 'address.street')}
-                        {renderField('City', editableData.address?.city, 'address.city')}
-                        {renderField('State', editableData.address?.state, 'address.state')}
-                        {renderField('Zip Code', editableData.address?.zip, 'address.zip')}
-                    </div>
+
+
+
+
+
+            {/* Address Section */}
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow mt-8">
+                <h2 className="text-xl md:text-2xl font-semibold md:font-bold text-blue-700 dark:text-blue-400 mb-4 border-b pb-2">Address Details</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {renderField('Street', editableData.address?.street, 'address.street')}
+                    {renderField('City', editableData.address?.city, 'address.city')}
+                    {renderField('State', editableData.address?.state, 'address.state')}
+                    {renderField('Zip Code', editableData.address?.zip, 'address.zip')}
                 </div>
+            </div>
 
-                {/* Parent */}
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-                    <h2 className="text-xl md:text-2xl font-semibold md:font-bold text-blue-700 dark:text-blue-400 mb-4 border-b pb-2">Parent Details</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {renderField("Father's Name", editableData.parentDetails?.fatherName, 'parentDetails.fatherName')}
-                        {renderField("Mother's Name", editableData.parentDetails?.motherName, 'parentDetails.motherName')}
-                    </div>
+            {/* Parent Details Section */}
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow mt-8">
+                <h2 className="text-xl md:text-2xl font-semibold md:font-bold text-blue-700 dark:text-blue-400 mb-4 border-b pb-2">Parent Details</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {renderField("Father's Name", editableData.parentDetails?.fatherName, 'parentDetails.fatherName')}
+                    {renderField("Mother's Name", editableData.parentDetails?.motherName, 'parentDetails.motherName')}
                 </div>
+            </div>
 
-                {/* Other */}
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-                    <h2 className="text-xl md:text-2xl font-semibold md:font-bold text-blue-700 dark:text-blue-400 mb-4 border-b pb-2">Other Details</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {renderField('Bank Name', editableData.bankDetails?.bankName, 'bankDetails.bankName')}
-                        {renderField('Account Number', editableData.bankDetails?.accountNumber, 'bankDetails.accountNumber')}
-                        {renderField('IFSC Code', editableData.bankDetails?.ifscCode, 'bankDetails.ifscCode')}
-                        {renderField('Aadhar Number', editableData.adharNumber, 'adharNumber')}
-                    </div>
+            {/* Other Details Section */}
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow mt-8">
+                <h2 className="text-xl md:text-2xl font-semibold md:font-bold text-blue-700 dark:text-blue-400 mb-4 border-b pb-2">Other Details</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {renderField('Bank Name', editableData.bankDetails?.bankName, 'bankDetails.bankName')}
+                    {renderField('Account Number', editableData.bankDetails?.accountNumber, 'bankDetails.accountNumber')}
+                    {renderField('IFSC Code', editableData.bankDetails?.ifscCode, 'bankDetails.ifscCode')}
+                    {renderField('Aadhar Number', editableData.adharNumber, 'adharNumber')}
                 </div>
             </div>
         </div>

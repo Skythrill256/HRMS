@@ -35,7 +35,7 @@ const AllClient = () => {
                             Our Valued Clients
                         </h2>
                         <button
-                        onClick={()=>setClient(true)}
+                            onClick={() => setClient(true)}
                             className="mt-2 sm:mt-0 text-white bg-[#FF4500]
                            focus:outline-none
                            font-semibold rounded-xl text-sm px-4 py-1.5 pt-0 transition-all duration-300 ease-in-out

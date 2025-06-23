@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 // import { GrFormNextLink } from "react-icons/gr"; // Still not needed
 
 // Import icons (you'll need to install react-icons if not already)
-import { FaUsers, FaFolderOpen, FaBriefcase, FaIndustry, FaClipboardList } from 'react-icons/fa';
-
+import { FaUsers, FaFolderOpen, FaBriefcase, FaIndustry } from 'react-icons/fa';
+import { IoPeople } from "react-icons/io5";
 const InitialDashboardContent = () => {
 
     const [dateTime, setDateTime] = useState(new Date());
@@ -41,7 +41,7 @@ const InitialDashboardContent = () => {
         { title: "TOTAL PROJECT", value: 55, link: "/projects", icon: <FaFolderOpen /> },
         { title: "TOTAL CLIENT", value: 18, link: "/clients", icon: <FaBriefcase /> },
         { title: "PRODUCTION", value: "Active", link: "/production", icon: <FaIndustry /> },
-        { title: "TODO TASK", value: 3, link: "/todolist", icon: <FaClipboardList /> }
+        { title: "INTERN", value: 8, link: "/INTERN", icon: <IoPeople /> }
     ];
 
 
@@ -55,7 +55,6 @@ const InitialDashboardContent = () => {
 
     useEffect(() => {
         const API_KEY = 'b24fd8e562a33a541ee63e704978a615';
-
         const fetchWeatherByCoords = async (lat, lon) => {
             try {
                 const response = await fetch(
@@ -124,6 +123,33 @@ const InitialDashboardContent = () => {
             hour12: true,
         });
     };
+
+
+
+    // taskbar and graph section
+
+        const [tasks, setTasks] = useState([
+        { id: 1, title: "Fix login bug", status: "In Progress", completed: false },
+        { id: 2, title: "Create Employee Profile Page", status: "Completed", completed: true },
+        { id: 3, title: "Update Client Records", status: "Pending", completed: false }
+    ]);
+
+    const toggleComplete = (id) => {
+        setTasks(tasks.map(task =>
+            task.id === id
+                ? {
+                    ...task,
+                    completed: !task.completed,
+                    status: !task.completed ? "Completed" : "Pending"
+                }
+                : task
+        ));
+    };
+
+    const removeTask = (id) => {
+        setTasks(tasks.filter(task => task.id !== id));
+    };
+
 
     return (
         <div className="p-4 md:p-6 bg-[#c3e5fa] dark:bg-gray-900 mt-8 rounded-lg shadow-lg transition-colors duration-300">
@@ -202,6 +228,64 @@ const InitialDashboardContent = () => {
                     </Link>
                 ))}
             </div>
+
+
+
+
+            {/* task bar and graph section */}
+
+<div className="flex flex-col lg:flex-row gap-4 w-full p-4 md:p-6 bg-red-300 rounded-lg">
+
+  {/* Taskbar Section */}
+  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 w-full lg:w-1/2">
+    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Tasks</h3>
+    <ul className="space-y-3">
+      {tasks.map(task => (
+        <li
+          key={task.id}
+          className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-md"
+        >
+          <div className="flex items-center gap-3">
+            <input
+              type="checkbox"
+              checked={task.completed}
+              onChange={() => toggleComplete(task.id)}
+              className="accent-green-500"
+            />
+            <span
+              className={`text-gray-800 dark:text-white ${task.completed ? 'line-through' : ''}`}
+            >
+              {task.title}
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 mt-2 sm:mt-0">
+            <button
+              onClick={() => removeTask(task.id)}
+              className="px-3 py-1 text-sm bg-red-500 text-white rounded-md hover:bg-red-600"
+            >
+              Remove
+            </button>
+            {task.completed && (
+              <span className="px-2 py-1 text-sm rounded-full bg-green-500 text-white">
+                Completed
+              </span>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  {/* Graph Section */}
+  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 w-full lg:w-1/2">
+    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Performance Overview</h3>
+    <div className="w-full h-64 flex items-center justify-center text-gray-500 dark:text-gray-400">
+      <p>[Graph will be displayed here]</p>
+    </div>
+  </div>
+
+</div>
 
 
         </div>
