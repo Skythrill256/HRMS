@@ -107,7 +107,7 @@ const AdminDashboard = ({ section }) => {
         {/* Main Section */}
         <div className="flex-1 overflow-y-auto">
           {/* Top Navigation Bar */}
-          <div className="flex justify-between items-center bg-[#1E90FF] h-14 relative dark:bg-gray-800 ">
+          <div className="flex justify-between items-center bg-[#1E90FF] h-14 relative dark:bg-gray-800 " >
             {/* Hamburger Menu */}
             <div>
               <button onClick={togglesidehamburger} className="p-2">
@@ -119,7 +119,7 @@ const AdminDashboard = ({ section }) => {
                 className="text-xl text-white cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700"
                 onClick={toggleFullscreen}
               />
-
+<h1 style={{background:"var(--nav-color)"}}>hello</h1>
               <button onClick={() => setIsDarkMode(!isDarkMode)}>
                 {isDarkMode ? (
                   <FaSun className="text-xl text-yellow-500 cursor-pointer h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:hover:bg-gray-700" />
@@ -151,7 +151,7 @@ const AdminDashboard = ({ section }) => {
             </div>
           )}
 
-          {todo && <AddTask setTodo={setTodo}/>}
+          {todo && <AddTask setTodo={setTodo} />}
 
           {/* Dashboard Content */}
           <div className="p-4">

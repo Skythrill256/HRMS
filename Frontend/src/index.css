@@ -11,3 +11,24 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: #ffffff !important; /* white text */
   transition: background-color 5000s ease-in-out 0s;
 }
+
+//Golobal color
+:root {
+  --nav-color: red;
+  --sidebar-color: #e3f6f5;
+  --background-color: #fffffe;
+  --card-color: #bae8e8;
+  --text-color: #2d334a;
+  --heading-color: #272343;
+  --button-submit: #ffd803;
+  --button-cancel: #e53170;
+}
+
+//Global Font style
+*{
+  font-family: "Geist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  border:10px solid red;
+}

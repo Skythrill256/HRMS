@@ -19,23 +19,6 @@ const Todo = ({ setTodo }) => {
     }
   };
 
-  // const formatDate = (dateStr) => {
-  //   const options = { year: "numeric", month: "short", day: "numeric" };
-  //   return new Date(dateStr).toLocaleDateString("en-US", options);
-  // };
-
-  // const formatTime = (timeStr) => {
-  //   const [hours, minutes] = timeStr.split(":");
-  //   const date = new Date();
-  //   date.setHours(+hours);
-  //   date.setMinutes(+minutes);
-  //   return date.toLocaleTimeString("en-US", {
-  //     hour: "numeric",
-  //     minute: "2-digit",
-  //     hour12: true,
-  //   });
-  // };
-
   return (
     <div className="relative z-40">
       {showBox && (
