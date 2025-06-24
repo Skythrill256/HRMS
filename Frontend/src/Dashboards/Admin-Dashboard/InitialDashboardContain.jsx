@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { GrFormNextLink } from "react-icons/gr"; // Still not needed
-
-// Import icons (you'll need to install react-icons if not already)
 import { FaUsers, FaFolderOpen, FaBriefcase, FaIndustry } from 'react-icons/fa';
 import { IoPeople } from "react-icons/io5";
 const InitialDashboardContent = () => {

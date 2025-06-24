@@ -119,7 +119,7 @@ const AdminDashboard = ({ section }) => {
                 className="text-xl text-white cursor-pointer hover:text-blue-700 h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:text-gray-300 dark:hover:text-blue-500 dark:hover:bg-gray-700"
                 onClick={toggleFullscreen}
               />
-<h1 style={{background:"var(--nav-color)"}}>hello</h1>
+
               <button onClick={() => setIsDarkMode(!isDarkMode)}>
                 {isDarkMode ? (
                   <FaSun className="text-xl text-yellow-500 cursor-pointer h-10 w-10 border-2 rounded-md p-2 hover:bg-slate-200 dark:hover:bg-gray-700" />
