@@ -212,7 +212,7 @@ const Getallemployee = () => {
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 dark:bg-gray-900 relative">
             {emp && <div className="flex justify-center items-center relative"><Employee showEmp={showEmp} /></div>}
-            <div className="bg-[#c3e5fa] shadow-md rounded-lg dark:bg-gray-800 dark:shadow-xl lg:p-4">
+            <div className="shadow-md rounded-lg dark:bg-gray-800 dark:shadow-xl lg:p-4">
                 <div className="flex flex-col sm:flex-row justify-between items-center px-6 py-4">
                     <h2 className="font-bold text-xl sm:text-2xl text-[#FF4500] dark:text-gray-100">TOTAL EMPLOYEE</h2>
                     <button
@@ -230,7 +230,7 @@ const Getallemployee = () => {
                     {employees.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {employees.map((employee) => (
-                                <div key={employee.id} className="relative bg-[#ffffec] dark:bg-gray-700 rounded-2xl shadow-md dark:shadow-lg transition-transform duration-300 hover:scale-105 lg:p-4">
+                                <div key={employee.id} className="relative bg-card dark:bg-gray-700 rounded-2xl shadow-md dark:shadow-lg transition-transform duration-300 hover:scale-105 lg:p-4">
                                     <div
                                         onClick={() => handleViewEmployeeDetails(employee.id)}
                                         className="block cursor-pointer"

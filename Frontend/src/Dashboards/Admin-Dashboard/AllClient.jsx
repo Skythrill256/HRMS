@@ -246,10 +246,10 @@ const AllClient = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50
+        <div className="min-h-screen bg-gradient-to-br bg-background
                          dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-950 dark:to-black
                          py-12 px-4 sm:px-6 lg:px-8 rounded-lg">
-            <div className="max-w-7xl mx-auto bg-[#c3e5fa] rounded-2xl shadow-xl overflow-hidden
+            <div className="max-w-7xl mx-auto bg-background rounded-2xl shadow-xl overflow-hidden
                              dark:bg-gray-900 dark:shadow-2xl dark:shadow-cyan-500/20">
                 <div className="p-4 sm:p-10">
                     <h2 className="text-3xl font-extrabold text-gray-900 mb-8 text-center
@@ -270,7 +270,7 @@ const AllClient = () => {
                         {clients.map((client) => (
                             <div
                                 key={client.id}
-                                className="relative bg-[#ffffec] dark:bg-gray-700 rounded-2xl shadow-md dark:shadow-lg transition-transform duration-300 hover:scale-105 lg:p-4 cursor-pointer flex flex-col items-center justify-center text-center p-4"
+                                className="relative bg-card dark:bg-gray-700 rounded-2xl shadow-md dark:shadow-lg transition-transform duration-300 hover:scale-105 lg:p-4 cursor-pointer flex flex-col items-center justify-center text-center p-4"
                                 onClick={() => handleViewClientDetails(client.id)}
                             >
                                 {/* Background overlay for hover effect */}

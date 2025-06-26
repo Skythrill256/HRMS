@@ -149,10 +149,10 @@ const InitialDashboardContent = () => {
 
 
     return (
-        <div className="p-4 md:p-6 bg-[#c3e5fa] dark:bg-gray-900 mt-8 rounded-lg shadow-lg transition-colors duration-300">
+        <div className="p-4 md:p-6 bg-background dark:bg-gray-900 mt-8 rounded-lg shadow-lg transition-colors duration-300">
 
             {/* Main Header Section */}
-            <div className="bg-[#ffffe7] dark:bg-gray-800 flex items-center p-4 rounded-lg shadow-sm justify-between relative ">
+            <div className="bg-card dark:bg-gray-800 flex items-center p-4 rounded-lg shadow-sm justify-between relative ">
 
                 <div className='pl-2 flex gap-3 items-center'>
                     <Link to="#">
@@ -164,7 +164,7 @@ const InitialDashboardContent = () => {
                     </Link>
                     <div className="flex flex-col">
                         <h2 className="text-[#1E90FF] dark:text-white text-xl font-semibold mt-1">Hi, (User)</h2>
-                        <p className="text-[#32CD32] dark:text-gray-300 text-lg font-medium">Welcome back, Indomitech Group</p>
+                        <p className="text-[#e45858] dark:text-gray-300 text-lg font-medium">Welcome back, Indomitech Group</p>
                     </div>
                 </div>
 
@@ -187,8 +187,8 @@ const InitialDashboardContent = () => {
                 <div className='flex items-center gap-4 text-gray-800 dark:text-gray-200'>
 
                     {weather.temp && (
-                        <div className="text-[#FF4500] flex flex-col sm:flex-row items-center gap-2 font-semibold text-md md:text-lg">
-                            <span className='bg-[#FF4500] rounded-full'>{weather.icon && <img src={weather.icon} alt="Weather icon" className=" w-10 h-10" />}</span>
+                        <div className="text-[#e45858] flex flex-col sm:flex-row items-center gap-2 font-semibold text-md md:text-lg">
+                            <span className='bg-[#e45858] rounded-full'>{weather.icon && <img src={weather.icon} alt="Weather icon" className=" w-10 h-10" />}</span>
                             <span>{weather.temp}</span>
                             {weather.condition && <span>| {weather.condition}</span>}
                         </div>
@@ -208,7 +208,7 @@ const InitialDashboardContent = () => {
                     <Link to={card.link} key={index} className="block">
                         <div
                             className={`rounded-lg shadow-md transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-xl
-                                bg-white dark:bg-gray-800 p-6 flex items-center gap-4`}
+                                bg-card dark:bg-gray-800 p-6 flex items-center gap-4`}
                         >
                             <div className="text-blue-600 dark:text-blue-400 text-4xl">
                                 {card.icon}
@@ -231,10 +231,10 @@ const InitialDashboardContent = () => {
 
             {/* task bar and graph section */}
 
-<div className="flex flex-col lg:flex-row gap-4 w-full p-4 md:p-6 bg-red-300 rounded-lg">
+<div className="flex flex-col lg:flex-row gap-4 w-full p-4 md:p-6 bg-background dark:bg-gray-900">
 
   {/* Taskbar Section */}
-  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 w-full lg:w-1/2">
+  <div className="bg-card dark:bg-gray-800 rounded-lg shadow-md p-6 w-full lg:w-1/2">
     <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Tasks</h3>
     <ul className="space-y-3">
       {tasks.map(task => (
@@ -275,7 +275,7 @@ const InitialDashboardContent = () => {
   </div>
 
   {/* Graph Section */}
-  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 w-full lg:w-1/2">
+  <div className="bg-card dark:bg-gray-800 rounded-lg shadow-md p-6 w-full lg:w-1/2">
     <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Performance Overview</h3>
     <div className="w-full h-64 flex items-center justify-center text-gray-500 dark:text-gray-400">
       <p>[Graph will be displayed here]</p>

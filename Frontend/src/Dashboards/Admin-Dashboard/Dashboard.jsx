@@ -105,13 +105,13 @@ const AdminDashboard = ({ section }) => {
         )}
 
         {/* Main Section */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto bg-background dark:bg-gray-900">
           {/* Top Navigation Bar */}
-          <div className="flex justify-between items-center bg-[#1E90FF] h-14 relative dark:bg-gray-800 " >
+          <div className="flex justify-between items-center bg-nav h-14 relative dark:bg-gray-800">
             {/* Hamburger Menu */}
             <div>
               <button onClick={togglesidehamburger} className="p-2">
-                <GiHamburgerMenu className="text-2xl text-gray-700 hover:border-2 hover:rounded-md hover:text-blue-700 md:hidden dark:text-gray-300 dark:hover:text-blue-500" />
+                <GiHamburgerMenu className="text-2xl text-white hover:text-red-500 hover:rounded-md md:hidden dark:text-gray-300 dark:hover:text-blue-500" />
               </button>
             </div>
             <div className="flex items-center space-x-4 md:space-x-8 relative right-6 md:right-8">

@@ -2,7 +2,7 @@ import React from 'react';
 
 const ClientProfile = ({ clientData, onBack }) => {
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl mt-10">
+    <div className="max-w-5xl mx-auto p-6 bg-card dark:bg-gray-900 rounded-3xl shadow-2xl mt-10">
       {/* Header with Back Button and Title */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
         <button

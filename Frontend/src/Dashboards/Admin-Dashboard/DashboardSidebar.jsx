@@ -50,7 +50,7 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
         },
         {
             label: 'Production',
-            icon: <FaCogs className="text-yellow-500" />,
+            icon: <FaCogs className="text-yellow-500"/>,
             to: '/productions',
         },
     ];
@@ -67,11 +67,11 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                 </button>
             </div>
 
-            <div className="flex flex-col justify-between h-full p-6 space-y-6 bg-[#121212]">
+            <div className="flex flex-col justify-between h-full p-6 space-y-6 bg-sidebar dark:bg-[#121212]">
                 <div className="space-y-8">
                     <Link to={"/admin-dashboard"} className="flex items-center space-x-2">
-                        <MdDashboard className="text-2xl text-blue-600" />
-                        <h2 className="text-xl font-bold text-blue-800">Dashboard</h2>
+                        <MdDashboard className="text-2xl text-primary dark:text-blue-600" />
+                        <h2 className="text-xl font-bold text-primary dark:text-blue-800">Dashboard</h2>
                     </Link>
 
                     <div className='flex flex-col'>
@@ -80,8 +80,8 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                                 <div key={index}>
                                     {item.subItems ? (
                                         <div
-                                            className={`flex items-center justify-between w-full space-x-4 text-gray-200 hover:text-blue-800 cursor-pointer font-bold py-2 px-3
-                                            ${openDropdown === item.label ? 'text-gray-700 bg-blue-100 rounded-md ' : ''}`}
+                                            className={`flex items-center justify-between w-full space-x-4 text-secondary hover:bg-slate-200 rounded-md hover:text-blue-800 cursor-pointer font-bold py-2 px-3
+                                            ${openDropdown === item.label ? 'text-red-800 bg-blue-100 rounded-md ' : ''}`}
                                             onClick={() => toggleDropdown(item.label)}
                                         >
                                             <div className="flex items-center space-x-4">
@@ -93,7 +93,7 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                                     ) : (
                                         <Link
                                             to={item.to}
-                                            className={`flex items-center space-x-4 text-gray-200 hover:text-blue-800 cursor-pointer font-bold py-2 px-3
+                                            className={`flex items-center space-x-4 text-secondary hover:bg-slate-200 rounded-md hover:text-blue-800 cursor-pointer font-bold py-2 px-3
                                             ${location.pathname === item.to ? 'text-blue-800 bg-blue-100 rounded-md' : ''}`}
                                             onClick={togglesidehamburger}
                                         >
@@ -103,12 +103,12 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                                     )}
 
                                     {item.subItems && openDropdown === item.label && (
-                                        <div className="bg-[#121212] pt-1 pb-2 transition-all duration-300 ease-in-out overflow-hidden">
+                                        <div className="bg-sidebar dark:bg-[#121212] pt-1 pb-2 transition-all duration-300 ease-in-out overflow-hidden">
                                             {item.subItems.map((subItem, subIndex) => (
                                                 <Link
                                                     key={subIndex}
                                                     to={subItem.to}
-                                                    className={`flex items-center space-x-3 text-gray-200 hover:bg-gray-800 pl-10 pr-3 py-2 text-sm
+                                                    className={`flex items-center space-x-3 text-secondary hover:bg-secondary hover:text-gray-800 dark:text-gray-200 dark:hover:bg-gray-800 pl-10 pr-3 py-2 text-sm
                                                     ${location.pathname === subItem.to ? 'bg-blue-900 text-blue-100' : ''}`}
                                                     onClick={togglesidehamburger}
                                                 >
@@ -130,7 +130,7 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                             className='flex items-center gap-3 ml-2 mt-4 h-10 rounded-md group hover:bg-slate-200'
                         >
                             <CgProfile className='text-2xl text-blue-600 pl-2 group-hover:text-blue-800' />
-                            <span className='text-lg font-semibold text-gray-200 group-hover:text-blue-800'>Profile</span>
+                            <span className='text-lg font-semibold text-secondary group-hover:text-blue-800'>Profile</span>
                         </Link>
                     </div>
                 </div>
@@ -143,8 +143,8 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                         ${location.pathname === '/settings' ? 'text-blue-500 bg-blue-100 rounded-md' : ''}`}
                         onClick={togglesidehamburger}
                     >
-                        <FaCog className="text-lg" />
-                        <span className="text-base font-medium">Settings</span>
+                        <FaCog className="text-lg text-white" />
+                        <span className="text-base font-medium text-secondary">Settings</span>
                     </Link>
                 </div>
             </div>

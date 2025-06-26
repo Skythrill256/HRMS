@@ -12,23 +12,14 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
 
- :root {
-  --nav-color: red;
-  --sidebar-color: #e3f6f5;
-  --background-color: #fffffe;
-  --card-color: #bae8e8;
-  --text-color: #2d334a;
-  --heading-color: #272343;
-  --button-submit: #ffd803;
-  --button-cancel: #e53170;
-} */ 
-
-
 
 *{
   font-family: "Geist", sans-serif;
   font-optical-sizing: auto;
-  font-weight: bold;
+  font-weight: 300;
   font-style: normal;
-  border:10px solid red;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }

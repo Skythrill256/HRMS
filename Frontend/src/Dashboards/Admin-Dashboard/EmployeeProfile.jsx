@@ -114,7 +114,7 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
     }
 
     return (
-        <div className="p-6 md:p-10 bg-[#F8FAFD] dark:bg-gray-900 min-h-screen rounded-lg shadow-lg">
+        <div className="p-6 md:p-10 bg-background dark:bg-gray-900 min-h-screen rounded-lg shadow-lg">
             <div className="flex justify-between items-center mb-10">
                 <h1 className="text-xl sm:text-2xl lg:3xl font-bold text-gray-900 dark:text-white">
                     Employee Profile: {employeeData.firstName} {employeeData.lastName}
@@ -127,7 +127,7 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
                         Edit Profile
                     </button>
                 ) : (
-                    <div className="space-x-2 flex ">
+                    <div className="space-x-2 flex">
                         <button
                             onClick={handleSaveClick}
                             className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-5 rounded-lg shadow transition duration-200"
@@ -147,7 +147,7 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
 
 
             {/* Image + Personal Details */}
-            <div className="flex flex-col sm:flex-row gap-6 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-xl">
+            <div className="flex flex-col sm:flex-row gap-6 bg-card dark:bg-gray-800 p-6 rounded-xl shadow-xl">
                 {/* Image Section */}
                 <div className="flex flex-col items-center md:w-1/3">
                     <img
@@ -197,7 +197,7 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
 
 
             {/* Address Section */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow mt-8">
+            <div className="bg-card dark:bg-gray-800 p-6 rounded-xl shadow mt-8">
                 <h2 className="text-xl md:text-2xl font-semibold md:font-bold text-blue-700 dark:text-blue-400 mb-4 border-b pb-2">Address Details</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {renderField('Street', editableData.address?.street, 'address.street')}
@@ -208,7 +208,7 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
             </div>
 
             {/* Parent Details Section */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow mt-8">
+            <div className="bg-card dark:bg-gray-800 p-6 rounded-xl shadow mt-8">
                 <h2 className="text-xl md:text-2xl font-semibold md:font-bold text-blue-700 dark:text-blue-400 mb-4 border-b pb-2">Parent Details</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {renderField("Father's Name", editableData.parentDetails?.fatherName, 'parentDetails.fatherName')}
@@ -217,7 +217,7 @@ const EmployeeProfile = ({ initialEmployeeData }) => {
             </div>
 
             {/* Other Details Section */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow mt-8">
+            <div className="bg-card dark:bg-gray-800 p-6 rounded-xl shadow mt-8">
                 <h2 className="text-xl md:text-2xl font-semibold md:font-bold text-blue-700 dark:text-blue-400 mb-4 border-b pb-2">Other Details</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {renderField('Bank Name', editableData.bankDetails?.bankName, 'bankDetails.bankName')}

@@ -24,11 +24,11 @@ const PendingProjects = () => {
               </thead>
               <tbody>
                 {projects.map((project, index) => (
-                  <tr key={index} className='border-b hover:border-gray-100 cursor-pointer hover:bg-[#6AF2F0] dark:hover:bg-blue-900'>
+                  <tr key={index} className='border-b hover:border-gray-100 cursor-pointer hover:bg-card dark:hover:bg-blue-900'>
                     <td className='py-2 px-4 sm:py-4'>{project.name}</td>
                     <td className='py-2 px-4 sm:py-4'>{project.client}</td>
                     <td className='py-2 px-4 sm:py-4'>
-                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusStyle}`}>
+                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusStyle} bg-yellow-300 text-yellow-700`}>
                         {project.status}
                       </span>
                     </td>
