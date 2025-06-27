@@ -81,7 +81,7 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                                     {item.subItems ? (
                                         <div
                                             className={`flex items-center justify-between w-full space-x-4 text-secondary hover:bg-slate-200 rounded-md hover:text-blue-800 cursor-pointer font-bold py-2 px-3
-                                            ${openDropdown === item.label ? 'text-red-800 bg-blue-100 rounded-md ' : ''}`}
+                                            ${openDropdown === item.label ? 'text-nav bg-blue-100 rounded-md ' : ''}`}
                                             onClick={() => toggleDropdown(item.label)}
                                         >
                                             <div className="flex items-center space-x-4">
