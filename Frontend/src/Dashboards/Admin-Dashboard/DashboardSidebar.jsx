@@ -79,9 +79,16 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                             {mainNavigation.map((item, index) => (
                                 <div key={index}>
                                     {item.subItems ? (
+                                        // Logic for parent items with sub-items (like Employee, Client, Projects)
                                         <div
-                                            className={`flex items-center justify-between w-full space-x-4 text-secondary hover:bg-slate-200 rounded-md hover:text-blue-800 cursor-pointer font-bold py-2 px-3
-                                            ${openDropdown === item.label ? 'text-nav bg-blue-100 rounded-md ' : ''}`}
+                                            className={`
+                                                flex items-center justify-between w-full space-x-4
+                                                font-bold py-2 px-3 rounded-md cursor-pointer
+                                                ${openDropdown === item.label
+                                                    ? 'text-red-700 bg-blue-100' // Apply red-700 when dropdown is OPEN
+                                                    : 'text-secondary hover:bg-slate-200 hover:text-blue-800' // Default & hover styles when dropdown is CLOSED
+                                                }
+                                            `}
                                             onClick={() => toggleDropdown(item.label)}
                                         >
                                             <div className="flex items-center space-x-4">
@@ -91,10 +98,16 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                                             {openDropdown === item.label ? <FaChevronUp className="text-gray-400 text-sm" /> : <FaChevronDown className="text-gray-400 text-sm" />}
                                         </div>
                                     ) : (
+                                        // Logic for direct Link items (like Production, Profile, Settings)
                                         <Link
                                             to={item.to}
-                                            className={`flex items-center space-x-4 text-secondary hover:bg-slate-200 rounded-md hover:text-blue-800 cursor-pointer font-bold py-2 px-3
-                                            ${location.pathname === item.to ? 'text-blue-800 bg-blue-100 rounded-md' : ''}`}
+                                            className={`
+                                                flex items-center space-x-4 font-bold py-2 px-3 rounded-md cursor-pointer
+                                                ${location.pathname === item.to
+                                                    ? 'text-blue-800 bg-blue-100' // Apply blue-800 when route is ACTIVE
+                                                    : 'text-secondary hover:bg-slate-200 hover:text-blue-800' // Default & hover styles when route is INACTIVE
+                                                }
+                                            `}
                                             onClick={togglesidehamburger}
                                         >
                                             {item.icon}
@@ -108,8 +121,13 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                                                 <Link
                                                     key={subIndex}
                                                     to={subItem.to}
-                                                    className={`flex items-center space-x-3 text-secondary hover:bg-secondary hover:text-gray-800 dark:text-gray-200 dark:hover:bg-gray-800 pl-10 pr-3 py-2 text-sm
-                                                    ${location.pathname === subItem.to ? 'bg-blue-900 text-blue-100' : ''}`}
+                                                    className={`
+                                                        flex items-center space-x-3 pl-10 pr-3 py-2 text-sm
+                                                        ${location.pathname === subItem.to
+                                                            ? 'bg-blue-900 text-blue-100' 
+                                                            : 'text-secondary hover:bg-secondary hover:text-gray-800 dark:text-gray-200 dark:hover:bg-gray-800'  
+                                                        }
+                                                    `}
                                                     onClick={togglesidehamburger}
                                                 >
                                                     {subItem.icon}
