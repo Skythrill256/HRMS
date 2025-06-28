@@ -13,7 +13,7 @@ export default {
       colors: {
         nav: '#6246ea',
         background: '#fffffe',
-        card: '#d1d1e9',
+        card: '#CBC3E3',
         sidebar: '#3730A3',
         text: '#2b2c34',
         button: '#FF4500',
