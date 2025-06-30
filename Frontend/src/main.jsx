@@ -22,7 +22,9 @@ createRoot(document.getElementById('root')).render(
         draggable
         pauseOnHover
         theme="colored"
+        className="custom-toast-container"
       />
+
     </Provider>
   </StrictMode>
 );

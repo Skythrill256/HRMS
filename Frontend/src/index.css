@@ -23,3 +23,11 @@ input:-webkit-autofill:active {
 *::-webkit-scrollbar {
   display: none;
 }
+.custom-toast-container {
+  position: fixed !important;
+  top: 160px !important;
+  right: 10px !important;
+  bottom: auto !important;
+  left: auto !important;
+  z-index: 9999;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaBan, FaUserEdit, FaCheckCircle } from 'react-icons/fa';
 import Employee from "../../Component/Employee";
 import EmployeeProfile from './EmployeeProfile';

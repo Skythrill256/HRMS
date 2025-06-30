@@ -32,11 +32,12 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData }) => {
             bankName: '',
             accountHolderName: ''
         },
-        adharFrontImage: '',
-        adharBackImage: '',
-        panNumber: '',
+        adharFrontImage: ' ',
+        adharBackImage: ' ',
+        panFrontImage: ' ',
+        lastQualificationImage: ' ',
         employeeImage: 'https://via.placeholder.com/150/CCCCCC/FFFFFF?text=No+Image',
-        cancelChequeImage: '',
+        cancelChequeImage: ' ',
     };
 
     const [employeeData, setEmployeeData] = useState(() => {
@@ -115,13 +116,13 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData }) => {
     const handleSaveClick = () => {
         setBox("flex");
     };
-    const handleSaveChabge=()=>{
+    const handleSaveChabge = () => {
         setEmployeeData(editableData);
         setIsEditing(false);
         setBox("hidden");
         // In a real application, you'd send `editableData` to a backend here.
     }
-    const handleCancelChange =()=>{
+    const handleCancelChange = () => {
         setEditableData(employeeData);
         setIsEditing(false);
         setBox("hidden");
@@ -351,11 +352,9 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
                         {renderImageField('Aadhar Front', editableData.adharFrontImage, 'adharFrontImage')}
                         {renderImageField('Aadhar Back', editableData.adharBackImage, 'adharBackImage')}
-                        {/* PAN Number is still a text field, ensure it fits well */}
-                        <div className="col-span-1 sm:col-span-2 lg:col-span-1 flex items-center justify-center">
-                            {renderField('PAN Number', editableData.panNumber, 'panNumber')}
-                        </div>
+                        {renderImageField('PAN Front', editableData.panFrontImage, 'panFrontImage')}
                         {renderImageField('Cancelled Cheque / Passbook First Page', editableData.cancelChequeImage, 'cancelChequeImage')}
+                        {renderImageField('Last Qualification', editableData.lastQualificationImage, 'lastQualification')}
                     </div>
                 </div>
             </div>

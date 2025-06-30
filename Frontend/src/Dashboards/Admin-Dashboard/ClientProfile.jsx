@@ -83,8 +83,7 @@ const ClientProfile = ({ clientData, onBack }) => {
                 <DetailCard title="Country" value={shippingAddress.country} />
                 <DetailCard title="State" value={shippingAddress.state} />
                 <DetailCard title="City" value={shippingAddress.city} />
-                <DetailCard title="Zip Code" value={shippingAddress.zip} />
-                <DetailCard title="Full Address" value={shippingAddress.fullAddress} />
+                <DetailCard title="Zip Code" value={shippingAddress.zip} span={true}/>
               </div>
             </div>
           </div>
@@ -181,7 +180,7 @@ const ClientProfile = ({ clientData, onBack }) => {
                               {txn.type}
                             </span>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-semibold ${txn.type === 'Credit' ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}">
+                          <td className={`px-6 py-4 whitespace-nowrap text-sm text-right font-semibold ${txn.type === 'Credit' ? 'text-green-800 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}>
                             ${txn.amount?.toLocaleString()}
                           </td>
                         </tr>
