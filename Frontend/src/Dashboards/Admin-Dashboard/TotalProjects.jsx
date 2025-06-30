@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAllProjects } from '../../redux/slices/projectSlice';
 
-const TotalProjects = () => { 
-  const projects = [
-    { name: 'HR Management App', client: 'TCS', status: 'Complete' },
-    { name: 'E-Commerce Website', client: 'Amazon', status: 'Pending' },
-    { name: 'Inventory System', client: 'Reliance', status: 'Complete' },
-    { name: 'Banking Portal', client: 'HDFC Bank', status: 'Pending' },
-    { name: 'CRM System', client: 'Infosys', status: 'Complete' },
-    { name: 'Mobile Banking App', client: 'ICICI Bank', status: 'Pending' },
-  ];
+const TotalProjects = () => {
+  // const dispatch = useDispatch();
+  const projects = useSelector(selectAllProjects);
+
+  // useEffect(() => {
+  //   console.log('Loaded Projects:', projects);
+  // }, [projects]);
 
   return (
     <div className='max-w-7xl mx-auto p-5 mt-6 sm:p-6 bg-background dark:bg-gray-900 rounded-lg'>
@@ -17,7 +17,7 @@ const TotalProjects = () => {
       </h2>
       <div className="relative shadow-lg sm:rounded-lg overflow-x-auto md:overflow-hidden group bg-white dark:bg-gray-800">
         <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 peer sm:overflow-y-auto">
-          {projects.length > 0 ? (
+          {projects && projects.length > 0 ? (
             <table className='w-full min-w-max text-left text-gray-600 dark:text-gray-200'>
               <thead className='bg-blue-300 text-xs text-gray-700 uppercase dark:bg-blue-700 dark:text-gray-100'>
                 <tr>
@@ -29,11 +29,11 @@ const TotalProjects = () => {
               <tbody>
                 {projects.map((project, index) => (
                   <tr
-                    key={index}
+                    key={project.id || index}
                     className='border-b hover:border-gray-100 cursor-pointer hover:bg-card dark:hover:bg-blue-900'
                   >
-                    <td className='py-2 px-4 sm:py-4'>{project.name}</td>
-                    <td className='py-2 px-4 sm:py-4'>{project.client}</td>
+                    <td className='py-2 px-4 sm:py-4'>{project.projectName}</td>
+                    <td className='py-2 px-4 sm:py-4'>{project.clientName}</td>
                     <td className='py-2 px-4 sm:py-4'>
                       <span
                         className={`px-3 py-1 rounded-full text-sm font-medium ${

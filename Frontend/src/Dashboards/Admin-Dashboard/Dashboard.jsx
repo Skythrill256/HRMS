@@ -19,6 +19,7 @@ import Getallemployee from './Getallemployee';
 import InitialDashboardContent from './InitialDashboardContain';
 import AllClient from './AllClient';
 import AddTask from "./AddTask"
+import AddProject from '../../Component/AddProject'
 
 const AdminDashboard = ({ section }) => {
   const [SidebarOpen, setSidebarOpen] = useState(false);
@@ -68,6 +69,8 @@ const AdminDashboard = ({ section }) => {
   const renderDashboardContent = () => {
 
     switch (section) {
+      case 'addproject':
+        return <AddProject />;
       case 'projects':
         return <TotalProjects />;
       case 'completed':

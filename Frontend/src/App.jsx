@@ -34,7 +34,12 @@ const router = createBrowserRouter([
   {
     path: "/admin-dashboard/projects/pending",
     element: <AdminDashboard section="pending" />
-  }, {
+  }, 
+  
+  {path:'/admin-dashboard/projects/addproject',
+    element:<AdminDashboard section='addproject'/>
+  },
+  {
     path: "/admin-dashboard/TotalEmployee",
     element: <AdminDashboard section="TotalEmployee" />
   },

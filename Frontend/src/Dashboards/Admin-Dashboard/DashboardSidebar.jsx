@@ -14,7 +14,7 @@ import {
     FaChevronUp,
 } from 'react-icons/fa';
 import { CgProfile } from "react-icons/cg";
-import { MdDashboard } from 'react-icons/md';
+import { MdDashboard, MdOutlinePlaylistAdd } from 'react-icons/md';
 
 const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
     const location = useLocation();
@@ -29,7 +29,7 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
             label: 'Employee',
             icon: <FaUsers className="text-blue-500" />,
             subItems: [
-                { label: 'Show All Employees', icon: <FaClipboardList className="text-blue-500" />, to: '/admin-dashboard/TotalEmployee' },
+                { label: 'All Employees', icon: <FaClipboardList className="text-blue-500" />, to: '/admin-dashboard/TotalEmployee' },
             ],
         },
         {
@@ -43,6 +43,10 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
             label: 'Projects',
             icon: <FaProjectDiagram className="text-purple-500" />,
             subItems: [
+                {
+                    label: 'Add Project', icon: <MdOutlinePlaylistAdd className='text-green-400 text-xl'
+                    />, to: '/admin-dashboard/projects/addproject'
+                },
                 { label: 'All Projects', icon: <FaClipboardList className="text-purple-500" />, to: '/admin-dashboard/projects' },
                 { label: 'Complete Projects', icon: <FaCheckCircle className="text-green-600" />, to: '/admin-dashboard/projects/completed' },
                 { label: 'Pending Projects', icon: <FaHourglassHalf className="text-red-500" />, to: '/admin-dashboard/projects/pending' },
@@ -50,7 +54,7 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
         },
         {
             label: 'Production',
-            icon: <FaCogs className="text-yellow-500"/>,
+            icon: <FaCogs className="text-yellow-500" />,
             to: '/productions',
         },
     ];
@@ -124,8 +128,8 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                                                     className={`
                                                         flex items-center space-x-3 pl-10 pr-3 py-2 text-sm
                                                         ${location.pathname === subItem.to
-                                                            ? 'bg-blue-900 text-blue-100' 
-                                                            : 'text-secondary hover:bg-secondary hover:text-gray-800 dark:text-gray-200 dark:hover:bg-gray-800'  
+                                                            ? 'bg-blue-900 text-blue-100'
+                                                            : 'text-secondary hover:bg-secondary hover:text-gray-800 dark:text-gray-200 dark:hover:bg-gray-800'
                                                         }
                                                     `}
                                                     onClick={togglesidehamburger}

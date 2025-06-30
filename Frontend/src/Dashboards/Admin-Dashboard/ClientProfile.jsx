@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPhoneVolume } from "react-icons/fa6";
+import { FaPhoneVolume, FaIndianRupeeSign } from "react-icons/fa6";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
 const ClientProfile = ({ clientData, onBack }) => {
@@ -84,7 +84,7 @@ const ClientProfile = ({ clientData, onBack }) => {
                 <DetailCard title="State" value={shippingAddress.state} />
                 <DetailCard title="City" value={shippingAddress.city} />
                 <DetailCard title="Zip Code" value={shippingAddress.zip} />
-                <DetailCard title="Full Address" value={shippingAddress.fullAddress} span={true} />
+                <DetailCard title="Full Address" value={shippingAddress.fullAddress} />
               </div>
             </div>
           </div>
@@ -195,8 +195,8 @@ const ClientProfile = ({ clientData, onBack }) => {
             </div>
           </div>
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 
@@ -223,8 +223,8 @@ const InfoPill = ({ title, value, icon }) => (
 const BillingMetric = ({ title, amount, isDue = false }) => (
   <div className={`p-5 rounded-lg shadow-md transition-transform hover:scale-105 duration-200 border ${isDue ? 'bg-red-50 dark:bg-red-900 border-red-100 dark:border-red-800' : 'bg-green-50 dark:bg-green-900 border-green-100 dark:border-green-800'}`}>
     <p className={`text-md font-medium ${isDue ? 'text-red-800 dark:text-red-200' : 'text-green-800 dark:text-green-200'} mb-1`}>{title}</p>
-    <p className={`text-3xl font-extrabold ${isDue ? 'text-red-900 dark:text-red-100' : 'text-green-900 dark:text-green-100'}`}>
-      ${amount?.toLocaleString() || '0'}
+    <p className={`text-sm md:text-3xl font-extrabold ${isDue ? 'text-orange-700 dark:text-red-100' : 'text-green-900 dark:text-green-100'} flex justify-center items-center`}>
+      <FaIndianRupeeSign /><span>{amount?.toLocaleString() || '0'}</span>
     </p>
   </div>
 );
