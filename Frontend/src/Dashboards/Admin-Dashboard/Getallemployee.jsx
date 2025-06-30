@@ -3,6 +3,10 @@ import { FaBan, FaUserEdit, FaCheckCircle } from 'react-icons/fa';
 import Employee from "../../Component/Employee";
 import EmployeeProfile from './EmployeeProfile';
 import { toast } from 'react-toastify';
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
+
+
 
 const Getallemployee = () => {
     const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
@@ -583,14 +587,53 @@ const Getallemployee = () => {
                                                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">ID: {employee.id}</p>
                                             </div>
                                         </div>
+
                                         <div className='flex justify-center items-center gap-4 py-3 border-t border-gray-200 dark:border-gray-600'>
-                                            <FaUserEdit className="text-blue-600 hover:text-blue-800 cursor-pointer text-xl" onClick={(e) => { e.stopPropagation(); handleEditClick(employee.id);}} />
+                                            {/* Edit Icon */}
+                                            <FaUserEdit
+                                                data-tooltip-id="tooltip"
+                                                data-tooltip-content="Edit Employee"
+                                                className="text-blue-600 hover:text-blue-800 cursor-pointer text-xl"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleEditClick(employee.id);
+                                                }}
+                                            />
+
+                                            {/* Toggle Restrict/Login Icon */}
                                             {employee.loginRestricted ? (
-                                                <FaCheckCircle className="text-green-600 hover:text-green-800 cursor-pointer text-xl" onClick={(e) => { e.stopPropagation(); handleRestrictLogin(employee.id); toast.warn(`Restrict Employee ${employee.firstName}`)}} />
+                                                <FaCheckCircle
+                                                    data-tooltip-id="tooltip"
+                                                    data-tooltip-content="Allow Login"
+                                                    className="text-green-600 hover:text-green-800 cursor-pointer text-xl"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleRestrictLogin(employee.id);
+                                                        toast.warn(`Restrict Employee ${employee.firstName}`);
+                                                    }}
+                                                />
                                             ) : (
-                                                <FaBan className="text-red-600 hover:text-red-800 cursor-pointer text-xl" onClick={(e) => { e.stopPropagation(); handleRestrictLogin(employee.id); toast.success(`Allow Employee ${employee.firstName}`)}} />
+                                                <FaBan
+                                                    data-tooltip-id="tooltip"
+                                                    data-tooltip-content="Restrict Login"
+                                                    className="text-red-600 hover:text-red-800 cursor-pointer text-xl"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleRestrictLogin(employee.id);
+                                                        toast.success(`Allow Employee ${employee.firstName}`);
+                                                    }}
+                                                />
                                             )}
+
+                                            {/* Tooltip Component */}
+                                            <Tooltip id="tooltip" place="top" className="z-50" />
                                         </div>
+
+
+
+
+
+
                                     </div>
                                 ))}
                         </div>
