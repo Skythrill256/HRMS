@@ -107,7 +107,8 @@ const AdminDashboard = ({ section }) => {
         {/* Main Section */}
         <div className="flex-1 overflow-y-auto bg-background dark:bg-gray-900">
           {/* Top Navigation Bar */}
-          <div className="flex justify-between items-center bg-nav h-14 relative dark:bg-gray-800">
+          {/* Apply fixed positioning to the navbar */}
+          <div className="fixed top-0 left-0 right-0 z-30 flex justify-between items-center bg-nav h-14 dark:bg-gray-800 md:pl-64"> {/* Added md:pl-64 to account for sidebar width on desktop */}
             {/* Hamburger Menu */}
             <div>
               <button onClick={togglesidehamburger} className="p-2">
@@ -140,7 +141,8 @@ const AdminDashboard = ({ section }) => {
 
           {/* Search Bar - appears directly below the navbar */}
           {showSearch && (
-            <div className="relative bg-white dark:bg-gray-800 p-2 border-b border-gray-200 dark:border-gray-700">
+            // Adjusted positioning for search bar to be fixed below the navbar
+            <div className="fixed top-14 left-0 right-0 z-20 bg-white dark:bg-gray-800 p-2 border-b border-gray-200 dark:border-gray-700 md:pl-64">
               <input
                 type="text"
                 placeholder="Search..."
@@ -154,7 +156,8 @@ const AdminDashboard = ({ section }) => {
           {todo && <AddTask setTodo={setTodo} />}
 
           {/* Dashboard Content */}
-          <div className="p-4">
+          {/* Add padding-top to main content to offset the fixed navbar and search bar */}
+          <div className={`p-4 ${showSearch ? 'pt-28' : 'pt-14'} md:pt-14`}> {/* Adjust pt-xx based on navbar height (14) + search bar height (approx 14) */}
             {renderDashboardContent()}
           </div>
         </div>
