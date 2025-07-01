@@ -44,7 +44,9 @@ const Getallemployee = () => {
                 accountNumber: 'XXXX-XXXX-XXXX-1111',
                 ifsc: 'FNB12345',
                 bankName: 'First National Bank',
-                accountHolderName: 'Alice Smith'
+                accountHolderName: 'Alice Smith',
+                pancardNo: 'FTPNF797979',
+                adharCardNo: '385629854662'
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -82,7 +84,9 @@ const Getallemployee = () => {
                 accountNumber: 'XXXX-XXXX-XXXX-2222',
                 ifsc: 'CTY67890',
                 bankName: 'City Bank',
-                accountHolderName: 'Bob Johnson'
+                accountHolderName: 'Bob Johnson',
+                pancardNo: 'FTPNF797979',
+                adharCardNo: '385629854662'
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -120,7 +124,9 @@ const Getallemployee = () => {
                 accountNumber: 'XXXX-XXXX-XXXX-3333',
                 ifsc: 'TXT98765',
                 bankName: 'Axis Bank',
-                accountHolderName: 'Charlie Brown'
+                accountHolderName: 'Charlie Brown',
+                pancardNo: 'FTPNF797979',
+                adharCardNo: '385629854662'
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -158,7 +164,9 @@ const Getallemployee = () => {
                 bankName: 'ICICI Bank',
                 accountNumber: 'XXXX-XXXX-XXXX-4444',
                 ifsc: 'AMZ00001',
-                accountHolderName: 'Diana Prince'
+                accountHolderName: 'Diana Prince',
+                pancardNo: 'FTPNF797979',
+                adharCardNo: '385629854662'
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -196,7 +204,9 @@ const Getallemployee = () => {
                 bankName: 'HDFC Bank',
                 accountNumber: 'XXXX-XXXX-XXXX-5555',
                 ifsc: 'PRD54321',
-                accountHolderName: 'Eve Adams'
+                accountHolderName: 'Eve Adams',
+                pancardNo: 'FTPNF797979',
+                adharCardNo: '385629854662'
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -234,7 +244,9 @@ const Getallemployee = () => {
                 bankName: 'State Bank of India',
                 accountNumber: 'XXXX-XXXX-XXXX-6666',
                 ifsc: 'PAC11223',
-                accountHolderName: 'Frank White'
+                accountHolderName: 'Frank White',
+                pancardNo: 'FTPNF797979',
+                adharCardNo: '385629854662'
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -272,7 +284,9 @@ const Getallemployee = () => {
                 bankName: 'Punjab National Bank',
                 accountNumber: 'XXXX-XXXX-XXXX-7777',
                 ifsc: 'FRC44556',
-                accountHolderName: 'Grace Lee'
+                accountHolderName: 'Grace Lee',
+                pancardNo: 'FTPNF797979',
+                adharCardNo: '385629854662'
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -310,7 +324,9 @@ const Getallemployee = () => {
                 bankName: 'Bank of Baroda',
                 accountNumber: 'XXXX-XXXX-XXXX-8888',
                 ifsc: 'RYL77889',
-                accountHolderName: 'Henry King'
+                accountHolderName: 'Henry King',
+                pancardNo: 'FTPNF797979',
+                adharCardNo: '385629854662'
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -348,7 +364,9 @@ const Getallemployee = () => {
                 bankName: 'Federal Bank',
                 accountNumber: 'XXXX-XXXX-XXXX-9999',
                 ifsc: 'GVC22334',
-                accountHolderName: 'Ivy Green'
+                accountHolderName: 'Ivy Green',
+                pancardNo: 'FTPNF797979',
+                adharCardNo: '385629854662'
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -386,7 +404,9 @@ const Getallemployee = () => {
                 bankName: 'Canara Bank',
                 accountNumber: 'XXXX-XXXX-XXXX-1010',
                 ifsc: 'BLN55667',
-                accountHolderName: 'Jack Taylor'
+                accountHolderName: 'Jack Taylor',
+                pancardNo: 'FTPNF797979',
+                adharCardNo: '385629854662'
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -424,7 +444,9 @@ const Getallemployee = () => {
                 bankName: 'Union Bank of India',
                 accountNumber: 'XXXX-XXXX-XXXX-1212',
                 ifsc: 'SMM88990',
-                accountHolderName: 'Karen Hall'
+                accountHolderName: 'Karen Hall',
+                pancardNo: 'FTPNF797979',
+                adharCardNo: '385629854662'
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -462,7 +484,9 @@ const Getallemployee = () => {
                 bankName: 'Indian Bank',
                 accountNumber: 'XXXX-XXXX-XXXX-1313',
                 ifsc: 'DSF11223',
-                accountHolderName: 'Liam Scott'
+                accountHolderName: 'Liam Scott',
+                pancardNo: 'FTPNF797979',
+                adharCardNo: '385629854662'
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',

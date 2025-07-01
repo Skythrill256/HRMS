@@ -341,6 +341,8 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData }) => {
                         {renderField('Account Number', editableData.bankInfo?.accountNumber, 'bankInfo.accountNumber')}
                         {renderField('IFSC Code', editableData.bankInfo?.ifsc, 'bankInfo.ifsc')}
                         {renderField('Account Holder', editableData.bankInfo?.accountHolderName, 'bankInfo.accountHolderName')}
+                        {renderField('Adhar Card No', editableData.bankInfo?.adharCardNo, 'bankInfo.adharCardNo')}
+                        {renderField('Pan Number', editableData.bankInfo?.pancardNo, 'bankInfo.pancardNo')}
                     </div>
                 </div>
 

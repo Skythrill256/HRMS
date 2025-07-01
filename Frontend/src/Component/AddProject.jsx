@@ -133,7 +133,7 @@ const AddProject = () => {
     }
 
     if (formData.otherAccessories === 'YES' && (formData.otherAccessoriesCost === '' || isNaN(parseFloat(formData.otherAccessoriesCost)))) {
-      toast.error('Please specify Other Accessories Cost (a number).', { position: 'top-center', theme: 'colored' });
+      toast.error('Please specify Other Accessories Cost (a number).', { position: 'top-right', theme: 'colored' });
       return;
     }
 

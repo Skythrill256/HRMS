@@ -1,11 +1,10 @@
 import React from 'react';
-
+import { useSelector } from 'react-redux';
+import { selectAllProjects } from '../../redux/slices/projectSlice';
 const CompleteProjects = () => {
-  const projects = [
-    { name: 'HR Management App', client: 'TCS', status: 'Complete' },
-    { name: 'Inventory System', client: 'Reliance', status: 'Complete' },
-    { name: 'paying system', client: 'Amazon', status: 'Complete' },
-  ];
+  const allprojects = useSelector(selectAllProjects)
+  const completeProjects = allprojects.filter(project=>project.status === 'Complete')
+
 
   const statusStyle = 'bg-green-100 text-green-700 dark:bg-green-800 dark:text-green-100';
 
@@ -14,7 +13,7 @@ const CompleteProjects = () => {
       <h2 className='text-xl sm:text-2xl font-semibold mb-5 text-text dark:text-gray-100'>Completed Projects</h2>
       <div className="relative shadow-lg sm:rounded-lg overflow-x-auto md:overflow-hidden group bg-[#f5f7fb] dark:bg-gray-800">
         <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 peer">
-          {projects.length > 0 ? (
+          {completeProjects.length > 0 ? (
             <table className='w-full min-w-max text-left text-gray-600 dark:text-gray-100'>
               <thead className='bg-blue-300 text-xs text-gray-700 uppercase dark:bg-blue-700 dark:text-gray-200'>
                 <tr>
@@ -24,10 +23,10 @@ const CompleteProjects = () => {
                 </tr>
               </thead>
               <tbody>
-                {projects.map((project, index) => (
+                {completeProjects.map((project, index) => (
                   <tr key={index} className='border-b hover:border-gray-100 cursor-pointer hover:bg-card dark:hover:bg-blue-900'>
-                    <td className='py-2 px-4 sm:py-4'>{project.name}</td>
-                    <td className='py-2 px-4 sm:py-4'>{project.client}</td>
+                    <td className='py-2 px-4 sm:py-4'>{project.projectName}</td>
+                    <td className='py-2 px-4 sm:py-4'>{project.clientName}</td>
                     <td className='py-2 px-4 sm:py-4'>
                       <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusStyle} bg-green-300 text-green-700`}>
                         {project.status}
