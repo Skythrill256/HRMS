@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
+import { useParams } from 'react-router-dom';
 
 import { addProject } from '../redux/slices/projectSlice.js';
 import { selectAllClients } from '../redux/slices/clientSlice.js';
@@ -381,9 +382,11 @@ const AddProject = () => {
   const dispatch = useDispatch();
   const clients = useSelector(selectAllClients);
 
+  const {id} = useParams(); // Get id of client from client profile
+
   // State for overall form data (client details)
   const [formData, setFormData] = useState({
-    clientId: '',
+    clientId: id,
     clientName: '',
     phone: '',
     email: '',
@@ -585,7 +588,8 @@ const AddProject = () => {
               id="clientId"
               name="clientId"
               options={clients.map(client => ({
-                value: client.id,
+                value: id,
+                // value: client.id,
                 label: `${client.id} - ${client.clientName} (${client.companyName})`
               }))}
               value={clients

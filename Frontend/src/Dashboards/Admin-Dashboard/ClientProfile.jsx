@@ -41,7 +41,7 @@ const ClientProfile = ({ clientData, onBack }) => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Client Details</h3>
             <div className="flex flex-wrap justify-end gap-2 sm:flex-nowrap">
-              <Link to='/admin-dashboard/projects/addproject'><button className="bg-blue-500 text-white text-sm px-4 py-2 rounded hover:bg-blue-600">Add Project</button></Link>
+              <Link to={`/admin-dashboard/projects/addproject/${id}`}><button className="bg-blue-500 text-white text-sm px-4 py-2 rounded hover:bg-blue-600">Add Project</button></Link>
               <button className="bg-blue-500 text-white text-sm px-4 py-2 rounded hover:bg-blue-600">Invoice</button>
               <button className="bg-blue-500 text-white text-sm px-4 py-2 rounded hover:bg-blue-600">Quotation</button>
             </div>

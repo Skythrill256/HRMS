@@ -36,7 +36,7 @@ const router = createBrowserRouter([
   //   element: <AdminDashboard section="pending" />
   // }, 
   
-  {path:'/admin-dashboard/projects/addproject',
+  {path:'/admin-dashboard/projects/addproject/:id',
     element:<AdminDashboard section='addproject'/>
   },
   {
