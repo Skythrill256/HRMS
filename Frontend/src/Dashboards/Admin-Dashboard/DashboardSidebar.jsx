@@ -47,9 +47,10 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                     label: 'Add Project', icon: <MdOutlinePlaylistAdd className='text-green-400 text-xl'
                     />, to: '/admin-dashboard/projects/addproject'
                 },
+
                 { label: 'All Projects', icon: <FaClipboardList className="text-purple-500" />, to: '/admin-dashboard/projects' },
-                { label: 'Complete Projects', icon: <FaCheckCircle className="text-green-600" />, to: '/admin-dashboard/projects/completed' },
-                { label: 'Pending Projects', icon: <FaHourglassHalf className="text-red-500" />, to: '/admin-dashboard/projects/pending' },
+                // { label: 'Complete Projects', icon: <FaCheckCircle className="text-green-600" />, to: '/admin-dashboard/projects/completed' },
+                // { label: 'Pending Projects', icon: <FaHourglassHalf className="text-red-500" />, to: '/admin-dashboard/projects/pending' },
             ],
         },
         {
