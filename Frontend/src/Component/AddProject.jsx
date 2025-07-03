@@ -27,8 +27,8 @@ const customSelectStyles = {
     backgroundColor: state.isSelected
       ? '#4f46e5'
       : state.isFocused
-      ? '#374151'
-      : '#1f2937',
+        ? '#374151'
+        : '#1f2937',
     color: '#fff',
     '&:hover': {
       backgroundColor: '#374151',
@@ -70,6 +70,39 @@ const AddProject = () => {
   const [isOtherProjectTypeVisible, setIsOtherProjectTypeVisible] = useState(false);
   const [isServerTypeVisible, setIsServerTypeVisible] = useState(false);
   const [isOtherAccessoriesCostVisible, setIsOtherAccessoriesCostVisible] = useState(false);
+  const [projectID, setProjectID] = useState('');
+  const [quotationID, setQuotationID] = useState('');
+
+  //Generate Project ID
+  const projectCounter = 1;
+
+  useEffect(() => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // 0-indexed, so add 1
+    const day = String(date.getDate()).padStart(2, "0");
+
+    const baseId = `IGPRO${month}${year}${day}`;
+    const fullId = `${baseId}${String(projectCounter).padStart(3, "0")}`; // 3-digit counter
+
+    setProjectID(fullId);
+  }, [projectCounter]);
+
+  //Generate quotation ID
+  const quotationCounter = 1;
+
+  useEffect(() => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // 0-indexed, so add 1
+    const day = String(date.getDate()).padStart(2, "0");
+    const firstName = formData.clientName.split(" ")[0].toUpperCase();
+    const baseId = `${firstName}OTY${day}${month}${year}`;
+    const fullId = `${baseId}${String(quotationCounter).padStart(3, "0")}`; // 3-digit counter
+
+    setQuotationID(fullId);
+  }, [formData]);
+
 
   useEffect(() => {
     const selectedClient = clients.find(client => client.id === formData.clientId);
@@ -168,34 +201,33 @@ const AddProject = () => {
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">Add New Project</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Client ID */}
-        <div>
-          <label htmlFor="clientId" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Client <span className="text-red-500">*</span>
-          </label>
-          <Select
-            id="clientId"
-            name="clientId"
-            options={clients.map(client => ({
-              value: client.id,
-              label: `${client.id} - ${client.clientName} (${client.companyName})`
-            }))}
-            value={clients
-              .map(client => ({
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label htmlFor="clientId" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Client <span className="text-red-500">*</span>
+            </label>
+            <Select
+              id="clientId"
+              name="clientId"
+              options={clients.map(client => ({
                 value: client.id,
                 label: `${client.id} - ${client.clientName} (${client.companyName})`
-              }))
-              .find(option => option.value === formData.clientId)}
-            onChange={(selectedOption) =>
-              setFormData(prev => ({ ...prev, clientId: selectedOption?.value || '' }))
-            }
-            isClearable
-            styles={customSelectStyles}
-            placeholder="Select a client"
-          />
-        </div>
-
-        {/* Auto-filled Client Details (Read-only) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              }))}
+              value={clients
+                .map(client => ({
+                  value: client.id,
+                  label: `${client.id} - ${client.clientName} (${client.companyName})`
+                }))
+                .find(option => option.value === formData.clientId)}
+              onChange={(selectedOption) =>
+                setFormData(prev => ({ ...prev, clientId: selectedOption?.value || '' }))
+              }
+              isClearable
+              styles={customSelectStyles}
+              placeholder="Select a client"
+            />
+          </div>
+          {/* Auto-filled Client Details (Read-only) */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Client Name</label>
             <input type="text" value={formData.clientName} readOnly
@@ -204,6 +236,11 @@ const AddProject = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone</label>
             <input type="text" value={formData.phone} readOnly
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 cursor-not-allowed" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Project ID</label>
+            <input type="text" value={projectID} readOnly
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 cursor-not-allowed" />
           </div>
           <div>
@@ -216,10 +253,21 @@ const AddProject = () => {
             <input type="text" value={formData.companyName} readOnly
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 cursor-not-allowed" />
           </div>
-        </div>
-
-        {/* Project Name and Quotation ID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="quotationId" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Quotation ID <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="quotationId"
+              name="quotationId"
+              value={quotationID} readOnly
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 cursor-not-allowed"
+              placeholder="e.g., QID-2024-001"
+              required
+            />
+          </div>
+          {/* Project Name and Quotation ID */}
           <div>
             <label htmlFor="projectName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Project Name <span className="text-red-500">*</span>
@@ -235,47 +283,31 @@ const AddProject = () => {
               required
             />
           </div>
-          <div>
-            <label htmlFor="quotationId" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Quotation ID <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="quotationId"
-              name="quotationId"
-              value={formData.quotationId}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
-              placeholder="e.g., QID-2024-001"
-              required
-            />
-          </div>
-        </div>
 
-        {/* Project Type */}
-        <div>
+          {/* Project Type */}
           <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Project Type <span className="text-red-500">*</span>
+            <select
+              id="projectType"
+              name="projectType"
+              value={formData.projectType}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 mt-1"
+              required
+            >
+              <option value="">Select Project Type</option>
+              <option value="STATIC WEBSITE">Static Website</option>
+              <option value="DYNAMIC WEBSITE">Dynamic Website</option>
+              <option value="ADMIN + ANDROID APP">Admin + Android App</option>
+              <option value="ADMIN + IOS APP">Admin + iOS App</option>
+              <option value="WEBSITE + APP (IOS+APK)">Website + App (iOS+APK)</option>
+              <option value="LOGO DESIGN">Logo Design</option>
+              <option value="BANNER DESIGN">Banner Design</option>
+              <option value="SEO">SEO</option>
+              <option value="OTHER">Other</option>
+            </select>
           </label>
-          <select
-            id="projectType"
-            name="projectType"
-            value={formData.projectType}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
-            required
-          >
-            <option value="">Select Project Type</option>
-            <option value="STATIC WEBSITE">Static Website</option>
-            <option value="DYNAMIC WEBSITE">Dynamic Website</option>
-            <option value="ADMIN + ANDROID APP">Admin + Android App</option>
-            <option value="ADMIN + IOS APP">Admin + iOS App</option>
-            <option value="WEBSITE + APP (IOS+APK)">Website + App (iOS+APK)</option>
-            <option value="LOGO DESIGN">Logo Design</option>
-            <option value="BANNER DESIGN">Banner Design</option>
-            <option value="SEO">SEO</option>
-            <option value="OTHER">Other</option>
-          </select>
+
 
           {isOtherProjectTypeVisible && (
             <input
@@ -291,26 +323,27 @@ const AddProject = () => {
         </div>
 
         {/* Project Documentation (File Upload) */}
-        <div>
-          <label htmlFor="projectDocumentation" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Project Documentation (Optional)
-          </label>
-          <input
-            type="file"
-            id="projectDocumentation"
-            name="projectDocumentation"
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 transition-all duration-200"
-          />
-          {formData.projectDocumentation && (
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-              Selected file: {formData.projectDocumentation.name}
-            </p>
-          )}
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Project Documentation */}
+          <div>
+            <label htmlFor="projectDocumentation" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Project Documentation (Optional)
+            </label>
+            <input
+              type="file"
+              id="projectDocumentation"
+              name="projectDocumentation"
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 transition-all duration-200"
+            />
+            {formData.projectDocumentation && (
+              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                Selected file: {formData.projectDocumentation.name}
+              </p>
+            )}
+          </div>
 
-        {/* Server Required? and Server Type */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
+          {/* Server Required? */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Server Required?
@@ -338,6 +371,8 @@ const AddProject = () => {
               </label>
             </div>
           </div>
+
+          {/* Server Type (Conditional) */}
           {isServerTypeVisible && (
             <div>
               <label htmlFor="serverType" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -356,6 +391,7 @@ const AddProject = () => {
             </div>
           )}
         </div>
+
 
         {/* Development Cost and Server Cost */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -441,12 +477,14 @@ const AddProject = () => {
         </div>
 
         {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 px-4 rounded-md shadow-md transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        >
-          Add Project
-        </button>
+        <center>
+          <button
+            type="submit"
+            className="w-[150px] bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 px-4 rounded-md shadow-md transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            Add Project
+          </button>
+        </center>
       </form>
     </div>
   );
