@@ -40,8 +40,8 @@ const customSelectStyles = {
   }),
   singleValue: base => ({
     ...base,
-    color: '#111827', // Text color for selected value in light mode
-    '.dark &': { // Apply dark mode specific styles
+    color: '#111827', 
+    '.dark &': {
       color: '#fff',
     },
   }),
@@ -456,7 +456,7 @@ const AddProject = () => {
         accessoriesDescription: '', // New field for accessories description
       }
     ]);
-    setProjectCounter(prevCounter => prevCounter + 1); // Increment counter for the next project
+    setProjectCounter(prevCounter => prevCounter + 1); 
   };
 
   // Handles removing a project section

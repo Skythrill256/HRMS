@@ -125,7 +125,7 @@ const InitialDashboardContent = () => {
 
     // taskbar and graph section
 
-        const [tasks, setTasks] = useState([
+    const [tasks, setTasks] = useState([
         { id: 1, title: "Fix login bug", status: "In Progress", completed: false },
         { id: 2, title: "Create Employee Profile Page", status: "Completed", completed: true },
         { id: 3, title: "Update Client Records", status: "Pending", completed: false }
@@ -152,54 +152,48 @@ const InitialDashboardContent = () => {
         <div className="p-4 md:p-6 bg-background dark:bg-gray-900 mt-8 rounded-lg shadow-lg transition-colors duration-300">
 
             {/* Main Header Section */}
-            <div className="bg-card dark:bg-gray-800 flex items-center p-4 rounded-lg shadow-sm justify-between relative ">
+            <div
+                class="bg-card dark:bg-gray-800 flex flex-col md:flex-row flex-wrap items-start md:items-center p-4 rounded-lg shadow-sm justify-between gap-4 relative"
+            >
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <img
+                        src="https://randomuser.me/api/portraits/men/9.jpg"
+                        alt="Profile"
+                        class="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-blue-500 object-cover"
+                    />
+                    <div class="flex flex-col text-sm md:text-base">
+                        <h2 class="text-[#1E90FF] dark:text-white font-semibold">Hi, (User)</h2>
+                        <p class="text-[#e45858] dark:text-gray-300 font-medium">
+                            Welcome back, Indomitech Group
+                        </p>
+                    </div>
+                </div>
 
-                <div className='pl-2 flex gap-3 items-center'>
-                    <Link to="#">
+                <div class="text-sm md:text-base order-last md:order-none w-full sm:w-auto text-left sm:text-right md:text-left">
+                    <p class="text-[#1E90FF] dark:text-gray-300 font-semibold">{weekday}</p>
+                    <p class="text-[#1E90FF] dark:text-gray-300">
+                        {date} {month} {year}
+                    </p>
+                </div>
+
+                <div class="text-[#1E90FF] dark:text-gray-300 text-xl font-semibold order-last md:order-none w-full sm:w-auto text-left sm:text-center md:text-left">
+                    {time}
+                </div>
+
+                <div class="flex items-center gap-2 text-sm md:text-base text-[#e45858] font-semibold order-last md:order-none w-full sm:w-auto justify-start sm:justify-end md:justify-start">
+                    {weather.icon && (
                         <img
-                            src="https://randomuser.me/api/portraits/men/9.jpg"
-                            alt="Profile"
-                            className="w-16 h-16 rounded-full border-2 border-blue-500 object-cover"
+                            src={weather.icon}
+                            alt="Weather icon"
+                            class="w-8 h-8 md:w-10 md:h-10"
                         />
-                    </Link>
-                    <div className="flex flex-col">
-                        <h2 className="text-[#1E90FF] dark:text-white text-xl font-semibold mt-1">Hi, (User)</h2>
-                        <p className="text-[#e45858] dark:text-gray-300 text-lg font-medium">Welcome back, Indomitech Group</p>
-                    </div>
-                </div>
-
-                <div className='flex flex-col md:flex-row '>
-                    <div className='text-left'>
-                        <p className="text-[#1E90FF] dark:text-gray-300 text-sm font-semibold">
-                            <p className="text-xl">{weekday}</p>
-                            <p className="text-[1rem]">{date} {month} {year}</p>
-                        </p>
-                    </div>
-                </div>
-                <div className='flex flex-col md:flex-row '>
-                    <div className='text-left'>
-                        <p className="text-[#1E90FF] dark:text-gray-300 text-2xl font-semibold">
-                            {time}
-                        </p>
-                    </div>
-                </div>
-
-                <div className='flex items-center gap-4 text-gray-800 dark:text-gray-200'>
-
-                    {weather.temp && (
-                        <div className="text-[#e45858] flex flex-col sm:flex-row items-center gap-2 font-semibold text-md md:text-lg">
-                            <span className='bg-[#e45858] rounded-full'>{weather.icon && <img src={weather.icon} alt="Weather icon" className=" w-10 h-10" />}</span>
-                            <span>{weather.temp}</span>
-                            {weather.condition && <span>| {weather.condition}</span>}
-                        </div>
                     )}
-                    {!weather.temp && weather.condition === 'N/A' && (
-                        <p className="text-red-500 text-sm">Weather data not available</p>
-                    )}
+                    {weather.temp && <span>{weather.temp}</span>}
+                    {weather.condition && <span>| {weather.condition}</span>}
                 </div>
-
-
             </div>
+
+
 
 
             {/* Cards Section */}
@@ -231,58 +225,58 @@ const InitialDashboardContent = () => {
 
             {/* task bar and graph section */}
 
-<div className="flex flex-col lg:flex-row gap-4 w-full p-4 md:p-6 bg-background dark:bg-gray-900">
+            <div className="flex flex-col lg:flex-row gap-4 w-full  md:p-6 bg-background dark:bg-gray-900">
 
-  {/* Taskbar Section */}
-  <div className="bg-card dark:bg-gray-800 rounded-lg shadow-md p-6 w-full lg:w-1/2">
-    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Tasks</h3>
-    <ul className="space-y-3">
-      {tasks.map(task => (
-        <li
-          key={task.id}
-          className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-md"
-        >
-          <div className="flex items-center gap-3">
-            <input
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => toggleComplete(task.id)}
-              className="accent-green-500"
-            />
-            <span
-              className={`text-gray-800 dark:text-white ${task.completed ? 'line-through' : ''}`}
-            >
-              {task.title}
-            </span>
-          </div>
+                {/* Taskbar Section */}
+                <div className="bg-card dark:bg-gray-800 rounded-lg shadow-md p-4 w-full lg:w-1/2">
+                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Tasks</h3>
+                    <ul className="space-y-3">
+                        {tasks.map(task => (
+                            <li
+                                key={task.id}
+                                className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-md"
+                            >
+                                <div className="flex items-center gap-3">
+                                    <input
+                                        type="checkbox"
+                                        checked={task.completed}
+                                        onChange={() => toggleComplete(task.id)}
+                                        className="accent-green-500"
+                                    />
+                                    <span
+                                        className={`text-gray-800 dark:text-white ${task.completed ? 'line-through' : ''}`}
+                                    >
+                                        {task.title}
+                                    </span>
+                                </div>
 
-          <div className="flex flex-wrap items-center gap-2 mt-2 sm:mt-0">
-            <button
-              onClick={() => removeTask(task.id)}
-              className="px-3 py-1 text-sm bg-red-500 text-white rounded-md hover:bg-red-600"
-            >
-              Remove
-            </button>
-            {task.completed && (
-              <span className="px-2 py-1 text-sm rounded-full bg-green-500 text-white">
-                Completed
-              </span>
-            )}
-          </div>
-        </li>
-      ))}
-    </ul>
-  </div>
+                                <div className="flex flex-wrap items-center gap-2 mt-2 sm:mt-0">
+                                    <button
+                                        onClick={() => removeTask(task.id)}
+                                        className="px-3 py-1 text-sm bg-red-500 text-white rounded-md hover:bg-red-600"
+                                    >
+                                        Remove
+                                    </button>
+                                    {task.completed && (
+                                        <span className="px-2 py-1 text-sm rounded-full bg-green-500 text-white">
+                                            Completed
+                                        </span>
+                                    )}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
-  {/* Graph Section */}
-  <div className="bg-card dark:bg-gray-800 rounded-lg shadow-md p-6 w-full lg:w-1/2">
-    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Performance Overview</h3>
-    <div className="w-full h-64 flex items-center justify-center text-gray-500 dark:text-gray-400">
-      <p>[Graph will be displayed here]</p>
-    </div>
-  </div>
+                {/* Graph Section */}
+                <div className="bg-card dark:bg-gray-800 rounded-lg shadow-md p-6 w-full lg:w-1/2">
+                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Performance Overview</h3>
+                    <div className="w-full h-64 flex items-center justify-center text-gray-500 dark:text-gray-400">
+                        <p>[Graph will be displayed here]</p>
+                    </div>
+                </div>
 
-</div>
+            </div>
 
 
         </div>
