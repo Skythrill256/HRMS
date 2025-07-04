@@ -581,7 +581,7 @@ const AddProject = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Client Select */}
           <div>
-            <label htmlFor="clientId" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label htmlFor="clientId" className="block text-sm font-medium text-gray-700 dark:text-white dark:bg-gray-800 mb-1">
               Client <span className="text-red-500">*</span>
             </label>
             <Select
@@ -602,30 +602,30 @@ const AddProject = () => {
                 setFormData(prev => ({ ...prev, clientId: selectedOption?.value || '' }))
               }
               isClearable
-              styles={customSelectStyles}
+              // styles={customSelectStyles}
               placeholder="Select a client"
             />
           </div>
           {/* Auto-filled Client Details (Read-only) */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Client Name</label>
-            <input type="text" value={formData.clientName} readOnly
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 cursor-not-allowed" />
+            <input type="text" value={formData.clientName} onChange={(e)=>setFormData({ ...formData, clientName: e.target.value })}
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone</label>
-            <input type="text" value={formData.phone} readOnly
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 cursor-not-allowed" />
+            <input type="text" value={formData.phone} onChange={(e)=>setFormData({ ...formData, phone: e.target.value })}
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
-            <input type="email" value={formData.email} readOnly
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 cursor-not-allowed" />
+            <input type="email" value={formData.email} onChange={(e)=>setFormData({ ...formData, email: e.target.value })}
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Company Name</label>
-            <input type="text" value={formData.companyName} readOnly
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 cursor-not-allowed" />
+            <input type="text" value={formData.companyName} onChange={(e)=>setFormData({ ...formData, companyName: e.target.value })}
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400" />
           </div>
         </div>
 
