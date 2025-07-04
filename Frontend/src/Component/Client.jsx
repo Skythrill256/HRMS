@@ -19,15 +19,15 @@ const ClientForm = ({ setClient }) => {
         id: '',
         clientName: '',
         companyName: '',
-        customerType: '', 
+        customerType: '',
         email: '',
         phone: '',
         country: '',
         state: '',
         city: '',
         fullAddress: '',
-        addressLine1: '', 
-        addressLine2: '', 
+        addressLine1: '',
+        addressLine2: '',
         zip: '',
         logoUrl: '', // Auto-generated based on client/company name
     });
@@ -50,13 +50,24 @@ const ClientForm = ({ setClient }) => {
 
     // Generate Client ID and initial logoUrl on component mount
     useEffect(() => {
-        // Generate a unique client ID using nanoid, prefixed with 'CL-'
-        // This will create IDs like "CL-XYZ123ABC"
-        const generatedId = `CL-${nanoid(8).toUpperCase()}`;
+        // Generate a unique client ID 
+        const counter = 1;
+        const date = new Date();
+        const day = date.getDate();               // No leading zero
+        const month = date.getMonth() + 1;        // No leading zero
+        const year = String(date.getFullYear()).slice(-2); // Last 2 digits of year
+        const paddedCounter = String(counter).padStart(4, '0'); // 0001, 0002, etc.
+
+        //         const day = String(date.getDate()).padStart(2, '0');       // DD
+        //   const month = String(date.getMonth() + 1).padStart(2, '0'); // MM (getMonth is 0-based)
+        //   const year = String(date.getFullYear()).slice(-2);          // YY
+        //   const paddedCounter = String(counter).padStart(4, '0');     // 0001, 0002, etc.
+
+        const clientId = `IGCLNT${day}${month}${year}${paddedCounter}`;
         setFormData(prev => ({
             ...prev,
-            id: generatedId,
-            logoUrl: `https://ui-avatars.com/api/?name=${encodeURIComponent(generatedId)}&background=random&size=128`,
+            id: clientId,
+            // logoUrl: `https://ui-avatars.com/api/?name=${encodeURIComponent(generatedId)}&background=random&size=128`,
         }));
     }, []);
 

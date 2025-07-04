@@ -16,7 +16,7 @@ const Employee = ({ initialData, onSave, onCancel }) => {
     });
 
     // Static counter for ID generation (for demonstration, in real app, this would come from backend)
-    const staticCounter = 25;
+    const staticCounter = 1;
 
     useEffect(() => {
         // Only generate ID if it's a new employee (initialData is null)
