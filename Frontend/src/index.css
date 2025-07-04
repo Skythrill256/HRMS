@@ -46,11 +46,11 @@ select:-webkit-autofill:focus {
   display: none;
 }
 
-.custom-toast-container {
+/* .custom-toast-container {
   position: fixed !important;
   top: 160px !important;
   right: 10px !important;
   bottom: auto !important;
   left: auto !important;
   z-index: 9999;
-}
+} */

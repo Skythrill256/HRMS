@@ -19,6 +19,7 @@ import InitialDashboardContent from './InitialDashboardContain';
 import AllClient from './AllClient';
 import AddTask from "./AddTask";
 import AddProject from '../../Component/AddProject';
+import Order from '../../Component/Order';
 
 const AdminDashboard = ({ section }) => {
   const [SidebarOpen, setSidebarOpen] = useState(false);
@@ -74,6 +75,8 @@ const AdminDashboard = ({ section }) => {
         return <AllClient />;
       case 'add-client':
         return <div className="p-6 bg-white shadow-md rounded-lg dark:bg-gray-800 dark:text-white">Add Client Form goes here...</div>;
+      case 'order':
+        return <Order/>;
       default:
         return <InitialDashboardContent />;
     }

@@ -12,6 +12,7 @@ import {
     FaCog,
     FaChevronDown,
     FaChevronUp,
+    FaShoppingCart
 } from 'react-icons/fa';
 import { CgProfile } from "react-icons/cg";
 import { MdDashboard, MdOutlinePlaylistAdd } from 'react-icons/md';
@@ -44,12 +45,18 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
             icon: <FaProjectDiagram className="text-purple-500" />,
             subItems: [
                 {
-                    label: 'Add Project', icon: <MdOutlinePlaylistAdd className='text-green-400 text-xl'
-                    />, to: `/admin-dashboard/projects/addproject/${1}`
+                    label: 'Add Project', icon: <MdOutlinePlaylistAdd className='text-green-400 text-xl'/>,
+                    to: `/admin-dashboard/projects/addproject/${1}`
                 },
 
-                { label: 'All Projects', icon: <FaClipboardList className="text-purple-500" />, to: '/admin-dashboard/projects' },
-                // { label: 'Complete Projects', icon: <FaCheckCircle className="text-green-600" />, to: '/admin-dashboard/projects/completed' },
+                {
+                    label: 'All Projects', icon: <FaClipboardList className="text-purple-500" />,
+                    to: '/admin-dashboard/projects'
+                },
+                {
+                    label: 'Orders', icon: <FaShoppingCart className="text-orange-600" />,
+                    to: '/admin-dashboard/order'
+                },
                 // { label: 'Pending Projects', icon: <FaHourglassHalf className="text-red-500" />, to: '/admin-dashboard/projects/pending' },
             ],
         },

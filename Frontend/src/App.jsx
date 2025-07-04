@@ -14,8 +14,8 @@ const router = createBrowserRouter([
 
   },
   {
-    path:"/login/forgetpass",
-    element:<ForgetPass/>
+    path: "/login/forgetpass",
+    element: <ForgetPass />
   },
   // Admin Dashboard Base
   {
@@ -35,9 +35,10 @@ const router = createBrowserRouter([
   //   path: "/admin-dashboard/projects/pending",
   //   element: <AdminDashboard section="pending" />
   // }, 
-  
-  {path:'/admin-dashboard/projects/addproject/:id',
-    element:<AdminDashboard section='addproject'/>
+
+  {
+    path: '/admin-dashboard/projects/addproject/:id',
+    element: <AdminDashboard section='addproject' />
   },
   {
     path: "/admin-dashboard/TotalEmployee",
@@ -48,8 +49,13 @@ const router = createBrowserRouter([
 
   //   element:<AdminDashboard section= "EmployeeProfile"/>
   // },
-  {path:"/admin-dashboard/Allclients",
-    element:<AdminDashboard section= "Allclients"/>
+  {
+    path: "/admin-dashboard/Allclients",
+    element: <AdminDashboard section="Allclients" />
+  },
+  {
+    path: "/admin-dashboard/Order",
+    element: <AdminDashboard section="order" />
   }
 ]);
 
