@@ -16,6 +16,7 @@ import InitialDashboardContent from './InitialDashboardContain';
 import AllClient from './AllClient';
 import AddTask from "./AddTask";
 import AddProject from '../../Component/AddProject';
+import WorkOrder from '../../Component/WorkOrder';
 import Order from '../../Component/Order';
 
 const AdminDashboard = ({ section }) => {
@@ -58,15 +59,26 @@ const AdminDashboard = ({ section }) => {
 
   const renderDashboardContent = () => {
     switch (section) {
-      case 'addproject': return <AddProject />;
-      case 'projects': return <TotalProjects />;
-      case 'completed': return <CompleteProjects />;
-      case 'pending': return <PendingProjects />;
-      case 'TotalEmployee': return <Getallemployee />;
-      case 'Allclients': return <AllClient />;
-      case 'add-client': return <div className="p-6 bg-white shadow-md rounded-lg dark:bg-gray-800 dark:text-white">Add Client Form goes here...</div>;
-      case 'order': return <Order />;
-      default: return <InitialDashboardContent />;
+      case 'addproject':
+        return <AddProject />;
+      case 'projects':
+        return <TotalProjects />;
+      case 'completed':
+        return <CompleteProjects />;
+      case 'pending':
+        return <PendingProjects />;
+      case 'TotalEmployee':
+        return <Getallemployee />;
+      case 'Allclients':
+        return <AllClient />;
+      case 'add-client':
+        return <div className="p-6 bg-white shadow-md rounded-lg dark:bg-gray-800 dark:text-white">Add Client Form goes here...</div>;
+      case 'order':
+        return <Order/>;
+      case 'workorder':
+        return <WorkOrder/>
+      default:
+        return <InitialDashboardContent />;
     }
   };
 

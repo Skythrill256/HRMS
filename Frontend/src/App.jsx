@@ -56,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: "/admin-dashboard/Order",
     element: <AdminDashboard section="order" />
+  },
+  {
+    path: "/admin-dashboard/WorkOrder",
+    element: <AdminDashboard section="workorder" />
   }
 ]);
 

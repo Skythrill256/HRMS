@@ -43,9 +43,19 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
             label: 'Projects',
             icon: <FaProjectDiagram className="text-purple-500" />,
             subItems: [
-                { label: 'All Projects', icon: <FaClipboardList className="text-purple-500" />, to: '/admin-dashboard/projects' },
-                { label: 'Work Order', icon: <FaShoppingCart className="text-green-500" />, to: '' },
-                { label: 'Orders', icon: <BiSolidCartAdd className="text-orange-600" />, to: '/admin-dashboard/order' }
+                {
+                    label: 'All Projects', icon: <FaClipboardList className="text-purple-500" />,
+                    to: '/admin-dashboard/projects'
+                },
+                {
+                    label: 'Work Order', icon: <FaShoppingCart className="text-green-500" />,
+                    to: '/admin-dashboard/workorder'
+                },
+                {
+                    label: 'Orders', icon: <BiSolidCartAdd  className="text-orange-600" />,
+                    to: '/admin-dashboard/order'
+                }
+                // { label: 'Pending Projects', icon: <FaHourglassHalf className="text-red-500" />, to: '/admin-dashboard/projects/pending' },
             ],
         },
         {
