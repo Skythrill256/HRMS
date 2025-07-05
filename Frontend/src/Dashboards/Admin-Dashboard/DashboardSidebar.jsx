@@ -7,8 +7,6 @@ import {
     FaProjectDiagram,
     FaCogs,
     FaClipboardList,
-    FaCheckCircle,
-    FaHourglassHalf,
     FaCog,
     FaChevronDown,
     FaChevronUp,
@@ -16,6 +14,7 @@ import {
 } from 'react-icons/fa';
 import { CgProfile } from "react-icons/cg";
 import { MdDashboard, MdOutlinePlaylistAdd } from 'react-icons/md';
+import { BiSolidCartAdd  } from "react-icons/bi";
 
 const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
     const location = useLocation();
@@ -44,19 +43,23 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
             label: 'Projects',
             icon: <FaProjectDiagram className="text-purple-500" />,
             subItems: [
-                {
-                    label: 'Add Project', icon: <MdOutlinePlaylistAdd className='text-green-400 text-xl'/>,
-                    to: `/admin-dashboard/projects/addproject/${1}`
-                },
+                // {
+                //     label: 'Add Project', icon: <MdOutlinePlaylistAdd className='text-green-400 text-xl'/>,
+                //     to: `/admin-dashboard/projects/addproject/${1}`
+                // },
 
                 {
                     label: 'All Projects', icon: <FaClipboardList className="text-purple-500" />,
                     to: '/admin-dashboard/projects'
                 },
                 {
-                    label: 'Orders', icon: <FaShoppingCart className="text-orange-600" />,
-                    to: '/admin-dashboard/order'
+                    label: 'Work Order', icon: <FaShoppingCart className="text-green-500" />,
+                    to: ''
                 },
+                {
+                    label: 'Orders', icon: <BiSolidCartAdd  className="text-orange-600" />,
+                    to: '/admin-dashboard/order'
+                }
                 // { label: 'Pending Projects', icon: <FaHourglassHalf className="text-red-500" />, to: '/admin-dashboard/projects/pending' },
             ],
         },

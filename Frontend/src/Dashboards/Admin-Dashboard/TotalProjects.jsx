@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAllProjects } from '../../redux/slices/projectSlice';
 import { IoMdArrowDropdown } from "react-icons/io";
-
+import { Link } from 'react-router-dom';
 const TotalProjects = () => {
   const allProjects = useSelector(selectAllProjects);
   const [filterStatus, setFilterStatus] = useState('All');
@@ -27,13 +27,14 @@ const TotalProjects = () => {
         All Projects
       </h2>
 
-      {/* Filter Dropdown - Fully Responsive */}
-      <div className="flex justify-center mb-8 px-4">
-        <div className="relative w-full max-w-xs">
+      {/* Filter + Add Project */}
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-8 px-4 gap-4">
+        {/* Filter Dropdown */}
+        <div className="relative w-full sm:w-1/3 max-w-xs">
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="w-full px-4 py-2 pr-10 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-100 appearance-none focus:ring-2 focus:ring-purple-500 focus:outline-none shadow-sm "
+            className="w-full px-4 py-2 pr-10 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-100 appearance-none focus:ring-2 focus:ring-purple-500 focus:outline-none shadow-sm"
           >
             <option value="All">All Projects</option>
             <option value="Pending">Pending Projects</option>
@@ -45,7 +46,17 @@ const TotalProjects = () => {
             <IoMdArrowDropdown className="text-xl" />
           </div>
         </div>
+
+        {/* Add Project Button */}
+        <Link to={`/admin-dashboard/projects/addproject/${1}`}>
+          <button
+            className="px-5 py-2 bg-nav text-white rounded-full shadow hover:bg-purple-700 transition text-sm"
+          >
+            + Add Project
+          </button>
+        </Link>
       </div>
+
 
 
 

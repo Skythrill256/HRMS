@@ -41,7 +41,7 @@ const customSelectStyles = {
   }),
   singleValue: base => ({
     ...base,
-    color: '#111827', 
+    color: '#111827',
     '.dark &': {
       color: '#fff',
     },
@@ -90,13 +90,23 @@ const ProjectInputSection = ({ project, index, onProjectChange, onRemoveProject,
     if (clientName) {
       const date = new Date();
       const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0"); // 0-indexed, so add 1
+      const month = String(date.getMonth() + 1).padStart(2, "0");
       const day = String(date.getDate()).padStart(2, "0");
-      const firstName = clientName.split(" ")[0].toUpperCase();
-      // Use project.localId (timestamp) for unique counter for quotation ID
-      const uniqueCounter = String(project.localId).slice(-3); // Last 3 digits of timestamp for brevity
-      const baseId = `${firstName}OTY${day}${month}${year}`;
-      const fullId = `${baseId}${uniqueCounter}`;
+
+      // Split the full name and extract initials
+      const nameParts = clientName.trim().split(" ");
+      const firstInitial = nameParts[0]?.[0]?.toUpperCase() || "";
+      const lastInitial = nameParts[nameParts.length - 1]?.[0]?.toUpperCase() || "";
+
+      const initials = `${firstInitial}${lastInitial}`; // e.g., "MM"
+
+      // Generate a fixed-length counter (e.g., 0001)
+      const counter = String(1).padStart(4, "0"); // Replace 1 with dynamic value if needed
+
+      const fullId = `${initials}${day}${month}${year}${counter}`;
+      // Example: "MM040720250001"
+
+
 
       // Only update if the ID is different to prevent unnecessary re-renders/updates
       if (project.quotationId !== fullId) {
@@ -382,7 +392,7 @@ const AddProject = () => {
   const dispatch = useDispatch();
   const clients = useSelector(selectAllClients);
 
-  const {id} = useParams(); // Get id of client from client profile
+  const { id } = useParams(); // Get id of client from client profile
 
   // State for overall form data (client details)
   const [formData, setFormData] = useState({
@@ -459,7 +469,7 @@ const AddProject = () => {
         accessoriesDescription: '', // New field for accessories description
       }
     ]);
-    setProjectCounter(prevCounter => prevCounter + 1); 
+    setProjectCounter(prevCounter => prevCounter + 1);
   };
 
   // Handles removing a project section
@@ -540,7 +550,7 @@ const AddProject = () => {
       const projectDataToDispatch = {
         ...formData, // Include overall client details
         projectName: project.projectName,
-        quotationId: project.quotationId, 
+        quotationId: project.quotationId,
         projectType: project.projectType,
         otherProjectType: project.otherProjectType,
         projectDocumentation: project.projectDocumentation,
@@ -609,22 +619,22 @@ const AddProject = () => {
           {/* Auto-filled Client Details (Read-only) */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Client Name</label>
-            <input type="text" value={formData.clientName} onChange={(e)=>setFormData({ ...formData, clientName: e.target.value })}
+            <input type="text" value={formData.clientName} onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone</label>
-            <input type="text" value={formData.phone} onChange={(e)=>setFormData({ ...formData, phone: e.target.value })}
+            <input type="text" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
-            <input type="email" value={formData.email} onChange={(e)=>setFormData({ ...formData, email: e.target.value })}
+            <input type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Company Name</label>
-            <input type="text" value={formData.companyName} onChange={(e)=>setFormData({ ...formData, companyName: e.target.value })}
+            <input type="text" value={formData.companyName} onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400" />
           </div>
         </div>
@@ -638,7 +648,7 @@ const AddProject = () => {
               index={index}
               onProjectChange={handleProjectChange}
               onRemoveProject={handleRemoveProject}
-              clientName={formData.clientName} 
+              clientName={formData.clientName}
             />
           ))}
         </div>
@@ -650,7 +660,7 @@ const AddProject = () => {
             onClick={handleAddProject}
             className="flex items-center px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-md shadow-md transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm sm:text-base"
           >
-            
+
             Add Another Project
           </button>
         </div>
