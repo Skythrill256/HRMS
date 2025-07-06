@@ -4,6 +4,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+
+
     clients: [
         {
             id: 'CL001',
@@ -39,8 +41,8 @@ const initialState = {
                 totalDue: 20000
             },
             orders: [
-                { orderId: 'ORD001', date: '2024-10-01', amount: 15000 },
-                { orderId: 'ORD002', date: '2024-10-15', amount: 35000 }
+                { orderId: 'ORD001', date: '2024-10-01 09:15', amount: 15000 },
+                { orderId: 'ORD002', date: '2024-10-15 14:45', amount: 35000 }
             ],
             transactions: [
                 { txnId: 'TX001', date: '2024-10-02', amount: 15000, type: 'Credit' },
@@ -81,8 +83,8 @@ const initialState = {
                 totalDue: 20000
             },
             orders: [
-                { orderId: 'ORD003', date: '2024-09-05', amount: 50000 },
-                { orderId: 'ORD004', date: '2024-11-01', amount: 70000 }
+                { orderId: 'ORD003', date: '2024-09-05 11:00', amount: 50000 },
+                { orderId: 'ORD004', date: '2024-11-01 16:30', amount: 70000 }
             ],
             transactions: [
                 { txnId: 'TX003', date: '2024-09-06', amount: 50000, type: 'Credit' },
@@ -122,7 +124,7 @@ const initialState = {
                 totalDue: 0
             },
             orders: [
-                { orderId: 'ORD005', date: '2024-08-10', amount: 30000 }
+                { orderId: 'ORD005', date: '2024-08-10 13:20', amount: 30000 }
             ],
             transactions: [
                 { txnId: 'TX005', date: '2024-08-12', amount: 30000, type: 'Credit' }
@@ -374,6 +376,9 @@ const initialState = {
             ]
         }
     ],
+
+
+
     status: 'idle', // for async loading if added later
     error: null,
 };

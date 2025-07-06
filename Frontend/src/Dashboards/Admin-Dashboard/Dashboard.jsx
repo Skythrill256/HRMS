@@ -74,9 +74,9 @@ const AdminDashboard = ({ section }) => {
       case 'add-client':
         return <div className="p-6 bg-white shadow-md rounded-lg dark:bg-gray-800 dark:text-white">Add Client Form goes here...</div>;
       case 'order':
-        return <Order/>;
+        return <Order />;
       case 'workorder':
-        return <WorkOrder/>
+        return <WorkOrder />
       default:
         return <InitialDashboardContent />;
     }
