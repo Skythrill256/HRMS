@@ -111,7 +111,9 @@ const Order = () => {
 
   return (
     <div className="p-4 sm:p-6 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
-      <h1 className="text-2xl sm:text-3xl font-extrabold mb-6 sm:mb-8 text-center text-gray-800 dark:text-white">Order Management Dashboard</h1>
+      <h1 className="text-3xl sm:text-4xl font-black mb-6 sm:mb-8 text-center text-indigo-600 dark:text-indigo-400 tracking-tight">
+         Manage & Control Your Orders
+      </h1>
 
       <div className="overflow-x-auto  h-full rounded-lg border border-gray-300 dark:border-gray-700">
         <table className=" w-full divide-y divide-gray-300 dark:divide-gray-700 text-sm ">
