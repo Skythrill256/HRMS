@@ -1,4 +1,4 @@
-// Updated AdminDashboard.jsx with mobile overlay and fixed desktop push
+// Updated AdminDashboard.jsx
 import React, { useState, useEffect } from 'react';
 import Dashboardsidebar from '../Admin-Dashboard/DashboardSidebar';
 import { GiHamburgerMenu } from 'react-icons/gi';
@@ -16,8 +16,13 @@ import InitialDashboardContent from './InitialDashboardContain';
 import AllClient from './AllClient';
 import AddTask from "./AddTask";
 import AddProject from '../../Component/AddProject';
-import WorkOrder from '../../Component/WorkOrder';
 import Order from '../../Component/Order';
+import WorkOrderList from '../../Component/workorders/WorkOrderList';
+// WorkOrderProfile and WorkOrderForm are now handled internally by WorkOrderList,
+// so they are not directly rendered by AdminDashboard's switch
+// import WorkOrderProfile from '../../Component/workorders/WorkOrderProfile';
+// import WorkOrderForm from '../../Component/workorders/workOrderForm';
+
 
 const AdminDashboard = ({ section }) => {
   const [SidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 768);
@@ -71,12 +76,17 @@ const AdminDashboard = ({ section }) => {
         return <Getallemployee />;
       case 'Allclients':
         return <AllClient />;
-      case 'add-client':
-        return <div className="p-6 bg-white shadow-md rounded-lg dark:bg-gray-800 dark:text-white">Add Client Form goes here...</div>;
       case 'order':
         return <Order />;
       case 'workorder':
-        return <WorkOrder />
+        return <WorkOrderList />; // WorkOrderList will now handle all its nested routes internally
+
+      // REMOVE these cases, as WorkOrderList's internal Routes will handle them
+      // case 'workorder-form':
+      //     return <WorkOrderForm />;
+      // case 'workorder-profile':
+      //     return <WorkOrderProfile />;
+
       default:
         return <InitialDashboardContent />;
     }
@@ -89,7 +99,7 @@ const AdminDashboard = ({ section }) => {
 
         {/* Main Section */}
         <div className={`flex-1 overflow-y-auto bg-background dark:bg-gray-900 transition-all duration-300
-          ${SidebarOpen && window.innerWidth >= 768 ? 'md:pl-64' : 'pl-0'} relative`}
+                    ${SidebarOpen && window.innerWidth >= 768 ? 'md:pl-64' : 'pl-0'} relative`}
         >
           {/* Top Navigation Bar */}
           <div className="fixed top-0 left-0 right-0 z-30 bg-nav h-14 dark:bg-gray-800 md:pl-64 px-2 md:px-4">
