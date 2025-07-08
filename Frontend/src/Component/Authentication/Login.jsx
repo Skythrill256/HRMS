@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+// import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [hide, setHide] = useState(true);
   const [id, setId] = useState("");
   const [otp, setOtp] = useState(true);
-  const [pass, setPass] = useState("");
+  // const [pass, setPass] = useState("");
   const [passcode, setPasscode] = useState(true);
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
   const otpRefs = useRef([]);
@@ -23,7 +23,7 @@ const Login = () => {
   }, []);
 
   const handleSubmit = () => {
-    if (id.trim() !== "" && pass.trim() !== "") {
+    if (id.trim() !== "" ) {  //&& pass.trim() !== ""
       if (rememberMe) {
         localStorage.setItem("rememberedId", id);
       } else {
@@ -78,7 +78,7 @@ const Login = () => {
                 />
               </div>
 
-              <div className="mb-2 relative">
+              {/* <div className="mb-2 relative">
                 <label className="text-sm font-medium text-gray-700 mb-1">
                   Password
                 </label>
@@ -96,7 +96,7 @@ const Login = () => {
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </span>
-              </div>
+              </div> */}
 
               {/* Remember Me and Forgot Password */}
               <div className="flex items-center justify-between mb-2">
@@ -113,7 +113,7 @@ const Login = () => {
                   to="/login/forgetpass"
                   className="text-sm text-indigo-500 hover:underline"
                 >
-                  Forgot Password?
+                  Forgot Passcode?
                 </Link>
               </div>
 
@@ -201,12 +201,14 @@ const Login = () => {
                   />
                 ))}
               </div>
+              <Link to='/admin-dashboard'>
               <button
                 type="submit"
                 className="w-full flex justify-center py-1.5 px-4 mt-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Login
               </button>
+              </Link>
             </div>
           </form>
         </div>

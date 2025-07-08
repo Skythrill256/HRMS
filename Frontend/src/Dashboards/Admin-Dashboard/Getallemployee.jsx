@@ -14,6 +14,7 @@ const Getallemployee = () => {
     const [showEmployeeProfile, setShowEmployeeProfile] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
 
+
     const initialEmployees = [
         {
             id: 'EMP001',
@@ -47,6 +48,18 @@ const Getallemployee = () => {
                 accountHolderName: 'Alice Smith',
                 pancardNo: 'FTPNF797979',
                 adharCardNo: '385629854662'
+            },
+            companyInfo: {
+                joinDate: '',
+                employeeStatus: '',
+                department: '',
+                designation: '',
+                basicSalary: '',
+                allowance: '',
+                grossPay: '',
+                increment: '',
+                resignationdate: '',
+                resignationtype: ''
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -88,6 +101,18 @@ const Getallemployee = () => {
                 pancardNo: 'FTPNF797979',
                 adharCardNo: '385629854662'
             },
+            companyInfo: {
+                joinDate: '',
+                employeeStatus: '',
+                department: '',
+                designation: '',
+                basicSalary: '',
+                allowance: '',
+                grossPay: '',
+                increment: '',
+                resignationdate: '',
+                resignationtype: ''
+            },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
             panNumber: 'FGHIJ5678K',
@@ -127,6 +152,18 @@ const Getallemployee = () => {
                 accountHolderName: 'Charlie Brown',
                 pancardNo: 'FTPNF797979',
                 adharCardNo: '385629854662'
+            },
+            companyInfo: {
+                joinDate: '',
+                employeeStatus: '',
+                department: '',
+                designation: '',
+                basicSalary: '',
+                allowance: '',
+                grossPay: '',
+                increment: '',
+                resignationdate: '',
+                resignationtype: ''
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -168,6 +205,18 @@ const Getallemployee = () => {
                 pancardNo: 'FTPNF797979',
                 adharCardNo: '385629854662'
             },
+            companyInfo: {
+                joinDate: '',
+                employeeStatus: '',
+                department: '',
+                designation: '',
+                basicSalary: '',
+                allowance: '',
+                grossPay: '',
+                increment: '',
+                resignationdate: '',
+                resignationtype: ''
+            },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
             panNumber: 'RSTUV3456W',
@@ -207,6 +256,18 @@ const Getallemployee = () => {
                 accountHolderName: 'Eve Adams',
                 pancardNo: 'FTPNF797979',
                 adharCardNo: '385629854662'
+            },
+            companyInfo: {
+                joinDate: '',
+                employeeStatus: '',
+                department: '',
+                designation: '',
+                basicSalary: '',
+                allowance: '',
+                grossPay: '',
+                increment: '',
+                resignationdate: '',
+                resignationtype: ''
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -248,6 +309,18 @@ const Getallemployee = () => {
                 pancardNo: 'FTPNF797979',
                 adharCardNo: '385629854662'
             },
+            companyInfo: {
+                joinDate: '',
+                employeeStatus: '',
+                department: '',
+                designation: '',
+                basicSalary: '',
+                allowance: '',
+                grossPay: '',
+                increment: '',
+                resignationdate: '',
+                resignationtype: ''
+            },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
             panNumber: 'CDEFG2345H',
@@ -287,6 +360,18 @@ const Getallemployee = () => {
                 accountHolderName: 'Grace Lee',
                 pancardNo: 'FTPNF797979',
                 adharCardNo: '385629854662'
+            },
+            companyInfo: {
+                joinDate: '',
+                employeeStatus: '',
+                department: '',
+                designation: '',
+                basicSalary: '',
+                allowance: '',
+                grossPay: '',
+                increment: '',
+                resignationdate: '',
+                resignationtype: ''
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -328,6 +413,18 @@ const Getallemployee = () => {
                 pancardNo: 'FTPNF797979',
                 adharCardNo: '385629854662'
             },
+            companyInfo: {
+                joinDate: '',
+                employeeStatus: '',
+                department: '',
+                designation: '',
+                basicSalary: '',
+                allowance: '',
+                grossPay: '',
+                increment: '',
+                resignationdate: '',
+                resignationtype: ''
+            },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
             panNumber: 'NOPQR0123S',
@@ -367,6 +464,18 @@ const Getallemployee = () => {
                 accountHolderName: 'Ivy Green',
                 pancardNo: 'FTPNF797979',
                 adharCardNo: '385629854662'
+            },
+            companyInfo: {
+                joinDate: '',
+                employeeStatus: '',
+                department: '',
+                designation: '',
+                basicSalary: '',
+                allowance: '',
+                grossPay: '',
+                increment: '',
+                resignationdate: '',
+                resignationtype: ''
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -408,6 +517,18 @@ const Getallemployee = () => {
                 pancardNo: 'FTPNF797979',
                 adharCardNo: '385629854662'
             },
+            companyInfo: {
+                joinDate: '',
+                employeeStatus: '',
+                department: '',
+                designation: '',
+                basicSalary: '',
+                allowance: '',
+                grossPay: '',
+                increment: '',
+                resignationdate: '',
+                resignationtype: ''
+            },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
             panNumber: 'ZABCD8901E',
@@ -447,6 +568,18 @@ const Getallemployee = () => {
                 accountHolderName: 'Karen Hall',
                 pancardNo: 'FTPNF797979',
                 adharCardNo: '385629854662'
+            },
+            companyInfo: {
+                joinDate: '',
+                employeeStatus: '',
+                department: '',
+                designation: '',
+                basicSalary: '',
+                allowance: '',
+                grossPay: '',
+                increment: '',
+                resignationdate: '',
+                resignationtype: ''
             },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
@@ -488,6 +621,18 @@ const Getallemployee = () => {
                 pancardNo: 'FTPNF797979',
                 adharCardNo: '385629854662'
             },
+            companyInfo: {
+                joinDate: '',
+                employeeStatus: '',
+                department: '',
+                designation: '',
+                basicSalary: '',
+                allowance: '',
+                grossPay: '',
+                increment: '',
+                resignationdate: '',
+                resignationtype: ''
+            },
             adharFrontImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Front',
             adharBackImage: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Aadhar+Back',
             panNumber: 'LMNOP6789Q',
@@ -496,6 +641,7 @@ const Getallemployee = () => {
             loginRestricted: false
         },
     ];
+
 
     const [employees, setEmployees] = useState(initialEmployees);
 

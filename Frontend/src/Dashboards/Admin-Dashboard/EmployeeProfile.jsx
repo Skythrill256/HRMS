@@ -32,6 +32,18 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData }) => {
             bankName: '',
             accountHolderName: ''
         },
+         companyInfo: {
+            joinDate: '',
+            employeeStatus: '',
+            department: '',
+            designation: '',
+            basicSalary: '',
+            allowance: '',
+            grossPay: '',
+            increment: '',
+            resignationdate: '',
+            resignationtype: ''
+        },
         adharFrontImage: ' ',
         adharBackImage: ' ',
         panFrontImage: ' ',
@@ -308,6 +320,23 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData }) => {
                         <div className="md:col-span-2 lg:col-span-3">
                             {renderField('Full Address', editableData.fullAddress, 'fullAddress', 'text', false, true)}
                         </div>
+                    </div>
+
+                    {/* Company Info Section */}
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-4 mt-8 border-b border-gray-200 dark:border-gray-700 pb-2">
+                        Company Information
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
+                        {renderField('Join Date', editableData.companyInfo?.joinDate, 'companyInfo.joinDate', 'date')}
+                        {renderField('Employee Status', editableData.companyInfo?.employeeStatus, 'companyInfo.employeeStatus')}
+                        {renderField('Department', editableData.companyInfo?.department, 'companyInfo.department')}
+                        {renderField('Designation', editableData.companyInfo?.designation, 'companyInfo.designation')}
+                        {renderField('Basic Salary', editableData.companyInfo?.basicSalary, 'companyInfo.basicSalary')}
+                        {renderField('Allowance', editableData.companyInfo?.allowance, 'companyInfo.allowance')}
+                        {renderField('Gross Pay', editableData.companyInfo?.grossPay, 'companyInfo.grossPay')}
+                        {renderField('Increment', editableData.companyInfo?.increment, 'companyInfo.increment')}
+                        {renderField('Resignation date', editableData.companyInfo?.resignationdate, 'companyInfo.resignationDetails')}
+                        {renderField('Resignation type', editableData.companyInfo?.resignationtype, 'companyInfo.resignationDetails')}
                     </div>
 
                     {/* Sub-section: Family & Guardian Details */}

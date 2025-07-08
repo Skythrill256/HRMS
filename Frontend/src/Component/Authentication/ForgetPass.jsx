@@ -64,7 +64,7 @@ const ForgetPass = () => {
         {/* Right-side form */}
         <div className="w-full md:w-1/2 px-8 py-6">
           <h1 className="text-2xl font-bold text-center mb-4 pt-6 text-indigo-500">
-            Forget Password
+            Forget Passcode
           </h1>
           <form action="/" onSubmit={(e) => e.preventDefault()}>
             {/* Email Section */}
@@ -149,7 +149,7 @@ const ForgetPass = () => {
             {/* Password Section */}
             <div className={`mb-4 ${pass}`}>
               <label className="text-sm font-medium text-gray-700 mb-1">
-                New Password
+                New Passcode
               </label>
               <div className="relative">
                 <input
@@ -169,7 +169,7 @@ const ForgetPass = () => {
               </div>
 
               <label className="text-sm font-medium text-gray-700 mb-1 mt-3">
-                Confirm Password
+                Confirm Passcode
               </label>
               <div className="relative">
                 <input
