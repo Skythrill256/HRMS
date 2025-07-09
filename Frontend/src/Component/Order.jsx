@@ -1,48 +1,45 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { selectAllClients } from '../redux/slices/clientSlice';
-import { FaSortAmountDownAlt, FaSortAmountUp } from "react-icons/fa";
+import { selectAllProjects, updateProject } from '../redux/slices/projectSlice';
+import { FaSortAmountDownAlt, FaSortAmountUp } from 'react-icons/fa';
 
 const Order = () => {
+  const dispatch = useDispatch();
   const clients = useSelector(selectAllClients);
-  const [reasonInputs, setReasonInputs] = useState({});
+  const projects = useSelector(selectAllProjects);
+
   const [openDropdowns, setOpenDropdowns] = useState(new Set());
-  const [statuses, setStatuses] = useState({});
+  const [reasonInputs, setReasonInputs] = useState({});
   const [sortOrder, setSortOrder] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
+  const [showReasonPopover, setShowReasonPopover] = useState({ visible: false, content: '', position: { top: 0, left: 0 } });
 
-  // Flatten client orders
   const orders = clients.flatMap(client =>
-    client.orders.map(order => ({
-      id: order.orderId,
-      dateTime: order.date,
-      clientName: client.clientName,
-      clientId: client.id
-    }))
+    client.orders.map(order => {
+      const matchingProject = projects.find(p => p.orderId === order.orderId);
+      return {
+        ...order,
+        clientName: client.clientName,
+        clientId: client.id,
+        status: matchingProject?.status || 'Pending',
+        projectId: matchingProject?.id,
+        reason: matchingProject?.reason || null
+      };
+    })
   );
 
-  // Sort orders
   const sortedOrders = [...orders].sort((a, b) => {
-    const indexA = orders.indexOf(a);
-    const indexB = orders.indexOf(b);
-    return sortOrder === 'asc' ? indexA - indexB : indexB - indexA;
+    const orderIdA = parseInt(a.orderId.replace('ORD', ''), 10);
+    const orderIdB = parseInt(b.orderId.replace('ORD', ''), 10);
+    return sortOrder === 'asc' ? orderIdA - orderIdB : orderIdB - orderIdA;
   });
 
-  // Filter by client name
   const filteredOrders = sortedOrders.filter(order =>
-    order.clientName.toLowerCase().includes(searchTerm.toLowerCase())
+    order.clientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    order.projectName.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  // Handlers...
-  const toggleDropdown = (orderId) => {
-    setOpenDropdowns(prev => {
-      const newSet = new Set(prev);
-      newSet.has(orderId) ? newSet.delete(orderId) : newSet.add(orderId);
-      return newSet;
-    });
-    if (reasonInputs[orderId]) handleCancelReasonBox(orderId);
-  };
 
   const handleShowReasonBox = (orderId, type) => {
     setReasonInputs(prev => ({ ...prev, [orderId]: { type, value: '' } }));
@@ -60,24 +57,6 @@ const Order = () => {
     }));
   };
 
-  const handleSubmitReason = (orderId) => {
-    const { value, type } = reasonInputs[orderId];
-    if (value.trim() === '') {
-      toast.error('Reason cannot be empty.');
-      return;
-    }
-
-    const message = type === 'cancel' ? 'Cancelled' : 'Hold';
-    toast[type === 'cancel' ? 'error' : 'warn'](`${message} Order ${orderId}`);
-    setStatuses(prev => ({ ...prev, [orderId]: type === 'cancel' ? 'Cancelled' : 'On Hold' }));
-
-    setReasonInputs(prev => {
-      const updated = { ...prev };
-      delete updated[orderId];
-      return updated;
-    });
-  };
-
   const handleCancelReasonBox = (orderId) => {
     setReasonInputs(prev => {
       const updated = { ...prev };
@@ -86,9 +65,21 @@ const Order = () => {
     });
   };
 
-  const handleSuccess = (orderId) => {
+  const handleSubmitReason = (orderId, projectId) => {
+    const { value, type } = reasonInputs[orderId];
+    if (value.trim() === '') {
+      toast.error('Reason cannot be empty.');
+      return;
+    }
+    const status = type === 'cancel' ? 'Cancelled' : 'On Hold';
+    toast[type === 'cancel' ? 'error' : 'warn'](`${status} Order ${orderId}`);
+    dispatch(updateProject({ id: projectId, updates: { status, reason: value.trim() } }));
+    handleCancelReasonBox(orderId);
+  };
+
+  const handleSendToProduction = (orderId, projectId) => {
     toast.success(`Sent Order ${orderId} to Production`);
-    setStatuses(prev => ({ ...prev, [orderId]: 'Production' }));
+    dispatch(updateProject({ id: projectId, updates: { status: 'Production', reason: null } }));
     setOpenDropdowns(prev => {
       const newSet = new Set(prev);
       newSet.delete(orderId);
@@ -96,9 +87,9 @@ const Order = () => {
     });
   };
 
-  const handleComplete = (orderId) => {
-    toast.success(`Order ${orderId} marked as Complete`);
-    setStatuses(prev => ({ ...prev, [orderId]: 'Complete' }));
+  const handleMarkAsPending = (orderId, projectId) => {
+    toast.info(`Order ${orderId} marked as Pending`);
+    dispatch(updateProject({ id: projectId, updates: { status: 'Pending', reason: null } }));
     setOpenDropdowns(prev => {
       const newSet = new Set(prev);
       newSet.delete(orderId);
@@ -106,19 +97,57 @@ const Order = () => {
     });
   };
 
-  const getStatusBadge = (status) => {
+  const handleShowFullReason = (e, reason) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setShowReasonPopover({
+      visible: true,
+      content: reason,
+      position: {
+        top: rect.top + window.scrollY + rect.height + 5,
+        left: rect.left + window.scrollX
+      }
+    });
+  };
+
+  const handleHideFullReason = () => {
+    setShowReasonPopover({ visible: false, content: '', position: { top: 0, left: 0 } });
+  };
+
+
+  const getStatusBadge = (status, reason) => {
+    let badge;
     switch (status) {
       case 'Complete':
-        return <span className="badge bg-green-100 text-green-800">✅ Complete</span>;
+        badge = <span className="badge bg-green-100 text-green-800">✅ Complete</span>;
+        break;
       case 'On Hold':
-        return <span className="badge bg-yellow-100 text-yellow-800">⏸️ On Hold</span>;
+        badge = <span className="badge bg-yellow-100 text-yellow-800">⏸️ On Hold</span>;
+        break;
       case 'Cancelled':
-        return <span className="badge bg-red-100 text-red-800">❌ Cancelled</span>;
+        badge = <span className="badge bg-red-100 text-red-800">❌ Cancelled</span>;
+        break;
       case 'Production':
-        return <span className="badge bg-blue-100 text-blue-800">⚙️ Production</span>;
+        badge = <span className="badge bg-blue-100 text-blue-800">⚙️ Production</span>;
+        break;
       default:
-        return <span className="badge bg-gray-100 text-gray-800">⏳ Pending</span>;
+        badge = <span className="badge bg-gray-100 text-gray-800">⏳ Pending</span>;
     }
+
+    const truncatedReason = reason && reason.length > 6 ? `${reason.substring(0, 6)}...` : reason;
+
+    return (
+      <div className="flex flex-col items-start">
+        {badge}
+        {(status === 'On Hold' || status === 'Cancelled') && reason && (
+          <span
+            className="text-xs text-gray-500 dark:text-gray-400 mt-1 cursor-pointer hover:underline"
+            onClick={(e) => handleShowFullReason(e, reason)}
+          >
+            Reason: <span className="font-medium italic">{truncatedReason}</span>
+          </span>
+        )}
+      </div>
+    );
   };
 
   return (
@@ -129,7 +158,7 @@ const Order = () => {
         </h1>
         <input
           type="text"
-          placeholder="Search by Client Name..."
+          placeholder="Search by Client/Project Name..."
           className="px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm text-gray-700 dark:text-white focus:outline-none"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -140,99 +169,91 @@ const Order = () => {
         <table className="w-full divide-y divide-gray-300 dark:divide-gray-700 text-sm">
           <thead className="bg-gray-200 dark:bg-gray-800 sticky top-0 z-10">
             <tr>
-              <th
-                onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
-                className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer"
-              >
-                <th className="border-solid px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  <div
-                    className="flex items-center gap-1 cursor-pointer w-fit"
-                    onClick={() => setSortOrder(prev => (prev === 'asc' ? 'desc' : 'asc'))}
-                  >
-                    SL NO
-                    <span className={sortOrder === 'desc' ? 'text-red-500' : ''}>
-                      {sortOrder === 'asc' ? <FaSortAmountDownAlt/> : <FaSortAmountUp/>}
-                    </span>
-                  </div>
-                </th>
-
+              {/* Added text-left to all th for consistent alignment */}
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-400 uppercase tracking-wider">
+                <div
+                  className="flex items-center gap-1 cursor-pointer w-fit"
+                  onClick={() => setSortOrder(prev => (prev === 'asc' ? 'desc' : 'asc'))}
+                >
+                  SL NO
+                  <span className={sortOrder === 'desc' ? 'text-red-500' : ''}>
+                    {sortOrder === 'asc' ? <FaSortAmountDownAlt /> : <FaSortAmountUp />}
+                  </span>
+                </div>
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">DATE & TIME</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">CLIENT NAME</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">CLIENT ID</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">ORDER ID</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">ACTION</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">STATUS</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-400 uppercase tracking-wider">PROJECT NAME</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-400 uppercase tracking-wider">CLIENT NAME</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-400 uppercase tracking-wider">CLIENT ID</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-400 uppercase tracking-wider">ORDER ID</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-400 uppercase tracking-wider">ACTION</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-400 uppercase tracking-wider">STATUS</th>
             </tr>
           </thead>
           <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
             {filteredOrders.map((order, index) => {
-              const isLastRow = index >= filteredOrders.length - 2;
               const slNo = sortOrder === 'asc' ? index + 1 : filteredOrders.length - index;
-
               return (
-                <tr key={order.id} className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                  <td className="px-4 py-3">{slNo}</td>
-                  <td className="px-4 py-3">{order.dateTime}</td>
-                  <td className="px-4 py-3">{order.clientName}</td>
-                  <td className="px-4 py-3">{order.clientId}</td>
-                  <td className="px-4 py-3 text-indigo-600 dark:text-indigo-400 font-semibold">{order.id}</td>
-                  <td className="px-4 py-3 text-right relative">
+                <tr key={order.orderId} className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  {/* Added text-left to all td for consistent alignment */}
+                  <td className="px-4 py-3 text-left">{slNo}</td>
+                  <td className="px-4 py-3 text-left">{order.projectName}</td>
+                  <td className="px-4 py-3 text-left">{order.clientName}</td>
+                  <td className="px-4 py-3 text-left">{order.clientId}</td>
+                  <td className="px-4 py-3 text-left text-indigo-600 dark:text-indigo-400 font-semibold">{order.orderId}</td>
+                  <td className="px-4 py-3 text-left relative">
                     <button
-                      className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-3 py-1.5 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
-                      onClick={() => toggleDropdown(order.id)}
+                      onClick={() => {
+                        const newSet = new Set(openDropdowns);
+                        newSet.has(order.orderId) ? newSet.delete(order.orderId) : newSet.add(order.orderId);
+                        setOpenDropdowns(newSet);
+                      }}
+                      className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-md text-sm"
                     >
-                      Actions <span className="ml-1">▾</span>
+                      Actions ▾
                     </button>
-
-                    {openDropdowns.has(order.id) && (
-                      <div className={`absolute z-10 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 dark:bg-gray-700 dark:ring-gray-600 ${isLastRow ? 'bottom-full mb-2 right-0' : 'top-full right-0'}`}>
-                        <div className="py-1">
-                          <button onClick={() => handleSuccess(order.id)} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 text-left">
-                            Send to Production
-                          </button>
-                          <button onClick={() => handleComplete(order.id)} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 text-left">
-                            Mark as Complete
-                          </button>
-                          <button onClick={() => handleShowReasonBox(order.id, 'cancel')} className="block w-full px-4 py-2 text-sm text-red-700 hover:bg-red-100 dark:text-red-300 dark:hover:bg-red-600 text-left">
-                            Cancel with Reason
-                          </button>
-                          <button onClick={() => handleShowReasonBox(order.id, 'hold')} className="block w-full px-4 py-2 text-sm text-yellow-700 hover:bg-yellow-100 dark:text-yellow-300 dark:hover:bg-yellow-600 text-left">
-                            Hold with Reason
-                          </button>
-                          <button onClick={() => handleSuccess(order.id)} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 text-left">
-                            Pending
-                          </button>
-                        </div>
+                    {openDropdowns.has(order.orderId) && (
+                      <div className="absolute bg-white dark:bg-gray-800 shadow-lg rounded-md mt-2 z-10 w-48">
+                        <button onClick={() => handleSendToProduction(order.orderId, order.projectId)} className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Send to Production</button>
+                        <button onClick={() => handleShowReasonBox(order.orderId, 'cancel')} className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Cancel with Reason</button>
+                        <button onClick={() => handleShowReasonBox(order.orderId, 'hold')} className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Hold with Reason</button>
+                        <button onClick={() => handleMarkAsPending(order.orderId, order.projectId)} className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Mark as Pending</button>
                       </div>
                     )}
-
-                    {reasonInputs[order.id] && (
-                      <div className="absolute z-50 mt-3 w-64 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xl left-1/2 -translate-x-1/2">
-                        <p className="text-sm font-medium text-gray-700 dark:text-white mb-2">
-                          Enter {reasonInputs[order.id].type} reason:
-                        </p>
+                    {reasonInputs[order.orderId] && (
+                      <div className="absolute bg-white dark:bg-gray-700 p-3 rounded-md shadow-xl mt-2 z-20 w-64">
+                        <p className="text-sm mb-2">Enter reason:</p>
                         <input
                           type="text"
-                          placeholder="Reason..."
-                          className="w-full px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-md text-sm dark:bg-gray-700 dark:text-white"
-                          value={reasonInputs[order.id].value}
-                          onChange={(e) => handleReasonChange(order.id, e.target.value)}
+                          className="w-full border border-gray-300 dark:border-gray-600 px-2 py-1 rounded"
+                          value={reasonInputs[order.orderId].value}
+                          onChange={(e) => handleReasonChange(order.orderId, e.target.value)}
                         />
-                        <div className="flex justify-end gap-2 mt-3">
-                          <button onClick={() => handleCancelReasonBox(order.id)} className="bg-red-500 rounded-md border text-white px-3 py-1 text-sm">Cancel</button>
-                          <button onClick={() => handleSubmitReason(order.id)} className="bg-green-500 rounded-md border text-white px-3 py-1 text-sm">Submit</button>
+                        <div className="flex justify-end gap-2 mt-2">
+                          <button onClick={() => handleCancelReasonBox(order.orderId)} className="text-red-600 text-sm">Cancel</button>
+                          <button onClick={() => handleSubmitReason(order.orderId, order.projectId)} className="text-green-600 text-sm">Submit</button>
                         </div>
                       </div>
                     )}
                   </td>
-                  <td className="px-4 py-3">{getStatusBadge(statuses[order.id])}</td>
+                  <td className="px-4 py-3 text-left">{getStatusBadge(order.status, order.reason)}</td>
                 </tr>
               );
             })}
           </tbody>
         </table>
       </div>
+
+      {/* Reason Popover Component */}
+      {showReasonPopover.visible && (
+        <div
+          className="fixed bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900 p-3 rounded-md shadow-lg z-50 text-sm max-w-xs break-words"
+          style={{ top: showReasonPopover.position.top, left: showReasonPopover.position.left }}
+          onClick={handleHideFullReason}
+        >
+          <p className="font-bold mb-1">Full Reason:</p>
+          {showReasonPopover.content}
+        </div>
+      )}
     </div>
   );
 };

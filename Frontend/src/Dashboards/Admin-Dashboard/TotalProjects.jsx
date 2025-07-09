@@ -3,17 +3,25 @@ import { useSelector } from 'react-redux';
 import { selectAllProjects } from '../../redux/slices/projectSlice';
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from 'react-router-dom';
+
 const TotalProjects = () => {
   const allProjects = useSelector(selectAllProjects);
   const [filterStatus, setFilterStatus] = useState('All');
   const [filteredProjects, setFilteredProjects] = useState([]);
 
   useEffect(() => {
-    const filter = filterStatus === 'All'
-      ? allProjects
-      : allProjects.filter(p => p.status === filterStatus);
-    setFilteredProjects(filter);
+    const filtered = allProjects.filter(p => p.generateWorkOrder);
+
+    const statusFiltered =
+      filterStatus === 'All'
+        ? filtered
+        : filtered.filter(
+          p => p.status?.toLowerCase().trim() === filterStatus.toLowerCase().trim()
+        );
+
+    setFilteredProjects(statusFiltered);
   }, [filterStatus, allProjects]);
+
 
   const getStatusStyles = (status) => {
     return status === 'Complete'
@@ -30,6 +38,7 @@ const TotalProjects = () => {
       {/* Filter + Add Project */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 px-4 gap-4">
         {/* Filter Dropdown */}
+
         <div className="relative w-full sm:w-1/3 max-w-xs">
           <select
             value={filterStatus}
@@ -39,9 +48,9 @@ const TotalProjects = () => {
             <option value="All">All Projects</option>
             <option value="Pending">Pending Projects</option>
             <option value="Complete">Completed Projects</option>
+            <option value="Production">Production Projects</option>
           </select>
 
-          {/* Dropdown Icon */}
           <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-gray-500 dark:text-gray-300">
             <IoMdArrowDropdown className="text-xl" />
           </div>
@@ -56,11 +65,6 @@ const TotalProjects = () => {
           </button>
         </Link>
       </div>
-
-
-
-
-
 
       {/* Projects Grid */}
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

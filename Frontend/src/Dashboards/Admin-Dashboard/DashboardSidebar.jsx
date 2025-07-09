@@ -44,17 +44,19 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
             icon: <FaProjectDiagram className="text-purple-500" />,
             subItems: [
                 {
-                    label: 'All Projects', icon: <FaClipboardList className="text-purple-500" />,
-                    to: '/admin-dashboard/projects'
+                    label: 'Orders', icon: <BiSolidCartAdd className="text-orange-600" />,
+                    to: '/admin-dashboard/order'
                 },
                 {
                     label: 'Work Order', icon: <FaShoppingCart className="text-green-500" />,
                     to: '/admin-dashboard/workorder'
                 },
                 {
-                    label: 'Orders', icon: <BiSolidCartAdd  className="text-orange-600" />,
-                    to: '/admin-dashboard/order'
-                }
+                    label: 'All Projects', icon: <FaClipboardList className="text-purple-500" />,
+                    to: '/admin-dashboard/projects'
+                },
+                ,
+
                 // { label: 'Pending Projects', icon: <FaHourglassHalf className="text-red-500" />, to: '/admin-dashboard/projects/pending' },
             ],
         },
@@ -66,11 +68,11 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
     ];
 
     return (
-<div
-  className={`fixed top-0 left-0 h-screen w-64 bg-sidebar dark:bg-[#121212] shadow-lg z-50 transition-transform duration-300
+        <div
+            className={`fixed top-0 left-0 h-screen w-64 bg-sidebar dark:bg-[#121212] shadow-lg z-50 transition-transform duration-300
     ${SidebarOpen ? 'translate-x-0' : '-translate-x-full'}
   `}
->
+        >
 
             <div className="flex flex-col justify-between h-full p-6 space-y-6 bg-sidebar dark:bg-[#121212] mt-4">
                 <div className="space-y-8">
