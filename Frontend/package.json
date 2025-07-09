@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
+    "country-state-city": "^3.2.1",
     "file-saver": "^2.0.5",
     "html-docx-js": "^0.1.0",
     "html2pdf.js": "^0.10.3",
