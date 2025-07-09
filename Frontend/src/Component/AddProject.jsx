@@ -301,6 +301,25 @@ const ProjectInputSection = ({ project, index, onProjectChange, onRemoveProject,
         )}
 
         {/* Development Cost and Server Cost */}
+
+        {isServerTypeVisible && (
+          <div>
+            <label htmlFor={`serverCost-${project.localId}`} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Server Cost
+            </label>
+            <input
+              type="number"
+              id={`serverCost-${project.localId}`}
+              name="serverCost"
+              value={project.serverCost}
+              onChange={handleInternalChange}
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+              placeholder="e.g., 12000"
+              min="0"
+            />
+          </div>
+        )}
+
         <div>
           <label htmlFor={`developmentCost-${project.localId}`} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Development Cost
@@ -316,21 +335,7 @@ const ProjectInputSection = ({ project, index, onProjectChange, onRemoveProject,
             min="0"
           />
         </div>
-        <div>
-          <label htmlFor={`serverCost-${project.localId}`} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Server Cost
-          </label>
-          <input
-            type="number"
-            id={`serverCost-${project.localId}`}
-            name="serverCost"
-            value={project.serverCost}
-            onChange={handleInternalChange}
-            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
-            placeholder="e.g., 12000"
-            min="0"
-          />
-        </div>
+
 
         {/* Other Accessories Required? (Single Checkbox) */}
         <div className="flex items-center pt-6 md:pt-0"> {/* Adjusted padding for alignment */}
