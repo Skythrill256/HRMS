@@ -247,6 +247,28 @@ const ProjectInputSection = ({ project, index, onProjectChange, onRemoveProject,
           )}
         </div>
 
+        {/* Project Source dropdown */}
+        <div>
+          <label htmlFor={`projectSource-${project.localId}`} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Project Source <span className="text-red-500">*</span>
+          </label>
+          <select
+            id={`projectSource-${project.localId}`}
+            name="projectSource"
+            value={project.projectSource}
+            onChange={handleInternalChange}
+            className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+            required
+          >
+            <option value="">Select Project Source</option>
+            <option value="Client">Client</option>
+            <option value="Employee">Employee</option>
+            <option value="Agent">Agent</option>
+            <option value="Direct">Direct</option>
+          </select>
+        </div>
+
+
         {/* Project Documentation file upload */}
         <div>
           <label htmlFor={`projectDocumentation-${project.localId}`} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -462,6 +484,7 @@ const AddProject = () => {
         projectName: '',
         projectType: '',
         otherProjectType: '',
+        projectSource: '',
         projectID: newProjectId, // Auto-generated ID
         quotationId: '', // Will be generated in ProjectInputSection
         projectDocumentation: null,
@@ -508,7 +531,6 @@ const AddProject = () => {
             updatedProject.otherAccessoriesCost = '';
             updatedProject.accessoriesDescription = '';
           }
-
           return updatedProject;
         }
         return project;
@@ -557,6 +579,7 @@ const AddProject = () => {
         projectName: project.projectName,
         quotationId: project.quotationId,
         projectType: project.projectType,
+        projectSource: project.projectSource,
         otherProjectType: project.otherProjectType,
         projectDocumentation: project.projectDocumentation,
         projectID: project.projectID, // Include the generated project ID
