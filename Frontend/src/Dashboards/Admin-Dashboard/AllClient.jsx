@@ -47,12 +47,21 @@ const AllClient = () => {
       <div className="max-w-7xl mx-auto bg-background rounded-2xl shadow-xl overflow-hidden
       dark:bg-gray-900 dark:shadow-2xl dark:shadow-cyan-500/20">
         <div className="p-4 sm:p-10">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-8 text-center
+          <h2 className="text-3xl font-extrabold text-[#FF4500] mb-8 text-center
           dark:text-white">
-            Our Valued Clients
+            TOTAL CLIENTS
           </h2>
 
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4">
+          <input
+              type="text"
+              placeholder="Search clients..."
+              className="border border-nav dark:border-gray-600 rounded-xl px-4 py-2 w-full sm:w-64
+              text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-800 dark:text-white"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+
             <button
               onClick={() => setShowAddClient(true)}
               className="text-white bg-[#FF4500]
@@ -62,25 +71,16 @@ const AllClient = () => {
             >
               <span className="text-2xl">+</span>
               <span className="mt-1">Add Client</span>
-            </button>
-
-            <input
-              type="text"
-              placeholder="Search clients..."
-              className="border border-nav dark:border-gray-600 rounded-xl px-4 py-2 w-full sm:w-64
-              text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-800 dark:text-white"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+            </button>          
           </div>
 
           <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {filteredClients.map((client) => (
               <div
                 key={client.id}
-                className="relative bg-card dark:bg-gray-700 rounded-2xl shadow-md
-                dark:shadow-lg transition-transform duration-300 hover:scale-105 lg:p-4
-                cursor-pointer flex flex-col items-center justify-center text-center p-4"
+                className="relative bg-card dark:bg-gray-700 rounded-2xl
+                dark:shadow-lg transition-transform duration-400 shadow-lg hover:scale-105 lg:p-4
+                cursor-pointer flex flex-col items-center justify-center text-center p-4 w-[230px] h-[240px]"
                 onClick={() => handleViewClientDetails(client.id)}
               >
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10

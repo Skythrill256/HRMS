@@ -32,7 +32,7 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData }) => {
             bankName: '',
             accountHolderName: ''
         },
-         companyInfo: {
+        companyInfo: {
             joinDate: '',
             employeeStatus: '',
             department: '',
@@ -72,6 +72,8 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editableData, setEditableData] = useState(() => ({ ...employeeData }));
     const [box, setBox] = useState("hidden"); // Confirm edit
+    const [isImageModalOpen, setIsImageModalOpen] = useState(false);  // Showing profile image
+
 
     useEffect(() => {
         const mergedData = {
@@ -215,6 +217,20 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData }) => {
 
     return (
         <>
+            {/* Image show Box */}
+            {isImageModalOpen && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[999]"
+                    onClick={() => setIsImageModalOpen(false)}
+                >
+                    <img
+                        src={editableData.employeeImage}
+                        alt="Enlarged Employee"
+                        className="w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-xl shadow-2xl border-4 border-white"
+                    />
+                </div>
+            )}
+
             {/* Alert Box save changes */}
             <div className={`fixed inset-0 ${box} items-center justify-center bg-black bg-opacity-50 z-50`}>
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg w-[320px] max-w-sm text-center">
@@ -273,8 +289,10 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData }) => {
                             <img
                                 src={editableData.employeeImage}
                                 alt={`${employeeData.firstName} ${employeeData.lastName}`}
-                                className="w-40 h-40 sm:w-48 sm:h-48 rounded-full object-cover border-4 border-blue-400 dark:border-blue-600 shadow-lg"
+                                className="w-40 h-40 sm:w-48 sm:h-48 rounded-full object-cover border-4 border-blue-400 dark:border-blue-600 shadow-lg cursor-pointer"
+                                onClick={() => setIsImageModalOpen(true)}
                             />
+
                             {isEditing && (
                                 <div className="mt-4 text-center">
                                     <label className="block text-blue-600 dark:text-blue-400 cursor-pointer bg-blue-100 dark:bg-blue-800 px-4 py-2 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-700 transition text-sm">
