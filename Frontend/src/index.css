@@ -54,3 +54,15 @@ select:-webkit-autofill:focus {
   left: auto !important;
   z-index: 9999;
 } */
+
+
+/* This style for work order pdf generate page */
+
+@media print {
+  .pdf-a4 {
+    width: 794px;
+    min-height: 1123px;
+    margin: auto;
+  }
+}
+

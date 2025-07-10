@@ -151,9 +151,9 @@ const Order = () => {
   };
 
   return (
-    <div className="p-4 sm:p-6 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white">
+    <div className="p-4 sm:p-6 bg-gray-200 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-white mt-4 md:mt-6 rounded-2xl">
       <div className="flex justify-between items-center mb-6 sm:mb-8">
-        <h1 className="text-3xl sm:text-2xl font-black text-indigo-600 dark:text-indigo-400 tracking-tight">
+        <h1 className="text-xl sm:text-2xl font-black text-indigo-600 dark:text-indigo-400 tracking-tight">
           Manage & Control Your Orders
         </h1>
         <input
