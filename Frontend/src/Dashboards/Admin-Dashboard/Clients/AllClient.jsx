@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams, Routes, Route, Outlet } from "react-router-dom";
+import { useNavigate, useParams, Routes, Route,  } from "react-router-dom";
 import { selectAllClients } from "../../../redux/slices/clientSlice";
 import Client from "./Client";
 import ClientProfile from "./ClientProfile";

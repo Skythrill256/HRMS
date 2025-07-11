@@ -14,8 +14,8 @@ const router = createBrowserRouter([
     // Admin Dashboard Base
     // Added a default 'initial' section for when just /admin-dashboard is hit
     { path: "/admin-dashboard", element: <AdminDashboard section="initial" /> },
-    { path: "/admin-dashboard/projects", element: <AdminDashboard section="projects" /> },
-    { path: "/admin-dashboard/projects/addproject/:id", element: <AdminDashboard section="addproject" /> },
+    { path: "/admin-dashboard/projects/*", element: <AdminDashboard section="projects" /> },
+
     { path: "/admin-dashboard/TotalEmployee", element: <AdminDashboard section="TotalEmployee" /> },
 
     // clients routs
