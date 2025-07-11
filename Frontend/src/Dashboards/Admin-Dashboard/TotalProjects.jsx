@@ -31,8 +31,9 @@ const TotalProjects = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6 mt-6 bg-white dark:bg-gray-900 rounded-xl shadow-md">
-      <h2 className="text-xl sm:text-2xl font-bold mb-6 text-gray-800 dark:text-white text-center">
-        All Projects
+      <h2 className="text-3xl font-extrabold text-[#FF4500] mb-8 text-center
+          dark:text-white">
+        ALL PROJECTS
       </h2>
 
       {/* Filter + Add Project */}
@@ -75,7 +76,7 @@ const TotalProjects = () => {
             return (
               <div
                 key={project.id}
-                className="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-all text-center"
+                className="bg-card dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg hover:cursor-pointer hover:scale-105 transition-transform duration-400 w-[239px] h-[250px] text-center"
               >
                 <div className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden bg-purple-200 dark:bg-purple-700 border-4 border-purple-400 dark:border-purple-600 flex items-center justify-center">
                   <img

@@ -18,7 +18,6 @@ import AddTask from "./AddTask";
 import AddProject from '../../Component/AddProject';
 import Order from '../../Component/Order';
 import WorkOrderList from '../../Component/workorders/WorkOrderList';
-import ProjectProfile from './ProjectProfile';
 // WorkOrderProfile and WorkOrderForm are now handled internally by WorkOrderList,
 // so they are not directly rendered by AdminDashboard's switch
 // import WorkOrderProfile from '../../Component/workorders/WorkOrderProfile';
@@ -87,8 +86,6 @@ const AdminDashboard = ({ section }) => {
       //     return <WorkOrderForm />;
       // case 'workorder-profile':
       //     return <WorkOrderProfile />;
-      case 'projectprofile':
-        return <ProjectProfile/>
       default:
         return <InitialDashboardContent />;
     }

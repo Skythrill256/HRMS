@@ -8,12 +8,13 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        poppins: ['Poppins', 'sans-serif'],
+        poppins: ['Geist', 'sans-serif'],
       },
       colors: {
         nav: '#6246ea',
         background: '#fffffe',
-        card: '#CBC3E3',
+        card: '#eaeafa',
+        // card: '#CBC3E3',
         sidebar: '#3730A3',
         text: '#2b2c34',
         button: '#FF4500',
