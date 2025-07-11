@@ -167,7 +167,7 @@ const Order = () => {
 
       <div className="overflow-x-auto h-full rounded-lg border border-gray-300 dark:border-gray-700">
         <table className="w-full divide-y divide-gray-300 dark:divide-gray-700 text-sm">
-          <thead className="bg-gray-200 dark:bg-gray-800 sticky top-0 z-10">
+          <thead className="bg-blue-400 dark:bg-gray-800 sticky top-0 z-10  ">
             <tr>
               {/* Added text-left to all th for consistent alignment */}
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-400 uppercase tracking-wider">

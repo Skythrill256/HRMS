@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectAllProjects } from '../../redux/slices/projectSlice';
+import { selectAllProjects } from '../../../redux/slices/projectSlice';
 const CompleteProjects = () => {
   const allprojects = useSelector(selectAllProjects)
   const completeProjects = allprojects.filter(project=>project.status === 'Complete')

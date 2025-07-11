@@ -1,18 +1,10 @@
 import { useState } from 'react';
 import { FaBan, FaUserEdit, FaCheckCircle } from 'react-icons/fa';
-import Employee from "../../Component/Employee";
+import Employee from "./Employee";
 import EmployeeProfile from './EmployeeProfile';
 import { toast } from 'react-toastify';
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
-
-
-
-const Getallemployee = () => {
-    const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
-    const [selectedEmployee, setSelectedEmployee] = useState(null);
-    const [showEmployeeProfile, setShowEmployeeProfile] = useState(false);
-    const [searchQuery, setSearchQuery] = useState('');
 
 
     const initialEmployees = [
@@ -643,6 +635,14 @@ const Getallemployee = () => {
     ];
 
 
+const Getallemployee = () => {
+    const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
+    const [selectedEmployee, setSelectedEmployee] = useState(null);
+    const [showEmployeeProfile, setShowEmployeeProfile] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+
+
+
     const [employees, setEmployees] = useState(initialEmployees);
 
     const handleAddEmployeeClick = () => {
@@ -698,15 +698,8 @@ const Getallemployee = () => {
     if (showEmployeeProfile && selectedEmployee) {
         return (
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 dark:bg-gray-900">
-                <div className="flex justify-between items-center mb-6">
-                    <button
-                        onClick={handleBackToEmployeeList}
-                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-xl"
-                    >
-                        &larr; Back to Employees
-                    </button>
-                </div>
-                <EmployeeProfile employeeData={selectedEmployee} />
+            
+                <EmployeeProfile employeeData={selectedEmployee} handleBackToEmployeeList={handleBackToEmployeeList}/>
             </div>
         );
     }

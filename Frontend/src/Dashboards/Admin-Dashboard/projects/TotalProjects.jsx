@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { selectAllProjects } from '../../redux/slices/projectSlice';
+import { selectAllProjects } from '../../../redux/slices/projectSlice';
 import { IoMdArrowDropdown } from "react-icons/io";
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Ensure Link is imported
 
 const TotalProjects = () => {
   const allProjects = useSelector(selectAllProjects);
@@ -16,8 +16,8 @@ const TotalProjects = () => {
       filterStatus === 'All'
         ? filtered
         : filtered.filter(
-          p => p.status?.toLowerCase().trim() === filterStatus.toLowerCase().trim()
-        );
+            p => p.status?.toLowerCase().trim() === filterStatus.toLowerCase().trim()
+          );
 
     setFilteredProjects(statusFiltered);
   }, [filterStatus, allProjects]);
@@ -39,7 +39,6 @@ const TotalProjects = () => {
       {/* Filter + Add Project */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 px-4 gap-4">
         {/* Filter Dropdown */}
-
         <div className="relative w-full sm:w-1/3 max-w-xs">
           <select
             value={filterStatus}
@@ -74,27 +73,29 @@ const TotalProjects = () => {
             const placeholder = project.projectName?.[0]?.toUpperCase() || '?';
             const logoUrl = `https://placehold.co/100x100/A78BFA/fff?text=${placeholder}`;
             return (
-              <div
-                key={project.id}
-                className="bg-card dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg hover:cursor-pointer hover:scale-105 transition-transform duration-400 w-[239px] h-[250px] text-center"
-              >
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden bg-purple-200 dark:bg-purple-700 border-4 border-purple-400 dark:border-purple-600 flex items-center justify-center">
-                  <img
-                    src={logoUrl}
-                    alt={project.projectName}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = logoUrl;
-                    }}
-                  />
+              // Wrap the entire project card with Link
+              <Link to={`/admin-dashboard/projects/profile/${project.projectId}`} key={project.projectId}>
+                <div
+                  className="bg-card dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg hover:cursor-pointer hover:scale-105 transition-transform duration-400 w-[239px] h-[250px] text-center"
+                >
+                  <div className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden bg-purple-200 dark:bg-purple-700 border-4 border-purple-400 dark:border-purple-600 flex items-center justify-center">
+                    <img
+                      src={logoUrl}
+                      alt={project.projectName}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = logoUrl;
+                      }}
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">{project.projectName}</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-300 mb-2">ID: {project.projectId}</p>
+                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusStyles(project.status)}`}>
+                    {project.status}
+                  </span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white">{project.projectName}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-300 mb-2">ID: {project.projectId}</p>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusStyles(project.status)}`}>
-                  {project.status}
-                </span>
-              </div>
+              </Link>
             );
           })
         ) : (

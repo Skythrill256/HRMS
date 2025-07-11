@@ -4,8 +4,8 @@ import { toast } from 'react-toastify';
 import Select from 'react-select';
 import { useParams } from 'react-router-dom';
 
-import { addProject } from '../redux/slices/projectSlice.js';
-import { selectAllClients } from '../redux/slices/clientSlice.js';
+import { addProject } from '../../../redux/slices/projectSlice.js';
+import { selectAllClients } from '../../../redux/slices/clientSlice.js';
 
 // Custom styles for the react-select component to match the dark theme
 const customSelectStyles = {

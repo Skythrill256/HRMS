@@ -8,20 +8,17 @@ import {
 import { MdWatchLater } from "react-icons/md";
 import { TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
 
-import TotalProjects from './TotalProjects';
-import CompleteProjects from './CompleteProjects';
-import PendingProjects from './PendingProjects';
-import Getallemployee from './Getallemployee';
+import TotalProjects from './projects/TotalProjects';
+import CompleteProjects from './projects/CompleteProjects';
+import PendingProjects from './projects/PendingProjects';
+import Getallemployee from './Employees/Getallemployee';
 import InitialDashboardContent from './InitialDashboardContain';
-import AllClient from './AllClient';
+import AllClient from './Clients/AllClient';
 import AddTask from "./AddTask";
-import AddProject from '../../Component/AddProject';
+import AddProject from './projects/AddProject';
 import Order from '../../Component/Order';
 import WorkOrderList from '../../Component/workorders/WorkOrderList';
-// WorkOrderProfile and WorkOrderForm are now handled internally by WorkOrderList,
-// so they are not directly rendered by AdminDashboard's switch
-// import WorkOrderProfile from '../../Component/workorders/WorkOrderProfile';
-// import WorkOrderForm from '../../Component/workorders/workOrderForm';
+
 
 
 const AdminDashboard = ({ section }) => {
@@ -75,7 +72,7 @@ const AdminDashboard = ({ section }) => {
       case 'TotalEmployee':
         return <Getallemployee />;
       case 'Allclients':
-        return <AllClient />;
+        return <AllClient/>;
       case 'order':
         return <Order />;
       case 'workorder':

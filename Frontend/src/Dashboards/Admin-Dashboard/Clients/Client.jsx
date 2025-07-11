@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { addClient } from '../../src/redux/slices/clientSlice.js';
+import { addClient } from '../../../redux/slices/clientSlice.js';
 import { Country, State } from 'country-state-city';
 
 const dialCodes = {

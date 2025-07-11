@@ -56,10 +56,7 @@ export default function WorkOrderList() {
     navigate(`/admin-dashboard/WorkOrder/${id}/edit`);
   };
 
-  const params = useParams(); // useParams needs to be inside the component rendered by Route
-  // Find the selected order. This might be used by a component directly rendered by WorkOrderList,
-  // but WorkOrderProfile gets the full 'orders' list and finds it itself.
-  // We keep it here as 'selectedOrder' might be used for 'initialData' for WorkOrderForm.
+  const params = useParams(); 
   const selectedOrder = orders.find(o => o.id === params.id);
 
 
@@ -103,17 +100,6 @@ export default function WorkOrderList() {
                     <p className="text-sm text-gray-600 mb-1"><strong className="text-gray-700">Created:</strong> {order.dateCreated}</p>
                     <p className="text-sm text-gray-600 mb-1"><strong className="text-gray-700">Due:</strong> {order.dueDate}</p>
                     <p className={`text-sm ${priorityColor(order.priority)}`}><strong className="text-gray-700">Priority:</strong> {order.priority}</p>
-                    {/* <div className="mt-4 text-right">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation(); // Prevent the card's onClick from firing
-                          handleNavigateToEditForm(order.id); // This navigates to the WorkOrderForm for full editing
-                        }}
-                        className="text-blue-500 hover:text-blue-700 text-sm font-medium transition duration-200"
-                      >
-                        Edit Details (Full Form)
-                      </button>
-                    </div> */}
                   </div>
                 ))
               )}
