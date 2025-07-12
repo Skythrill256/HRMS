@@ -14,6 +14,7 @@ import { BiSolidCartAdd } from "react-icons/bi";
 import { GrUserManager } from "react-icons/gr";
 import { TbFileCertificate, TbNotes } from "react-icons/tb";
 import { FaWpforms } from "react-icons/fa6";
+import companylogo from '../../../public/watermark logo.png'
 
 const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
     const location = useLocation();
@@ -88,11 +89,12 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
     return (
         <div className={`fixed top-0 left-0 h-screen w-64 bg-sidebar dark:bg-[#121212] shadow-lg z-50 transition-transform duration-300 ${SidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
             <div className="flex flex-col justify-between h-full p-4 space-y-4 bg-sidebar dark:bg-[#121212]">
-                
+
                 {/* Header */}
-                <div className='flex justify-between items-center mb-4'>
+                <div className='flex justify-between items-center my-4'>
                     <Link to={"/admin-dashboard"} className="flex items-center space-x-2">
-                        <MdDashboard className="text-2xl text-primary dark:text-blue-600" />
+                        {/* <MdDashboard className="text-2xl text-primary dark:text-blue-600" /> */}
+                        <img src={companylogo} alt='logo' className='h-6 w-8 md:h-8 md:w-10'/>
                         <h2 className="text-xl font-bold text-primary dark:text-blue-800">Dashboard</h2>
                     </Link>
                     <button onClick={togglesidehamburger} className="text-gray-200 hover:text-red-500">
