@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     // clients routs
 
     {
-        path: "/admin-dashboard/Allclients/*", element: <AdminDashboard section="Allclients"/>
+        path: "/admin-dashboard/Allclients/*", element: <AdminDashboard section="Allclients" />
 
     },
 
@@ -30,6 +30,9 @@ const router = createBrowserRouter([
 
     // work order  routs
     { path: "/admin-dashboard/WorkOrder/*", element: <AdminDashboard section="workorder" /> },
+    //HR
+    { path: "/admin-dashboard/offerletter", element: <AdminDashboard section="offerletter" /> },
+    { path: "/admin-dashboard/terminationletter", element: <AdminDashboard section="terminationletter" /> },
 
 ]);
 

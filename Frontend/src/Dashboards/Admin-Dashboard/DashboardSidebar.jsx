@@ -68,20 +68,20 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
             label: 'HR',
             icon: <GrUserManager className="text-orange-600" />,
             subItems: [
+                { label: 'Verify Employee', icon: <MdVerified className='text-green-400 size-5' />, to: '' },
                 {
                     label: 'Letter',
                     icon: <MdOutlineMailOutline className="text-blue-500 size-4" />,
                     subItems: [
-                        { label: 'Offer Letter', icon: <TbFileCertificate className="text-green-500" />, to: '/admin-dashboard/hr/offer-letter' },
-                        { label: 'Termination Letter', icon: <MdOutlineCancel className="text-red-500" />, to: '/admin-dashboard/hr/termination-letter' },
+                        { label: 'Offer Letter', icon: <TbFileCertificate className="text-green-500" />, to: '/admin-dashboard/offerletter' },
+                        { label: 'Termination Letter', icon: <MdOutlineCancel className="text-red-500" />, to: '/admin-dashboard/terminationletter' },
                     ]
                 },
                 { label: 'Leave', icon: <MdOutlineDirectionsRun className='text-purple-500 size-5' />, to: '' },
                 { label: 'Certificate', icon: <TbNotes className='text-yellow-400' />, to: '' },
                 { label: 'Report', icon: <MdReport className='text-red-500 size-5' />, to: '' },
                 { label: 'Resignation', icon: <FaWpforms className='text-orange-500' />, to: '' },
-                { label: 'Work Order', icon: <FaShoppingCart className='text-purple-500' />, to: '' },
-                { label: 'Verify Employee', icon: <MdVerified className='text-green-400 size-5' />, to: '' }
+                { label: 'WO', icon: <FaShoppingCart className='text-purple-500' />, to: '' }
             ]
         }
     ];

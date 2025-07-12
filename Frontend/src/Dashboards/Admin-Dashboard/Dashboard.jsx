@@ -18,6 +18,8 @@ import AddTask from "./AddTask";
 import AddProject from './projects/AddProject';
 import Order from '../../Component/Order';
 import WorkOrderList from '../../Component/workorders/WorkOrderList';
+import OffetLetter from './HR/OffetLetter';
+import TerminationLetter from './HR/TerminationLetter';
 
 
 
@@ -83,6 +85,10 @@ const AdminDashboard = ({ section }) => {
       //     return <WorkOrderForm />;
       // case 'workorder-profile':
       //     return <WorkOrderProfile />;
+      case 'offerletter':
+        return <OffetLetter/>;
+      case 'terminationletter':
+        return <TerminationLetter/>;
       default:
         return <InitialDashboardContent />;
     }
