@@ -68,7 +68,7 @@ const workordergeneratedproject = () => {
             </div>
 
             {/* Projects Grid */}
-            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center ">
                 {filteredProjects.length > 0 ? (
                     filteredProjects.map((project) => {
                         const placeholder = project.projectName?.[0]?.toUpperCase() || '?';
@@ -76,6 +76,7 @@ const workordergeneratedproject = () => {
                         return (
                             // Wrap the entire project card with Link
                             <Link to={`/admin-dashboard/projects/profile/${project.projectId}`} key={project.projectId}>
+
                                 <div
                                     className="bg-card dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg hover:cursor-pointer hover:scale-105 transition-transform duration-400 w-[239px] h-[250px] text-center"
                                 >
@@ -96,6 +97,7 @@ const workordergeneratedproject = () => {
                                         {project.status}
                                     </span>
                                 </div>
+                                
                             </Link>
                         );
                     })
