@@ -1,11 +1,15 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import html2pdf from 'html2pdf.js';
+import { useSelector } from 'react-redux';
+import { selectAllProjects } from '../../redux/slices/projectSlice'
 
 const WorkOrderForm = ({ onSave }) => {
   const navigate = useNavigate();
   const pdfContentRef = useRef(null);
   const today = new Date().toLocaleDateString('en-CA');
+
+  const projects = useSelector(selectAllProjects);
 
   const [formData, setFormData] = useState({
     projectId: '', clientId: '', clientName: '', quotationId: '', projectName: '', projectCategory: '',
@@ -20,6 +24,27 @@ const WorkOrderForm = ({ onSave }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleProjectSelect = (e) => {
+    const selectedId = e.target.value;
+    const selectedProject = projects.find(p => p.projectId === selectedId);
+
+    if (selectedProject) {
+      setFormData(prev => ({
+        ...prev,
+        projectId: selectedProject.projectId,
+        clientId: selectedProject.clientId,
+        clientName: selectedProject.clientName,
+        quotationId: selectedProject.quotationId,
+        projectName: selectedProject.projectName,
+        projectCategory: selectedProject.projectType,
+        developmentCost: selectedProject.developmentCost,
+        total: selectedProject.total
+      }));
+    } else {
+      setFormData(prev => ({ ...prev, projectId: selectedId }));
+    }
   };
 
   const saveWorkOrderData = (dataToSave) => {
@@ -80,30 +105,65 @@ const WorkOrderForm = ({ onSave }) => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {['projectId','clientId','clientName','quotationId','projectName','projectCategory'].map((key) => (
+          {/* Project ID Select with autofill */}
+          <label className="block">
+            <strong className="text-gray-700">PROJECT ID:</strong>
+            <select
+              name="projectId"
+              value={formData.projectId}
+              onChange={handleProjectSelect}
+              className="w-full mt-1 border border-gray-300 rounded-md p-2"
+              required
+            >
+              <option value="">Select Project</option>
+              {projects.map(proj => (
+                <option key={proj.projectId} value={proj.projectId}>
+                  {proj.projectId} - {proj.projectName}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          {/* Other autofilled and editable inputs */}
+          {['clientId', 'clientName', 'quotationId', 'projectName', 'projectCategory'].map((key) => (
             <label key={key} className="block">
               <strong className="text-gray-700">{key.replace(/([A-Z])/g, ' $1').toUpperCase()}:</strong>
               <input
-                type="text" name={key} value={formData[key]} onChange={handleChange}
-                className="w-full mt-1 border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
+                type="text"
+                name={key}
+                value={formData[key]}
+                onChange={handleChange}
+                className="w-full mt-1 border border-gray-300 rounded-md p-2"
                 required
               />
             </label>
           ))}
+
+          {/* Project Details */}
           <label className="block sm:col-span-2">
             <strong className="text-gray-700">PROJECT DETAILS:</strong>
-            <textarea name="projectDetails" value={formData.projectDetails} onChange={handleChange} rows="4" className="w-full mt-1 border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" required></textarea>
+            <textarea
+              name="projectDetails"
+              value={formData.projectDetails}
+              onChange={handleChange}
+              rows="4"
+              className="w-full mt-1 border border-gray-300 rounded-md p-2"
+              required
+            />
           </label>
         </div>
 
+        {/* Other Fields */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {['warranty','warrantyDuration','freeMaintenance','maintenanceDuration','developmentCost','serverDomain','others','total','startDate','endDate'].map((key) => (
+          {['warranty', 'warrantyDuration', 'freeMaintenance', 'maintenanceDuration', 'developmentCost', 'serverDomain', 'others', 'total', 'startDate', 'endDate'].map((key) => (
             <label key={key} className="block">
               <strong className="text-gray-700">{key.replace(/([A-Z])/g, ' $1').toUpperCase()}:</strong>
               <input
                 type={key.includes('Date') ? 'date' : 'text'}
-                name={key} value={formData[key]} onChange={handleChange}
-                className="w-full mt-1 border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
+                name={key}
+                value={formData[key]}
+                onChange={handleChange}
+                className="w-full mt-1 border border-gray-300 rounded-md p-2"
               />
             </label>
           ))}
@@ -112,7 +172,7 @@ const WorkOrderForm = ({ onSave }) => {
         {["paymentTerms", "scopeOfWork", "materialsPurchased", "termsAndConditions"].map((key) => (
           <div key={key}>
             <h3 className="font-semibold text-gray-700 mb-2">{key.replace(/([A-Z])/g, ' $1').toUpperCase()}:</h3>
-            <textarea name={key} value={formData[key]} onChange={handleChange} rows="4" className="w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" />
+            <textarea name={key} value={formData[key]} onChange={handleChange} rows="4" className="w-full border border-gray-300 rounded-md p-2" />
           </div>
         ))}
 
@@ -123,6 +183,7 @@ const WorkOrderForm = ({ onSave }) => {
         </div>
       </form>
 
+      {/* Hidden PDF View */}
       <div ref={pdfContentRef} className="hidden pdf-a4 bg-white px-10 py-8 text-sm" style={{ width: '794px', minHeight: '1123px', margin: '0 auto' }}>
         <img src="/WorkOrder_Header.png" alt="Header" className="w-full mb-4" />
         <div className="text-right font-semibold text-gray-700 mb-4">Date: {today}</div>
