@@ -33,6 +33,7 @@ const router = createBrowserRouter([
     //HR
     { path: "/admin-dashboard/offerletter", element: <AdminDashboard section="offerletter" /> },
     { path: "/admin-dashboard/terminationletter", element: <AdminDashboard section="terminationletter" /> },
+    { path: "/admin-dashboard/leave", element: <AdminDashboard section="leave" /> },
 
 ]);
 

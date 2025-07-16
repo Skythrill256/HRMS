@@ -77,7 +77,7 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                         { label: 'Termination Letter', icon: <MdOutlineCancel className="text-red-500" />, to: '/admin-dashboard/terminationletter' },
                     ]
                 },
-                { label: 'Leave', icon: <MdOutlineDirectionsRun className='text-purple-500 size-5' />, to: '' },
+                { label: 'Leave', icon: <MdOutlineDirectionsRun className='text-purple-500 size-5' />, to: '/admin-dashboard/leave' },
                 { label: 'Certificate', icon: <TbNotes className='text-yellow-400' />, to: '' },
                 { label: 'Report', icon: <MdReport className='text-red-500 size-5' />, to: '' },
                 { label: 'Resignation', icon: <FaWpforms className='text-orange-500' />, to: '' },

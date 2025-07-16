@@ -20,6 +20,7 @@ import Order from '../../Component/Order';
 import WorkOrderList from '../../Component/workorders/WorkOrderList';
 import OffetLetter from './HR/OffetLetter';
 import TerminationLetter from './HR/TerminationLetter';
+import Leave from './HR/Leave';
 
 
 
@@ -89,6 +90,8 @@ const AdminDashboard = ({ section }) => {
         return <OffetLetter/>;
       case 'terminationletter':
         return <TerminationLetter/>;
+      case 'leave':
+        return <Leave/>;
       default:
         return <InitialDashboardContent />;
     }
