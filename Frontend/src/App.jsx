@@ -34,6 +34,8 @@ const router = createBrowserRouter([
     { path: "/admin-dashboard/offerletter", element: <AdminDashboard section="offerletter" /> },
     { path: "/admin-dashboard/terminationletter", element: <AdminDashboard section="terminationletter" /> },
     { path: "/admin-dashboard/leave", element: <AdminDashboard section="leave" /> },
+    // under hr section for verify the employee
+    { path: "/admin-dashboard/verifyemplyee", element: <AdminDashboard section="verifyemplyee" /> }
 
 ]);
 

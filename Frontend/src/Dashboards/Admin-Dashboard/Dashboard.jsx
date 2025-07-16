@@ -21,6 +21,7 @@ import WorkOrderList from '../../Component/workorders/WorkOrderList';
 import OffetLetter from './HR/OffetLetter';
 import TerminationLetter from './HR/TerminationLetter';
 import Leave from './HR/Leave';
+import VerifyEmployee from '../Admin-Dashboard/HR/VerifyEmployee'
 
 
 
@@ -92,6 +93,14 @@ const AdminDashboard = ({ section }) => {
         return <TerminationLetter/>;
       case 'leave':
         return <Leave/>;
+        // for verify employee
+      case 'verifyemplyee':
+        return <VerifyEmployee/>
+
+
+
+
+
       default:
         return <InitialDashboardContent />;
     }

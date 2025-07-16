@@ -68,7 +68,7 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
             label: 'HR',
             icon: <GrUserManager className="text-orange-600" />,
             subItems: [
-                { label: 'Verify Employee', icon: <MdVerified className='text-green-400 size-5' />, to: '' },
+                { label: 'Verify Employee', icon: <MdVerified className='text-green-400 size-5' />, to: '/admin-dashboard/verifyemplyee' },
                 {
                     label: 'Letter',
                     icon: <MdOutlineMailOutline className="text-blue-500 size-4" />,
