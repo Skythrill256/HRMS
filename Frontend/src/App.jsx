@@ -1,5 +1,3 @@
-// App.jsx
-import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from "./Component/Authentication/Login.jsx";
 import ForgetPass from "./Component/Authentication/ForgetPass.jsx";
