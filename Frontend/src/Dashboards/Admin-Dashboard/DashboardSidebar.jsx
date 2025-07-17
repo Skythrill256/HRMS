@@ -93,7 +93,11 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
     ];
 
     return (
+
         <div className={`fixed top-0 left-0 h-screen w-64 bg-sidebar dark:bg-[#121212] shadow-lg z-50 transition-transform duration-300 ${SidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+
+
+
             <div className="flex flex-col justify-between h-full p-4 space-y-4 bg-sidebar dark:bg-[#121212]">
 
                 {/* Header */}
@@ -215,6 +219,7 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                 </div>
             </div>
         </div>
+
     );
 };
 
