@@ -85,7 +85,7 @@ const initialState = {
     dueDate: '2023-12-15',
     priority: 'Low',
   },],
-  selectedWorkOrder: null, // optional: for viewing/editing a single work order
+  selectedWorkOrder: null, 
 };
 
 const workOrderSlice = createSlice({

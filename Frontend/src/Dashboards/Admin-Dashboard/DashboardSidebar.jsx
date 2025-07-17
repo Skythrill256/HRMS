@@ -3,7 +3,7 @@ import { TbLayoutSidebarLeftCollapseFilled } from "react-icons/tb";
 import { Link, useLocation } from 'react-router-dom';
 import {
     FaUsers, FaUserTie, FaProjectDiagram, FaCogs, FaClipboardList, FaCog,
-    FaChevronDown, FaChevronUp, FaShoppingCart
+    FaChevronDown, FaChevronUp, FaShoppingCart,
 } from 'react-icons/fa';
 import { CgProfile } from "react-icons/cg";
 import {
@@ -81,9 +81,15 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                 { label: 'Certificate', icon: <TbNotes className='text-yellow-400' />, to: '' },
                 { label: 'Report', icon: <MdReport className='text-red-500 size-5' />, to: '' },
                 { label: 'Resignation', icon: <FaWpforms className='text-orange-500' />, to: '' },
-                { label: 'WO', icon: <FaShoppingCart className='text-purple-500' />, to: '' }
+                { label: 'WO', icon: <FaShoppingCart className='text-purple-500' />, to: '' },
+                {
+                    label: 'INTERVIEW',
+                    icon: <FaUserTie />,
+                    to: '/admin-dashboard/interview'
+                }
             ]
-        }
+        },
+
     ];
 
     return (
@@ -94,7 +100,7 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                 <div className='flex justify-between items-center my-4'>
                     <Link to={"/admin-dashboard"} className="flex items-center space-x-2">
                         {/* <MdDashboard className="text-2xl text-primary dark:text-blue-600" /> */}
-                        <img src={companylogo} alt='logo' className='h-6 w-8 md:h-8 md:w-10'/>
+                        <img src={companylogo} alt='logo' className='h-6 w-8 md:h-8 md:w-10' />
                         <h2 className="text-xl font-bold text-primary dark:text-blue-800">Dashboard</h2>
                     </Link>
                     <button onClick={togglesidehamburger} className="text-gray-200 hover:text-red-500">
