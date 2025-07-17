@@ -1,5 +1,5 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 const Leave = () => {
     // State for controlling the visibility of the leave creation form modal
     const [showForm, setShowForm] = useState(false);
@@ -27,6 +27,21 @@ const Leave = () => {
         unpaidFrom: "",
         unpaidTo: "",
     });
+
+    // Employee data from redux
+    const employee = useSelector((state) => state.employees.employees);
+    console.log(employee);
+
+    // Populate empId and name when modal opens
+    useEffect(() => {
+        if (showForm && employee) {
+            setFormData((prev) => ({
+                ...prev,
+                empId: employee.id || "",
+                name: `${employee.firstName || ""} ${employee.lastName || ""}`.trim(),
+            }));
+        }
+    }, [showForm, employee]);
 
     // Initial dummy data for leave requests
     const [leaves, setLeaves] = useState([
@@ -200,7 +215,7 @@ const Leave = () => {
 
             {/* Leave Table */}
             <div className="overflow-x-auto mt-10 rounded-lg shadow-md">
-                <table className="min-w-full text-sm border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                <table className="min-w-full text-sm border border-gray-200 dark:border-gray-700 rounded-lg overflow-auto">
                     <thead className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-white">
                         <tr>
                             <th className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 text-left">SL NO</th>
@@ -235,7 +250,7 @@ const Leave = () => {
                                             onChange={(e) => handleActionChange(index, e.target.value)}
                                             className="px-3 py-1 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
                                         >
-                                            <option value="">Select</option>
+                                            <option value="">Pending</option>
                                             <option value="APPROVED">Approve</option>
                                             <option value="DENIED">Deny</option>
                                         </select>
@@ -297,7 +312,7 @@ const Leave = () => {
                                                         </div>
 
                                                         {showFullReason === index && (
-                                                            <div className="absolute z-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg p-3 text-xs text-gray-700 dark:text-gray-300 mt-1 w-48 whitespace-pre-wrap break-words max-h-40 overflow-y-auto left-0 -translate-x-1/2 transform">
+                                                            <div className="absolute z-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg p-3 text-xs text-gray-700 dark:text-gray-300 mt-1 w-48 whitespace-pre-wrap break-words max-h-40 overflow-y-auto left-20 -translate-x-1/2 transform">
                                                                 {leave.reason}
                                                             </div>
                                                         )}
@@ -318,12 +333,40 @@ const Leave = () => {
             {/* Modal Form */}
             {showForm && (
                 <div className="fixed inset-0 z-50 bg-black bg-opacity-40 flex items-center justify-center px-4">
-                    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-xl w-full max-w-lg relative">
-                        <h2 className="text-2xl font-bold text-center mb-4 text-[#FF4500]">Create Leave</h2>
+                    <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-xl w-full max-w-lg relative">
+                        <h2 className="text-2xl font-bold text-center mb-3 text-[#FF4500]">Create Leave</h2>
 
                         <form className="space-y-4" onSubmit={handleFormSubmit}>
                             {/* 1st Row: Employee ID and Name */}
-                            <div className="flex flex-col md:flex-row gap-4">
+                            <div>
+                                <label htmlFor="employeeSelect" className="block font-medium mb-0 dark:text-white">Select Employee (ID - Name):</label>
+                                <select
+                                    id="employeeSelect"
+                                    value={formData.empId}
+                                    onChange={(e) => {
+                                        const selectedId = e.target.value;
+                                        const selectedEmp = employee.find((emp) => emp.id === selectedId);
+                                        if (selectedEmp) {
+                                            setFormData((prev) => ({
+                                                ...prev,
+                                                empId: selectedEmp.id,
+                                                name: `${selectedEmp.firstName} ${selectedEmp.lastName}`,
+                                            }));
+                                        }
+                                    }}
+                                    className="w-full px-4 py-1.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
+                                    required
+                                >
+                                    <option value="">Select Employee</option>
+                                    {employee.map((emp) => (
+                                        <option key={emp.id} value={emp.id}>
+                                            {emp.id} - {emp.firstName} {emp.lastName}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className="flex flex-col md:flex-row gap-4 mt-4">
                                 <div className="w-full">
                                     <label htmlFor="empId" className="block font-medium mb-1 dark:text-white">Employee ID:</label>
                                     <input
@@ -332,8 +375,9 @@ const Leave = () => {
                                         name="empId"
                                         value={formData.empId}
                                         onChange={handleFormChange}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
+                                        className="w-full px-4 py-1.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
                                         required
+                                        readOnly
                                     />
                                 </div>
                                 <div className="w-full">
@@ -344,8 +388,9 @@ const Leave = () => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleFormChange}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
+                                        className="w-full px-4 py-1.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
                                         required
+                                        readOnly
                                     />
                                 </div>
                             </div>
@@ -361,7 +406,7 @@ const Leave = () => {
                                         value={formData.days}
                                         onChange={handleFormChange}
                                         min="0"
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
+                                        className="w-full px-4 py-1.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
                                         required
                                     />
                                 </div>
@@ -373,7 +418,7 @@ const Leave = () => {
                                         name="purpose"
                                         value={formData.purpose}
                                         onChange={handleFormChange}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
+                                        className="w-full px-4 py-1.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
                                         required
                                     />
                                 </div>
@@ -387,7 +432,7 @@ const Leave = () => {
                                     name="salaryType"
                                     value={formData.salaryType}
                                     onChange={handleFormChange}
-                                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
+                                    className="w-full px-4 py-1.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
                                     required
                                 >
                                     <option value="">Select</option>
@@ -408,7 +453,7 @@ const Leave = () => {
                                         min="0"
                                         value={formData.paidDays}
                                         onChange={handleFormChange}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
+                                        className="w-full px-4 py-1.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
                                         required
                                     />
                                 </div>
@@ -424,7 +469,7 @@ const Leave = () => {
                                         min="0"
                                         value={formData.unpaidDays}
                                         onChange={handleFormChange}
-                                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
+                                        className="w-full px-4 py-1.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
                                         required
                                     />
                                 </div>
@@ -441,7 +486,7 @@ const Leave = () => {
                                                 name="paidFrom"
                                                 value={formData.paidFrom}
                                                 onChange={handleFormChange}
-                                                className="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                                className="w-full px-3 py-1.5 border rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
                                                 required
                                             />
                                             <input
@@ -449,14 +494,14 @@ const Leave = () => {
                                                 name="paidTo"
                                                 value={formData.paidTo}
                                                 onChange={handleFormChange}
-                                                className="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                                className="w-full px-3 py-1.5 border rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
                                                 required
                                             />
                                             <input
                                                 type="text"
                                                 disabled
                                                 value={`Days: ${getDayCount(formData.paidFrom, formData.paidTo)}`}
-                                                className="w-full px-3 py-2 border rounded-md bg-gray-100 dark:bg-gray-600 dark:text-white cursor-not-allowed"
+                                                className="w-full px-3 py-1.5 border rounded-md bg-gray-100 dark:bg-gray-600 dark:text-white cursor-not-allowed"
                                             />
                                         </div>
                                     </div>
@@ -470,7 +515,7 @@ const Leave = () => {
                                                 name="unpaidFrom"
                                                 value={formData.unpaidFrom}
                                                 onChange={handleFormChange}
-                                                className="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                                className="w-full px-3 py-1.5 border rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
                                                 required
                                             />
                                             <input
@@ -478,7 +523,7 @@ const Leave = () => {
                                                 name="unpaidTo"
                                                 value={formData.unpaidTo}
                                                 onChange={handleFormChange}
-                                                className="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                                className="w-full px-3 py-1.5 border rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
                                                 required
                                             />
                                             <input
@@ -493,7 +538,7 @@ const Leave = () => {
                             )}
 
                             {/* Form Buttons */}
-                            <div className="flex justify-end gap-4 pt-4">
+                            <div className="flex justify-end gap-4 pt-2">
                                 <button
                                     type="button"
                                     onClick={() => {
@@ -513,13 +558,13 @@ const Leave = () => {
                                             unpaidTo: "",
                                         });
                                     }}
-                                    className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400"
+                                    className="px-5 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-400"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                    className="px-5 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 >
                                     Submit
                                 </button>
