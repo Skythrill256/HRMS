@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { FaRegUser, FaPhoneAlt } from "react-icons/fa";
-import { MdEmail, MdDateRange, MdWork, MdAccountBalance, MdSchool } from "react-icons/md"; 
+import { FaRegUser, FaPhoneAlt,FaBusinessTime  } from "react-icons/fa";
+import { MdEmail, MdDateRange, MdWork, MdAccountBalance, MdSchool } from "react-icons/md";
 
 const EmployeeProfile = ({ employeeData: initialEmployeeData, handleBackToEmployeeList }) => {
     const defaultEmployeeStructure = {
@@ -35,12 +35,13 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData, handleBackToEmploy
             ifsc: '',
             bankName: '',
             accountHolderName: '',
-            adharCardNo: '', // Added as per your renderField call
-            pancardNo: '',   // Added as per your renderField call
+            adharCardNo: '',
+            pancardNo: '',
         },
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift: '',
             department: '',
             designation: '',
             basicSalary: '',
@@ -156,14 +157,14 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData, handleBackToEmploy
         setIsEditing(false);
         setShowConfirmModal(false);
         // In a real application, you'd send `editableData` to a backend here.
-        
+
     }
 
     const handleCancelEdit = () => {
         setEditableData(employeeData); // Revert changes
         setIsEditing(false);
         setShowConfirmModal(false);
-        
+
     };
 
     const renderField = (label, value, name, type = 'text', isTextArea = false, icon = null) => (
@@ -402,6 +403,9 @@ const EmployeeProfile = ({ employeeData: initialEmployeeData, handleBackToEmploy
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-5">
                             {renderField('Join Date', editableData.companyInfo?.joinDate, 'companyInfo.joinDate', 'date', false, <MdDateRange />)}
                             {renderField('Employee Status', editableData.companyInfo?.employeeStatus, 'companyInfo.employeeStatus', 'text', false, <MdWork />)}
+
+                            {renderField('Employee Shift', editableData.companyInfo?.shift, 'companyInfo.shift', 'text', false, <FaBusinessTime />)}
+
                             {renderField('Department', editableData.companyInfo?.department, 'companyInfo.department', 'text', false, <MdWork />)}
                             {renderField('Designation', editableData.companyInfo?.designation, 'companyInfo.designation', 'text', false, <MdWork />)}
                             {renderField('Basic Salary', editableData.companyInfo?.basicSalary, 'companyInfo.basicSalary', 'text', false, <MdAccountBalance />)}

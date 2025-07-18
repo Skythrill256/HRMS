@@ -37,6 +37,7 @@ const employees = [
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift:'Day',
             department: '',
             designation: '',
             basicSalary: '',
@@ -89,6 +90,7 @@ const employees = [
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift:'Day',
             department: '',
             designation: '',
             basicSalary: '',
@@ -141,6 +143,7 @@ const employees = [
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift:'Night',
             department: '',
             designation: '',
             basicSalary: '',
@@ -193,6 +196,7 @@ const employees = [
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift:'Night',
             department: '',
             designation: '',
             basicSalary: '',
@@ -245,6 +249,7 @@ const employees = [
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift:'Night',
             department: '',
             designation: '',
             basicSalary: '',
@@ -297,6 +302,7 @@ const employees = [
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift:'Night',
             department: '',
             designation: '',
             basicSalary: '',
@@ -349,6 +355,7 @@ const employees = [
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift:'Day',
             department: '',
             designation: '',
             basicSalary: '',
@@ -401,6 +408,7 @@ const employees = [
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift:'Day',
             department: '',
             designation: '',
             basicSalary: '',
@@ -453,6 +461,7 @@ const employees = [
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift:'Day',
             department: '',
             designation: '',
             basicSalary: '',
@@ -505,6 +514,7 @@ const employees = [
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift:'Day',
             department: '',
             designation: '',
             basicSalary: '',
@@ -557,6 +567,7 @@ const employees = [
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift:'Day',
             department: '',
             designation: '',
             basicSalary: '',
@@ -609,6 +620,7 @@ const employees = [
         companyInfo: {
             joinDate: '',
             employeeStatus: '',
+            shift:'Night',
             department: '',
             designation: '',
             basicSalary: '',
