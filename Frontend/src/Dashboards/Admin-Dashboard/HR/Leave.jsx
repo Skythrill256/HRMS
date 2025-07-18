@@ -30,7 +30,6 @@ const Leave = () => {
 
     // Employee data from redux
     const employee = useSelector((state) => state.employees.employees);
-    console.log(employee);
 
     // Populate empId and name when modal opens
     useEffect(() => {
