@@ -35,7 +35,8 @@ const router = createBrowserRouter([
     // under hr section for verify the employee
     { path: "/admin-dashboard/verifyemplyee", element: <AdminDashboard section="verifyemplyee" /> },
     // for add and see interview list
-    {path:"/admin-dashboard/interview",element:<AdminDashboard section="interview"/>}
+    {path:"/admin-dashboard/interview",element:<AdminDashboard section="interview"/>},
+    {path:"/admin-dashboard/salaryreport",element:<AdminDashboard section="salaryreport"/>}
 
 ]);
 

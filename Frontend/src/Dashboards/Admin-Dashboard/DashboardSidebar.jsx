@@ -3,15 +3,16 @@ import { TbLayoutSidebarLeftCollapseFilled } from "react-icons/tb";
 import { Link, useLocation } from 'react-router-dom';
 import {
     FaUsers, FaUserTie, FaProjectDiagram, FaCogs, FaClipboardList, FaCog,
-    FaChevronDown, FaChevronUp, FaShoppingCart,
+    FaChevronDown, FaChevronUp, FaShoppingCart, FaRegIdCard, FaCalendarAlt
 } from 'react-icons/fa';
 import { CgProfile } from "react-icons/cg";
 import {
-    MdDashboard, MdOutlineMailOutline, MdOutlineCancel, MdVerified,
-    MdReport, MdOutlineDirectionsRun
+    MdOutlineMailOutline, MdOutlineCancel, MdVerified,
+    MdReport, MdOutlineDirectionsRun, MdOutlineSpeed, MdReadMore, MdHolidayVillage
 } from 'react-icons/md';
 import { BiSolidCartAdd } from "react-icons/bi";
 import { GrUserManager } from "react-icons/gr";
+import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { TbFileCertificate, TbNotes } from "react-icons/tb";
 import { FaWpforms } from "react-icons/fa6";
 import companylogo from '../../../public/watermark logo.png'
@@ -78,14 +79,28 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                     ]
                 },
                 { label: 'Leave', icon: <MdOutlineDirectionsRun className='text-purple-500 size-5' />, to: '/admin-dashboard/leave' },
-                { label: 'Certificate', icon: <TbNotes className='text-yellow-400' />, to: '' },
-                { label: 'Report', icon: <MdReport className='text-red-500 size-5' />, to: '' },
-                { label: 'Resignation', icon: <FaWpforms className='text-orange-500' />, to: '' },
-                { label: 'WO', icon: <FaShoppingCart className='text-purple-500' />, to: '' },
+                { label: 'Salary', icon: <RiMoneyRupeeCircleFill className='text-green-400 size-5' />, to: '' },
+                { label: 'Certificate', icon: <TbNotes className='text-yellow-400 size-4' />, to: '' },
                 {
-                    label: 'INTERVIEW',
-                    icon: <FaUserTie />,
-                    to: '/admin-dashboard/interview'
+                    label: 'Report',
+                    icon: <MdReport className='text-red-500 size-5' />,
+                    subItems: [
+                        { label: 'Leave Report', icon: <MdOutlineDirectionsRun className='text-purple-500 size-4' />, to: '' },
+                        { label: 'Salary Report', icon: <RiMoneyRupeeCircleFill className='text-green-400 size-4' />, to: '/admin-dashboard/salaryreport' }
+                    ]
+                },
+                { label: 'Resignation', icon: <FaWpforms className='text-orange-500' />, to: '' },
+                { label: 'Company WO', icon: <FaShoppingCart className='text-purple-500' />, to: '' },
+                { label: 'Performance', icon: <MdOutlineSpeed className='text-yellow-400 size-4' />, to: '' },
+                { label: 'Interview', icon: <FaUserTie />, to: '/admin-dashboard/interview' },
+                { label: 'ID Card', icon: <FaRegIdCard className='text-blue-500 size-4' />, to: '' },
+                {
+                    label: 'Others',
+                    icon: <MdReadMore className='text-red-500 size-5' />,
+                    subItems: [
+                        { label: 'Holidays', icon: <MdHolidayVillage />, to: '' },
+                        { label: 'Calendar', icon: <FaCalendarAlt className='text-orange-500 size-3' />, to: '' }
+                    ]
                 }
             ]
         },
@@ -103,7 +118,6 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                 {/* Header */}
                 <div className='flex justify-between items-center my-4'>
                     <Link to={"/admin-dashboard"} className="flex items-center space-x-2">
-                        {/* <MdDashboard className="text-2xl text-primary dark:text-blue-600" /> */}
                         <img src={companylogo} alt='logo' className='h-6 w-8 md:h-8 md:w-10' />
                         <h2 className="text-xl font-bold text-primary dark:text-blue-800">Dashboard</h2>
                     </Link>

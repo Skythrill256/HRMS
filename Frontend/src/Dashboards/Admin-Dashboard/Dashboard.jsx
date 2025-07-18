@@ -23,6 +23,7 @@ import TerminationLetter from './HR/TerminationLetter';
 import Leave from './HR/Leave';
 import VerifyEmployee from '../Admin-Dashboard/HR/VerifyEmployee';
 import Interview from './HR/Interview';
+import SalaryReport from './HR/SalaryReport';
 
 
 
@@ -96,10 +97,12 @@ const AdminDashboard = ({ section }) => {
         return <Leave/>;
         // for verify employee
       case 'verifyemplyee':
-        return <VerifyEmployee/>
+        return <VerifyEmployee/>;
         // for add and see interview
       case 'interview':
-        return <Interview/>
+        return <Interview/>;
+      case 'salaryreport':
+        return <SalaryReport/>
 
 
 
