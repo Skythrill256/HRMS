@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import html2pdf from 'html2pdf.js';
 import { useSelector } from 'react-redux';
-import { selectAllProjects } from '../../redux/slices/projectSlice'
+import { selectAllProjects } from '../../redux/slices/projectSlice';
 
 const WorkOrderForm = ({ onSave }) => {
   const navigate = useNavigate();
@@ -94,25 +94,24 @@ const WorkOrderForm = ({ onSave }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6 lg:px-8">
       <header className="bg-blue-700 text-white py-4 px-4 sm:px-8 mb-8 rounded-lg shadow-md">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-center">Work Order Management</h1>
       </header>
 
-      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto bg-white py-6 px-4 sm:px-6 lg:px-10 rounded-lg shadow-xl space-y-6 text-sm sm:text-base">
+      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto bg-white dark:bg-gray-800 py-6 px-4 sm:px-6 lg:px-10 rounded-lg shadow-xl space-y-6 text-sm sm:text-base">
         <div className="flex justify-end mb-4">
-          <p className="text-sm font-semibold text-gray-600">Date: {today}</p>
+          <p className="text-sm font-semibold text-gray-600 dark:text-gray-300">Date: {today}</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* Project ID Select with autofill */}
           <label className="block">
-            <strong className="text-gray-700">PROJECT ID:</strong>
+            <strong className="text-gray-700 dark:text-gray-200">PROJECT ID:</strong>
             <select
               name="projectId"
               value={formData.projectId}
               onChange={handleProjectSelect}
-              className="w-full mt-1 border border-gray-300 rounded-md p-2"
+              className="w-full mt-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md p-2"
               required
             >
               <option value="">Select Project</option>
@@ -124,46 +123,43 @@ const WorkOrderForm = ({ onSave }) => {
             </select>
           </label>
 
-          {/* Other autofilled and editable inputs */}
           {['clientId', 'clientName', 'quotationId', 'projectName', 'projectCategory'].map((key) => (
             <label key={key} className="block">
-              <strong className="text-gray-700">{key.replace(/([A-Z])/g, ' $1').toUpperCase()}:</strong>
+              <strong className="text-gray-700 dark:text-gray-200">{key.replace(/([A-Z])/g, ' $1').toUpperCase()}:</strong>
               <input
                 type="text"
                 name={key}
                 value={formData[key]}
                 onChange={handleChange}
-                className="w-full mt-1 border border-gray-300 rounded-md p-2"
+                className="w-full mt-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md p-2"
                 required
               />
             </label>
           ))}
 
-          {/* Project Details */}
           <label className="block sm:col-span-2">
-            <strong className="text-gray-700">PROJECT DETAILS:</strong>
+            <strong className="text-gray-700 dark:text-gray-200">PROJECT DETAILS:</strong>
             <textarea
               name="projectDetails"
               value={formData.projectDetails}
               onChange={handleChange}
               rows="4"
-              className="w-full mt-1 border border-gray-300 rounded-md p-2"
+              className="w-full mt-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md p-2"
               required
             />
           </label>
         </div>
 
-        {/* Other Fields */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {['warranty', 'warrantyDuration', 'freeMaintenance', 'maintenanceDuration', 'developmentCost', 'serverDomain', 'others', 'total', 'startDate', 'endDate'].map((key) => (
             <label key={key} className="block">
-              <strong className="text-gray-700">{key.replace(/([A-Z])/g, ' $1').toUpperCase()}:</strong>
+              <strong className="text-gray-700 dark:text-gray-200">{key.replace(/([A-Z])/g, ' $1').toUpperCase()}:</strong>
               <input
                 type={key.includes('Date') ? 'date' : 'text'}
                 name={key}
                 value={formData[key]}
                 onChange={handleChange}
-                className="w-full mt-1 border border-gray-300 rounded-md p-2"
+                className="w-full mt-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md p-2"
               />
             </label>
           ))}
@@ -171,19 +167,18 @@ const WorkOrderForm = ({ onSave }) => {
 
         {["paymentTerms", "scopeOfWork", "materialsPurchased", "termsAndConditions"].map((key) => (
           <div key={key}>
-            <h3 className="font-semibold text-gray-700 mb-2">{key.replace(/([A-Z])/g, ' $1').toUpperCase()}:</h3>
-            <textarea name={key} value={formData[key]} onChange={handleChange} rows="4" className="w-full border border-gray-300 rounded-md p-2" />
+            <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">{key.replace(/([A-Z])/g, ' $1').toUpperCase()}:</h3>
+            <textarea name={key} value={formData[key]} onChange={handleChange} rows="4" className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md p-2" />
           </div>
         ))}
 
         <div className="flex flex-wrap gap-4 justify-end">
-          <button type="button" onClick={() => navigate('/admin-dashboard/WorkOrder')} className="px-6 py-2 bg-gray-300 text-gray-800 rounded-md shadow hover:bg-gray-400 transition duration-200">Cancel</button>
+          <button type="button" onClick={() => navigate('/admin-dashboard/WorkOrder')} className="px-6 py-2 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-100 rounded-md shadow hover:bg-gray-400 dark:hover:bg-gray-500 transition duration-200">Cancel</button>
           <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-md shadow-lg hover:bg-blue-700 transition duration-200">Save Work Order</button>
           <button type="button" onClick={handleSaveAndDownload} className="bg-green-600 text-white px-6 py-2 rounded-md shadow-lg hover:bg-green-700 transition duration-200">Save & Download PDF</button>
         </div>
       </form>
 
-      {/* Hidden PDF View */}
       <div ref={pdfContentRef} className="hidden pdf-a4 bg-white px-10 py-8 text-sm" style={{ width: '794px', minHeight: '1123px', margin: '0 auto' }}>
         <img src="/WorkOrder_Header.png" alt="Header" className="w-full mb-4" />
         <div className="text-right font-semibold text-gray-700 mb-4">Date: {today}</div>
