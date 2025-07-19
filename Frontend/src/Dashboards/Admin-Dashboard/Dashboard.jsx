@@ -25,6 +25,7 @@ import VerifyEmployee from '../Admin-Dashboard/HR/VerifyEmployee';
 import Interview from './HR/Interview';
 import SalaryReport from './HR/SalaryReport';
 import Holidays from './HR/Holidays';
+import Productlist from './Products/Productlist';
 
 
 
@@ -107,6 +108,10 @@ const AdminDashboard = ({ section }) => {
       case 'holidays':
         return <Holidays/>;
 
+
+        // Product section
+      case 'products':
+        return <Productlist/>
 
 
 

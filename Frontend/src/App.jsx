@@ -37,7 +37,11 @@ const router = createBrowserRouter([
     // for add and see interview list
     {path:"/admin-dashboard/interview",element:<AdminDashboard section="interview"/>},
     {path:"/admin-dashboard/salaryreport",element:<AdminDashboard section="salaryreport"/>},
-    {path:"/admin-dashboard/holidays",element:<AdminDashboard section="holidays"/>}
+    {path:"/admin-dashboard/holidays",element:<AdminDashboard section="holidays"/>},
+
+
+    // Product section for add and manage
+    {path:"/admin-dashboard/products",element:<AdminDashboard section="products"/>}
 
 ]);
 

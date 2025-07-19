@@ -16,6 +16,7 @@ import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { TbFileCertificate, TbNotes } from "react-icons/tb";
 import { FaWpforms } from "react-icons/fa6";
 import companylogo from '../../../public/watermark logo.png'
+import { FiBox } from 'react-icons/fi';
 
 const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
     const location = useLocation();
@@ -104,6 +105,7 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                 }
             ]
         },
+        {label:'Prouducts ',icon:<FiBox />,to:'/admin-dashboard/products'}
 
     ];
 
