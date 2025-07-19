@@ -98,7 +98,7 @@ const DashboardSidebar = ({ SidebarOpen, togglesidehamburger }) => {
                     label: 'Others',
                     icon: <MdReadMore className='text-red-500 size-5' />,
                     subItems: [
-                        { label: 'Holidays', icon: <MdHolidayVillage />, to: '' },
+                        { label: 'Holidays', icon: <MdHolidayVillage />, to: '/admin-dashboard/holidays' },
                         { label: 'Calendar', icon: <FaCalendarAlt className='text-orange-500 size-3' />, to: '' }
                     ]
                 }

@@ -24,6 +24,7 @@ import Leave from './HR/Leave';
 import VerifyEmployee from '../Admin-Dashboard/HR/VerifyEmployee';
 import Interview from './HR/Interview';
 import SalaryReport from './HR/SalaryReport';
+import Holidays from './HR/Holidays';
 
 
 
@@ -102,7 +103,9 @@ const AdminDashboard = ({ section }) => {
       case 'interview':
         return <Interview/>;
       case 'salaryreport':
-        return <SalaryReport/>
+        return <SalaryReport/>;
+      case 'holidays':
+        return <Holidays/>;
 
 
 
